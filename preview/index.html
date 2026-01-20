@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Can Quetglas - Boutique Hotel Palma de Mallorca</title>
+    <meta name="description" content="Your home away from home in Palma de Mallorca - Hotel boutique en un edificio modernista de 1908">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           CSS VARIABLES
+           ============================================ */
+        :root {
+            --color-black: #0a0a0a;
+            --color-dark: #1a1a1a;
+            --color-dark-gray: #2a2a2a;
+            --color-gray: #888888;
+            --color-light-gray: #e5e5e5;
+            --color-white: #ffffff;
+            --color-gold: #c9a962;
+            --color-gold-light: #d4bc7c;
+            --font-heading: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Montserrat', -apple-system, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            --transition-normal: 0.3s ease;
+        }
+
+        /* Reset */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--color-white);
+            background-color: var(--color-black);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.2; }
+        a { color: var(--color-gold); text-decoration: none; transition: color var(--transition-normal); }
+        a:hover { color: var(--color-gold-light); }
+
+        /* Utility */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        .text-center { text-align: center; }
+        .section { padding: var(--spacing-xl) 0; }
+        .section-dark { background-color: var(--color-dark); }
+
+        /* Section Headers */
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--color-white); margin-bottom: var(--spacing-md); }
+        .section-divider { width: 60px; height: 1px; background-color: var(--color-gold); margin: 0 auto var(--spacing-md); }
+        .section-description { max-width: 600px; margin: 0 auto; color: var(--color-gray); font-size: 1.1rem; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        .btn-primary { background-color: var(--color-gold); color: var(--color-black); }
+        .btn-primary:hover { background-color: var(--color-gold-light); color: var(--color-black); }
+        .btn-outline { background: transparent; color: var(--color-white); border: 1px solid var(--color-white); }
+        .btn-outline:hover { background: var(--color-white); color: var(--color-black); }
+        .btn-outline-gold { background: transparent; color: var(--color-gold); border: 1px solid var(--color-gold); }
+        .btn-outline-gold:hover { background: var(--color-gold); color: var(--color-black); }
+
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--spacing-sm) 0;
+            transition: all var(--transition-normal);
+        }
+        .site-header.scrolled { background-color: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .site-logo-text { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-white); }
+        .site-logo-text span { color: var(--color-gold); }
+        .main-nav ul { display: flex; list-style: none; gap: var(--spacing-lg); }
+        .main-nav a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-white);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-gold);
+            transition: width var(--transition-normal);
+        }
+        .main-nav a:hover::after { width: 100%; }
+        .main-nav a:hover { color: var(--color-gold); }
+        .header-cta .btn { padding: 0.75rem 1.5rem; }
+
+        /* Mobile Menu */
+        .menu-toggle { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; }
+        .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-white); transition: all 0.3s; }
+
+        @media (max-width: 900px) {
+            .main-nav, .header-cta { display: none; }
+            .menu-toggle { display: flex; }
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80') center/cover;
+            opacity: 0.4;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .hero-content { position: relative; z-index: 3; text-align: center; padding: 0 var(--spacing-md); max-width: 900px; }
+        .hero-subtitle {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--color-gold);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 1s ease 0.7s forwards;
+            opacity: 0;
+        }
+        .hero-tagline {
+            font-family: var(--font-heading);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-style: italic;
+            color: var(--color-light-gray);
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 1s ease 0.9s forwards;
+            opacity: 0;
+        }
+        .hero-cta { animation: fadeInUp 1s ease 1.1s forwards; opacity: 0; }
+        .hero-cta .btn { margin: 0 0.5rem; }
+        .hero-scroll {
+            position: absolute;
+            bottom: var(--spacing-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: fadeIn 1s ease 1.5s forwards;
+            opacity: 0;
+        }
+        .hero-scroll span { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-gray); margin-bottom: var(--spacing-sm); }
+        .hero-scroll-line { width: 1px; height: 60px; background-color: var(--color-gold); margin: 0 auto; position: relative; overflow: hidden; }
+        .hero-scroll-line::after { content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%; background-color: var(--color-white); animation: scrollLine 2s ease infinite; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scrollLine { 0% { top: -100%; } 100% { top: 100%; } }
+
+        /* Intro */
+        .intro-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-style: italic;
+            color: var(--color-white);
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .intro-quote::before, .intro-quote::after { content: '"'; color: var(--color-gold); }
+
+        /* Rooms Grid */
+        .rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--spacing-md); }
+        .room-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+        .room-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .room-card:hover img { transform: scale(1.05); }
+        .room-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: var(--spacing-lg) var(--spacing-md);
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+        }
+        .room-card-title { font-size: 1.5rem; color: var(--color-white); margin-bottom: var(--spacing-xs); }
+        .room-card-subtitle { font-size: 0.85rem; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* Pool Bar Content */
+        .poolbar-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center; }
+        .poolbar-image img { width: 100%; height: 450px; object-fit: cover; }
+        .menu-category { margin-bottom: var(--spacing-md); }
+        .menu-category-title {
+            font-size: 1rem;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 1px solid var(--color-dark-gray);
+        }
+        .menu-items { color: var(--color-gray); font-size: 0.95rem; }
+
+        @media (max-width: 768px) {
+            .poolbar-content { grid-template-columns: 1fr; }
+            .rooms-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--spacing-xs); }
+        .gallery-item { position: relative; overflow: hidden; aspect-ratio: 1; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Location */
+        .location-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center; }
+        .location-map { height: 400px; background: var(--color-dark-gray); }
+        .location-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(100%) contrast(1.1); }
+        .location-item { display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); color: var(--color-gray); }
+        .location-item svg { width: 20px; height: 20px; color: var(--color-gold); flex-shrink: 0; margin-top: 4px; }
+        .location-item strong { color: var(--color-white); display: block; margin-bottom: 4px; }
+
+        @media (max-width: 768px) { .location-content { grid-template-columns: 1fr; } }
+
+        /* Footer */
+        .site-footer { background-color: var(--color-black); padding: var(--spacing-xl) 0 var(--spacing-md); border-top: 1px solid var(--color-dark-gray); }
+        .footer-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+        .footer-logo { font-family: var(--font-heading); font-size: 1.75rem; color: var(--color-white); margin-bottom: var(--spacing-sm); }
+        .footer-tagline { font-style: italic; color: var(--color-gray); font-size: 0.95rem; }
+        .footer-nav-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: var(--spacing-sm); }
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: var(--spacing-xs); }
+        .footer-nav a { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav a:hover { color: var(--color-white); }
+        .footer-contact p { color: var(--color-gray); font-size: 0.9rem; margin-bottom: var(--spacing-xs); }
+        .footer-social { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--color-dark-gray);
+            color: var(--color-gray);
+            transition: all 0.3s;
+        }
+        .footer-social a:hover { border-color: var(--color-gold); color: var(--color-gold); }
+        .footer-bottom { text-align: center; padding-top: var(--spacing-md); border-top: 1px solid var(--color-dark-gray); }
+        .footer-copyright { font-size: 0.8rem; color: var(--color-gray); }
+
+        @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr; text-align: center; } .footer-social { justify-content: center; } }
+
+        /* Features Grid */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); }
+        .feature { text-align: center; }
+        .feature-icon { color: var(--color-gold); margin-bottom: var(--spacing-md); }
+        .feature h3 { color: var(--color-white); margin-bottom: var(--spacing-sm); font-size: 1.25rem; }
+        .feature p { color: var(--color-gray); }
+
+        /* Fade animations on scroll */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header" id="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="#" class="site-logo-text"><span>Can</span> Quetglas</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hotel">El Hotel</a></li>
+                    <li><a href="#habitaciones">Habitaciones</a></li>
+                    <li><a href="#poolbar">Pool Bar</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header-cta">
+                <a href="#" class="btn btn-outline-gold">Reservar</a>
+            </div>
+            <button class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-subtitle">Boutique Hotel en Palma de Mallorca</span>
+        <h1 class="hero-title">Hotel Can Quetglas</h1>
+        <p class="hero-tagline">Your home away from home in Palma de Mallorca</p>
+        <div class="hero-cta">
+            <a href="#" class="btn btn-primary">Reservar Estancia</a>
+            <a href="#hotel" class="btn btn-outline">Descubrir</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- Intro -->
+<section class="section" id="hotel">
+    <div class="container text-center">
+        <div class="fade-in">
+            <span class="section-subtitle">Bienvenidos</span>
+            <p class="intro-quote">
+                Un palacete modernista de 1908, diseñado por un discípulo de Gaudí, convertido en un refugio de elegancia en el corazón del bohemio barrio de El Terreno
+            </p>
+            <p class="section-description">
+                Descubra nuestras 9 habitaciones únicas, cada una con su propia personalidad, donde la arquitectura modernista se encuentra con el confort contemporáneo.
+            </p>
+            <a href="#" class="btn btn-outline-gold" style="margin-top: var(--spacing-md);">Nuestra Historia</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features -->
+<section class="section section-dark">
+    <div class="container">
+        <div class="text-center fade-in" style="margin-bottom: var(--spacing-xl);">
+            <span class="section-subtitle">Experiencia</span>
+            <h2 class="section-title">Lo que nos hace únicos</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="features-grid">
+            <div class="feature fade-in">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/></svg>
+                </div>
+                <h3>Arquitectura Modernista</h3>
+                <p>Edificio de 1908 diseñado por un discípulo de Gaudí con detalles ornamentales únicos.</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg>
+                </div>
+                <h3>Piscina de Agua Salada</h3>
+                <p>Más suave y natural para la piel, rodeada de un exuberante jardín mediterráneo.</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                </div>
+                <h3>Adults Only +16</h3>
+                <p>Ambiente tranquilo y sofisticado para adultos que buscan una escapada relajante.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rooms -->
+<section class="section" id="habitaciones">
+    <div class="container">
+        <div class="text-center fade-in">
+            <span class="section-subtitle">Alojamiento</span>
+            <h2 class="section-title">Nuestras Habitaciones</h2>
+            <div class="section-divider"></div>
+            <p class="section-description">9 habitaciones únicas con carácter propio, donde cada detalle ha sido cuidadosamente pensado para su confort</p>
+        </div>
+        <div class="rooms-grid" style="margin-top: var(--spacing-xl);">
+            <div class="room-card fade-in">
+                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Suite Can Quetglas">
+                <div class="room-card-overlay">
+                    <h3 class="room-card-title">Suite Can Quetglas</h3>
+                    <span class="room-card-subtitle">35 m² · King Size</span>
+                </div>
+            </div>
+            <div class="room-card fade-in">
+                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Habitación Modernista">
+                <div class="room-card-overlay">
+                    <h3 class="room-card-title">Habitación Modernista</h3>
+                    <span class="room-card-subtitle">28 m² · King Size</span>
+                </div>
+            </div>
+            <div class="room-card fade-in">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Habitación Jardín">
+                <div class="room-card-overlay">
+                    <h3 class="room-card-title">Habitación Jardín</h3>
+                    <span class="room-card-subtitle">25 m² · Queen Size</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: var(--spacing-xl);">
+            <a href="#" class="btn btn-outline-gold">Ver Todas las Habitaciones</a>
+        </div>
+    </div>
+</section>
+
+<!-- Pool Bar -->
+<section class="section section-dark" id="poolbar">
+    <div class="container">
+        <div class="poolbar-content">
+            <div class="poolbar-image fade-in">
+                <img src="https://images.unsplash.com/photo-1572331165267-854da2b10ccc?w=800&q=80" alt="Pool Bar">
+            </div>
+            <div class="fade-in">
+                <span class="section-subtitle">Pool Bar</span>
+                <h2 class="section-title" style="text-align: left;">Sabores Mediterráneos</h2>
+                <div class="section-divider" style="margin-left: 0;"></div>
+                <p style="color: var(--color-gray); margin-bottom: var(--spacing-md);">
+                    Disfrute de nuestra selección de tapas junto a la piscina de agua salada, rodeado del exuberante jardín mediterráneo.
+                </p>
+                <div class="menu-category">
+                    <h4 class="menu-category-title">Tapas</h4>
+                    <p class="menu-items">Tabla de quesos artesanos · Jamón ibérico de bellota · Nachos con guacamole</p>
+                </div>
+                <div class="menu-category">
+                    <h4 class="menu-category-title">Snacks</h4>
+                    <p class="menu-items">Pizzas caseras · Sandwiches gourmet · Ensaladas frescas</p>
+                </div>
+                <a href="#" class="btn btn-outline-gold" style="margin-top: var(--spacing-md);">Descubrir el Pool Bar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery -->
+<section class="section" id="galeria">
+    <div class="container">
+        <div class="text-center fade-in">
+            <span class="section-subtitle">Galería</span>
+            <h2 class="section-title">Momentos en Can Quetglas</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="gallery-grid" style="margin-top: var(--spacing-xl);">
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80" alt="Gallery 1"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&q=80" alt="Gallery 2"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&q=80" alt="Gallery 3"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=400&q=80" alt="Gallery 4"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80" alt="Gallery 5"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=400&q=80" alt="Gallery 6"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=400&q=80" alt="Gallery 7"></div>
+            <div class="gallery-item fade-in"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=400&q=80" alt="Gallery 8"></div>
+        </div>
+        <div class="text-center" style="margin-top: var(--spacing-xl);">
+            <a href="#" class="btn btn-outline-gold">Ver Galería Completa</a>
+        </div>
+    </div>
+</section>
+
+<!-- Location -->
+<section class="section section-dark" id="contacto">
+    <div class="container">
+        <div class="location-content">
+            <div class="fade-in">
+                <span class="section-subtitle">Ubicación</span>
+                <h2 class="section-title" style="text-align: left;">El Terreno, Palma</h2>
+                <div class="section-divider" style="margin-left: 0;"></div>
+                <p style="color: var(--color-gray); margin-bottom: var(--spacing-md);">
+                    Situado en el histórico barrio de El Terreno, donde artistas, escritores e intelectuales de la Palma bohemia de los años 60 encontraron su inspiración.
+                </p>
+                <div class="location-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <div><strong>Dirección</strong>El Terreno, 07014 Palma de Mallorca</div>
+                </div>
+                <div class="location-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <div><strong>Teléfono</strong>+34 XXX XXX XXX</div>
+                </div>
+                <div class="location-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <div><strong>Email</strong>info@hotelcanquetglas.com</div>
+                </div>
+                <a href="#" class="btn btn-outline-gold" style="margin-top: var(--spacing-md);">Cómo Llegar</a>
+            </div>
+            <div class="location-map fade-in">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12295.044896706092!2d2.6147899!3d39.5696015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297924a9c4b5555%3A0x8a9a0b0b0b0b0b0b!2sEl%20Terreno%2C%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section text-center">
+    <div class="container" style="max-width: 800px;">
+        <div class="fade-in">
+            <span class="section-subtitle">Reserve su estancia</span>
+            <h2 class="section-title">Su refugio le espera</h2>
+            <div class="section-divider"></div>
+            <p class="section-description" style="margin-bottom: var(--spacing-lg);">
+                Experimente la combinación perfecta de historia, diseño y hospitalidad mediterránea en el corazón de Palma de Mallorca.
+            </p>
+            <a href="#" class="btn btn-primary">Reservar Ahora</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo"><span style="color: var(--color-gold);">Can</span> Quetglas</div>
+                <p class="footer-tagline">Your home away from home in Palma de Mallorca</p>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title">Explorar</h4>
+                <ul>
+                    <li><a href="#hotel">El Hotel</a></li>
+                    <li><a href="#habitaciones">Habitaciones</a></li>
+                    <li><a href="#poolbar">Pool Bar</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 class="footer-nav-title">Contacto</h4>
+                <p>El Terreno, 07014 Palma de Mallorca</p>
+                <p>+34 XXX XXX XXX</p>
+                <p>info@hotelcanquetglas.com</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2026 Hotel Can Quetglas. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Header scroll effect
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 100);
+});
+
+// Scroll animations
+const fadeElements = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+fadeElements.forEach(el => observer.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
