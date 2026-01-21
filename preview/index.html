@@ -564,7 +564,7 @@
             padding-left: var(--spacing-md);
         }
         .submenu-open .submenu {
-            max-height: 200px;
+            max-height: 300px;
         }
         .submenu li {
             margin: var(--spacing-xs) 0;
@@ -664,7 +664,16 @@
 
     <ul class="side-menu-nav">
         <li><a href="#hotel" data-i18n="nav.hotel">The Hotel</a></li>
-        <li><a href="#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.rooms">Rooms</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="#habitaciones" data-i18n="rooms.standard">Standard with Terrace</a></li>
+                <li><a href="#habitaciones" data-i18n="rooms.deluxe">Deluxe</a></li>
+                <li><a href="#habitaciones" data-i18n="rooms.deluxepremium">Deluxe Premium</a></li>
+                <li><a href="#habitaciones" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</a></li>
+                <li><a href="#habitaciones" data-i18n="rooms.suite">Can Quetglas Suite</a></li>
+            </ul>
+        </li>
         <li class="has-submenu">
             <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
             <ul class="submenu">
@@ -945,6 +954,13 @@ const translations = {
         'nav.location': 'Location',
         'nav.contact': 'Contact',
 
+        // Room types
+        'rooms.standard': 'Standard with Terrace',
+        'rooms.deluxe': 'Deluxe',
+        'rooms.deluxepremium': 'Deluxe Premium',
+        'rooms.deluxeterrace': 'Deluxe with Terrace',
+        'rooms.suite': 'Can Quetglas Suite',
+
         // Buttons
         'btn.book': 'Book',
         'btn.booknow': 'Book Now',
@@ -1025,6 +1041,13 @@ const translations = {
         'nav.wellness': 'Bienestar',
         'nav.location': 'Ubicación',
         'nav.contact': 'Contacto',
+
+        // Room types
+        'rooms.standard': 'Standard con Terraza',
+        'rooms.deluxe': 'Deluxe',
+        'rooms.deluxepremium': 'Deluxe Premium',
+        'rooms.deluxeterrace': 'Deluxe con Terraza',
+        'rooms.suite': 'Suite Can Quetglas',
 
         // Buttons
         'btn.book': 'Reservar',
@@ -1107,6 +1130,13 @@ const translations = {
         'nav.location': 'Lage',
         'nav.contact': 'Kontakt',
 
+        // Room types
+        'rooms.standard': 'Standard mit Terrasse',
+        'rooms.deluxe': 'Deluxe',
+        'rooms.deluxepremium': 'Deluxe Premium',
+        'rooms.deluxeterrace': 'Deluxe mit Terrasse',
+        'rooms.suite': 'Can Quetglas Suite',
+
         // Buttons
         'btn.book': 'Buchen',
         'btn.booknow': 'Jetzt Buchen',
@@ -1187,6 +1217,13 @@ const translations = {
         'nav.wellness': 'Wellness',
         'nav.location': 'Läge',
         'nav.contact': 'Kontakt',
+
+        // Room types
+        'rooms.standard': 'Standard med Terrass',
+        'rooms.deluxe': 'Deluxe',
+        'rooms.deluxepremium': 'Deluxe Premium',
+        'rooms.deluxeterrace': 'Deluxe med Terrass',
+        'rooms.suite': 'Can Quetglas Svit',
 
         // Buttons
         'btn.book': 'Boka',
