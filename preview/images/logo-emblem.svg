@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 80" fill="none" stroke="#1a1a1a" stroke-width="1.5">
+  <!-- Left top flourish/bird -->
+  <path d="M12 5 C6 5 2 10 2 16 C2 20 4 22 7 22 C9 22 10 20 9 18 C8 16 6 16 5 18" stroke-linecap="round"/>
+  <path d="M12 5 C12 10 14 14 18 16 C20 17 21 19 20 22" stroke-linecap="round"/>
+
+  <!-- Right top flourish/bird -->
+  <path d="M38 5 C44 5 48 10 48 16 C48 20 46 22 43 22 C41 22 40 20 41 18 C42 16 44 16 45 18" stroke-linecap="round"/>
+  <path d="M38 5 C38 10 36 14 32 16 C30 17 29 19 30 22" stroke-linecap="round"/>
+
+  <!-- Center top connection -->
+  <path d="M12 5 Q25 0 38 5" stroke-linecap="round"/>
+
+  <!-- Central vertical column -->
+  <line x1="25" y1="18" x2="25" y2="55" stroke-width="3"/>
+
+  <!-- Column horizontal bars -->
+  <line x1="20" y1="22" x2="30" y2="22" stroke-width="2"/>
+  <line x1="20" y1="52" x2="30" y2="52" stroke-width="2"/>
+
+  <!-- Side decorative circles -->
+  <circle cx="17" cy="37" r="3" fill="#1a1a1a"/>
+  <circle cx="33" cy="37" r="3" fill="#1a1a1a"/>
+
+  <!-- Fan/shell base - radiating lines -->
+  <path d="M25 55 L5 75" stroke-width="1.5"/>
+  <path d="M25 55 L11 75" stroke-width="1.5"/>
+  <path d="M25 55 L17 75" stroke-width="1.5"/>
+  <path d="M25 55 L25 75" stroke-width="1.5"/>
+  <path d="M25 55 L33 75" stroke-width="1.5"/>
+  <path d="M25 55 L39 75" stroke-width="1.5"/>
+  <path d="M25 55 L45 75" stroke-width="1.5"/>
+
+  <!-- Base arc -->
+  <path d="M5 75 Q25 70 45 75" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
