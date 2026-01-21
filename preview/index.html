@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -506,7 +506,6 @@
             color: var(--color-black);
             padding: 10px;
             margin-left: -10px;
-            margin-bottom: var(--spacing-md);
             align-self: flex-start;
         }
         .side-menu-close:hover {
@@ -515,7 +514,7 @@
 
         .side-menu-nav {
             list-style: none;
-            margin-top: var(--spacing-lg);
+            margin-top: var(--spacing-sm);
             flex: 1;
         }
         .side-menu-nav > li {
@@ -643,18 +642,18 @@
     </button>
 
     <ul class="side-menu-nav">
-        <li><a href="#hotel">The Hotel</a></li>
-        <li><a href="#habitaciones">Rooms</a></li>
+        <li><a href="#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+        <li><a href="#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
         <li class="has-submenu">
-            <a href="#" class="submenu-toggle">Food & Beverages <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
             <ul class="submenu">
-                <li><a href="#breakfast">Breakfast</a></li>
-                <li><a href="#poolbar">Snack Bar</a></li>
+                <li><a href="#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
             </ul>
         </li>
-        <li><a href="#wellness">Wellness</a></li>
-        <li><a href="#contacto">Location</a></li>
-        <li><a href="#contacto">Contact</a></li>
+        <li><a href="#wellness" data-i18n="nav.wellness">Wellness</a></li>
+        <li><a href="#contacto" data-i18n="nav.location">Location</a></li>
+        <li><a href="#contacto" data-i18n="nav.contact">Contact</a></li>
     </ul>
 
     <div class="side-menu-lang">
@@ -678,7 +677,7 @@
 
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <div class="header-cta">
-                    <a href="#" class="btn">Book</a>
+                    <a href="#" class="btn" data-i18n="btn.book">Book</a>
                 </div>
                 <div class="header-lang-selector">
                     <span class="current-lang">EN</span>
@@ -695,12 +694,12 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h1 class="hero-logo">Can Quetglas</h1>
-        <p class="hero-tagline">Urban Boutique Retreat</p>
+        <p class="hero-tagline" data-i18n="hero.tagline">Urban Boutique Retreat</p>
         <div class="hero-cta">
-            <a href="#" class="btn btn-light">Discover</a>
+            <a href="#" class="btn btn-light" data-i18n="hero.discover">Discover</a>
         </div>
     </div>
-    <div class="hero-booking">
+    <div class="hero-booking" data-i18n="hero.booking">
         Book now for exclusive benefits
     </div>
 </section>
@@ -709,8 +708,8 @@
 <section class="section section-cream" id="hotel">
     <div class="container text-center">
         <div class="fade-in">
-            <h2 class="intro-title">The iconic haven in the heart of El Terreno</h2>
-            <p class="intro-badge">Adults Only +16</p>
+            <h2 class="intro-title" data-i18n="intro.title">The iconic haven in the heart of El Terreno</h2>
+            <p class="intro-badge" data-i18n="intro.badge">Adults Only +16</p>
         </div>
     </div>
 </section>
@@ -721,22 +720,22 @@
         <div class="rooms-slider">
             <div class="room-slide fade-in">
                 <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Suite Can Quetglas">
-                <h3 class="room-slide-title">Suite Can Quetglas</h3>
-                <p class="room-slide-desc">This spacious suite combines earthy tones with natural light and stunning garden views.</p>
+                <h3 class="room-slide-title" data-i18n="rooms.suite.title">Suite Can Quetglas</h3>
+                <p class="room-slide-desc" data-i18n="rooms.suite.desc">This spacious suite combines earthy tones with natural light and stunning garden views.</p>
             </div>
             <div class="room-slide fade-in">
                 <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Habitación Modernista">
-                <h3 class="room-slide-title">Habitación Modernista</h3>
-                <p class="room-slide-desc">Bathed in natural light and adorned with traditional Mallorcan textiles and local art.</p>
+                <h3 class="room-slide-title" data-i18n="rooms.modernist.title">Modernist Room</h3>
+                <p class="room-slide-desc" data-i18n="rooms.modernist.desc">Bathed in natural light and adorned with traditional Mallorcan textiles and local art.</p>
             </div>
             <div class="room-slide fade-in">
                 <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Junior Suite">
-                <h3 class="room-slide-title">Junior Suite</h3>
-                <p class="room-slide-desc">A minimalist retreat with handcrafted touches that encourage deep relaxation.</p>
+                <h3 class="room-slide-title" data-i18n="rooms.junior.title">Junior Suite</h3>
+                <p class="room-slide-desc" data-i18n="rooms.junior.desc">A minimalist retreat with handcrafted touches that encourage deep relaxation.</p>
             </div>
         </div>
         <div class="text-center" style="margin-top: var(--spacing-lg);">
-            <a href="#" class="btn btn-outline">View All Rooms</a>
+            <a href="#" class="btn btn-outline" data-i18n="rooms.viewall">View All Rooms</a>
         </div>
     </div>
 </section>
@@ -749,10 +748,10 @@
                 <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Hotel Can Quetglas">
             </div>
             <div class="legacy-text fade-in">
-                <h2>Enduring Legacy</h2>
-                <p>A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, local art galleries, and the bohemian spirit of 1960s Palma.</p>
-                <p>Our spaces feature iconic design pieces and 9 rooms embodying a minimalist aesthetic enhanced with artisanal Mallorcan touches.</p>
-                <a href="#" class="btn-text">Learn More</a>
+                <h2 data-i18n="legacy.title">Enduring Legacy</h2>
+                <p data-i18n="legacy.text1">A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, local art galleries, and the bohemian spirit of 1960s Palma.</p>
+                <p data-i18n="legacy.text2">Our spaces feature iconic design pieces and 9 rooms embodying a minimalist aesthetic enhanced with artisanal Mallorcan touches.</p>
+                <a href="#" class="btn-text" data-i18n="legacy.more">Learn More</a>
             </div>
         </div>
     </div>
@@ -762,12 +761,12 @@
 <section class="section section-cream" id="breakfast" style="padding: 0;">
     <div class="experience-grid">
         <div class="experience-content fade-in">
-            <h2>Breakfast</h2>
-            <p>Start your day with our generous breakfast selection, featuring local Mallorcan products and Mediterranean flavors. Served in our garden terrace or by the pool.</p>
-            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);"><strong>Continental:</strong> Fresh pastries · Artisan breads · Local jams & honey</p>
-            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);"><strong>Hot dishes:</strong> Eggs to order · Pancakes · Fresh fruit</p>
-            <p style="font-size: 0.9rem;"><strong>Beverages:</strong> Fresh juices · Coffee · Tea selection</p>
-            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);">View Menu</a>
+            <h2 data-i18n="breakfast.title">Breakfast</h2>
+            <p data-i18n="breakfast.desc">Start your day with our generous breakfast selection, featuring local Mallorcan products and Mediterranean flavors. Served in our garden terrace or by the pool.</p>
+            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="breakfast.continental"><strong>Continental:</strong> Fresh pastries · Artisan breads · Local jams & honey</p>
+            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="breakfast.hot"><strong>Hot dishes:</strong> Eggs to order · Pancakes · Fresh fruit</p>
+            <p style="font-size: 0.9rem;" data-i18n="breakfast.beverages"><strong>Beverages:</strong> Fresh juices · Coffee · Tea selection</p>
+            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.viewmenu">View Menu</a>
         </div>
         <div class="experience-image fade-in">
             <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=900&q=80" alt="Breakfast">
@@ -782,11 +781,11 @@
             <img src="https://images.unsplash.com/photo-1572331165267-854da2b10ccc?w=900&q=80" alt="Snack Bar">
         </div>
         <div class="experience-content fade-in" style="background: var(--color-white);">
-            <h2>Snack Bar</h2>
-            <p>Enjoy our selection of Mediterranean tapas by the saltwater pool, surrounded by our lush garden. The perfect place to unwind under the Mallorcan sun.</p>
-            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);"><strong>Tapas:</strong> Artisan cheese board · Ibérico ham · Nachos with guacamole</p>
-            <p style="font-size: 0.9rem;"><strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Fresh salads</p>
-            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);">View Menu</a>
+            <h2 data-i18n="snackbar.title">Snack Bar</h2>
+            <p data-i18n="snackbar.desc">Enjoy our selection of Mediterranean tapas by the saltwater pool, surrounded by our lush garden. The perfect place to unwind under the Mallorcan sun.</p>
+            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="snackbar.tapas"><strong>Tapas:</strong> Artisan cheese board · Ibérico ham · Nachos with guacamole</p>
+            <p style="font-size: 0.9rem;" data-i18n="snackbar.snacks"><strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Fresh salads</p>
+            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.viewmenu">View Menu</a>
         </div>
     </div>
 </section>
@@ -795,18 +794,18 @@
 <section class="section section-white" id="wellness">
     <div class="container">
         <div class="text-center fade-in" style="margin-bottom: var(--spacing-xl);">
-            <p class="section-subtitle">Wellness</p>
-            <h2 class="section-title">Relax & Unwind</h2>
+            <p class="section-subtitle" data-i18n="wellness.subtitle">Wellness</p>
+            <h2 class="section-title" data-i18n="wellness.title">Relax & Unwind</h2>
         </div>
         <div class="legacy-content">
             <div class="legacy-image fade-in">
                 <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=900&q=80" alt="Saltwater Pool">
             </div>
             <div class="legacy-text fade-in">
-                <h2>Saltwater Pool & Garden</h2>
-                <p>Immerse yourself in our saltwater pool, gentler on your skin and more natural than chlorine. Surrounded by our Mediterranean garden with century-old trees, it's the perfect oasis to escape the heat.</p>
-                <p>Relax on our sun loungers, enjoy a refreshing drink from the pool bar, and let the Mallorcan sun work its magic. Our garden provides shaded spots for those who prefer to read or simply enjoy the tranquility.</p>
-                <a href="#" class="btn-text">Discover More</a>
+                <h2 data-i18n="wellness.pool.title">Saltwater Pool & Garden</h2>
+                <p data-i18n="wellness.pool.text1">Immerse yourself in our saltwater pool, gentler on your skin and more natural than chlorine. Surrounded by our Mediterranean garden with century-old trees, it's the perfect oasis to escape the heat.</p>
+                <p data-i18n="wellness.pool.text2">Relax on our sun loungers, enjoy a refreshing drink from the pool bar, and let the Mallorcan sun work its magic. Our garden provides shaded spots for those who prefer to read or simply enjoy the tranquility.</p>
+                <a href="#" class="btn-text" data-i18n="btn.discover">Discover More</a>
             </div>
         </div>
     </div>
@@ -817,24 +816,24 @@
     <div class="container">
         <div class="location-content">
             <div class="fade-in">
-                <p class="section-subtitle">Location</p>
-                <h2 class="section-title" style="text-align: left;">El Terreno, Palma</h2>
-                <p style="color: var(--color-gray); margin-bottom: var(--spacing-lg); line-height: 1.8;">
+                <p class="section-subtitle" data-i18n="location.subtitle">Location</p>
+                <h2 class="section-title" style="text-align: left;" data-i18n="location.title">El Terreno, Palma</h2>
+                <p style="color: var(--color-gray); margin-bottom: var(--spacing-lg); line-height: 1.8;" data-i18n="location.desc">
                     Located in the historic neighborhood of El Terreno, where artists, writers and intellectuals of bohemian 1960s Palma found their inspiration. Minutes from the old town and the best beaches.
                 </p>
                 <div class="location-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <div><strong>Address</strong>El Terreno, 07014 Palma de Mallorca</div>
+                    <div><strong data-i18n="location.address">Address</strong>El Terreno, 07014 Palma de Mallorca</div>
                 </div>
                 <div class="location-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <div><strong>Phone</strong>+34 XXX XXX XXX</div>
+                    <div><strong data-i18n="location.phone">Phone</strong>+34 XXX XXX XXX</div>
                 </div>
                 <div class="location-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     <div><strong>Email</strong>info@hotelcanquetglas.com</div>
                 </div>
-                <a href="#" class="btn btn-outline" style="margin-top: var(--spacing-md);">Get Directions</a>
+                <a href="#" class="btn btn-outline" style="margin-top: var(--spacing-md);" data-i18n="location.directions">Get Directions</a>
             </div>
             <div class="location-map fade-in">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12295.044896706092!2d2.6147899!3d39.5696015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1297924a9c4b5555%3A0x8a9a0b0b0b0b0b0b!2sEl%20Terreno%2C%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
@@ -847,11 +846,11 @@
 <section class="section section-white text-center">
     <div class="container" style="max-width: 700px;">
         <div class="fade-in">
-            <h2 class="section-title">Your retreat awaits</h2>
-            <p class="section-description" style="margin-bottom: var(--spacing-lg);">
+            <h2 class="section-title" data-i18n="cta.title">Your retreat awaits</h2>
+            <p class="section-description" style="margin-bottom: var(--spacing-lg);" data-i18n="cta.desc">
                 Experience the perfect blend of history, design and Mediterranean hospitality in the heart of Palma de Mallorca.
             </p>
-            <a href="#" class="btn btn-primary">Book Now</a>
+            <a href="#" class="btn btn-primary" data-i18n="btn.booknow">Book Now</a>
         </div>
     </div>
 </section>
@@ -862,28 +861,28 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-logo">Can Quetglas</div>
-                <p class="footer-tagline">Your home away from home<br>in Palma de Mallorca</p>
+                <p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p>
             </div>
             <div class="footer-nav">
-                <h4 class="footer-nav-title">Explore</h4>
+                <h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4>
                 <ul>
-                    <li><a href="#hotel">The Hotel</a></li>
-                    <li><a href="#habitaciones">Rooms</a></li>
-                    <li><a href="#breakfast">Breakfast</a></li>
-                    <li><a href="#poolbar">Snack Bar</a></li>
-                    <li><a href="#wellness">Wellness</a></li>
+                    <li><a href="#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+                    <li><a href="#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
+                    <li><a href="#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                    <li><a href="#wellness" data-i18n="nav.wellness">Wellness</a></li>
                 </ul>
             </div>
             <div class="footer-nav">
-                <h4 class="footer-nav-title">Info</h4>
+                <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
                 <ul>
-                    <li><a href="#contacto">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms</a></li>
+                    <li><a href="#contacto" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="footer.terms">Terms</a></li>
                 </ul>
             </div>
             <div class="footer-contact">
-                <h4 class="footer-nav-title">Contact</h4>
+                <h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4>
                 <p>El Terreno, 07014<br>Palma de Mallorca</p>
                 <p>+34 XXX XXX XXX</p>
                 <p>info@hotelcanquetglas.com</p>
@@ -898,13 +897,296 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p class="footer-copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p>
+            <p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p>
         </div>
     </div>
 </footer>
 
 <script>
-// Side Menu
+// ============================================
+// TRANSLATIONS
+// ============================================
+const translations = {
+    en: {
+        // Navigation
+        'nav.hotel': 'The Hotel',
+        'nav.rooms': 'Rooms',
+        'nav.food': 'Food & Beverages',
+        'nav.breakfast': 'Breakfast',
+        'nav.snackbar': 'Snack Bar',
+        'nav.wellness': 'Wellness',
+        'nav.location': 'Location',
+        'nav.contact': 'Contact',
+
+        // Buttons
+        'btn.book': 'Book',
+        'btn.booknow': 'Book Now',
+        'btn.viewmenu': 'View Menu',
+        'btn.discover': 'Discover More',
+
+        // Hero
+        'hero.tagline': 'Urban Boutique Retreat',
+        'hero.discover': 'Discover',
+        'hero.booking': 'Book now for exclusive benefits',
+
+        // Intro
+        'intro.title': 'The iconic haven in the heart of El Terreno',
+        'intro.badge': 'Adults Only +16',
+
+        // Rooms
+        'rooms.suite.title': 'Suite Can Quetglas',
+        'rooms.suite.desc': 'This spacious suite combines earthy tones with natural light and stunning garden views.',
+        'rooms.modernist.title': 'Modernist Room',
+        'rooms.modernist.desc': 'Bathed in natural light and adorned with traditional Mallorcan textiles and local art.',
+        'rooms.junior.title': 'Junior Suite',
+        'rooms.junior.desc': 'A minimalist retreat with handcrafted touches that encourage deep relaxation.',
+        'rooms.viewall': 'View All Rooms',
+
+        // Legacy
+        'legacy.title': 'Enduring Legacy',
+        'legacy.text1': 'A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, local art galleries, and the bohemian spirit of 1960s Palma.',
+        'legacy.text2': 'Our spaces feature iconic design pieces and 9 rooms embodying a minimalist aesthetic enhanced with artisanal Mallorcan touches.',
+        'legacy.more': 'Learn More',
+
+        // Breakfast
+        'breakfast.title': 'Breakfast',
+        'breakfast.desc': 'Start your day with our generous breakfast selection, featuring local Mallorcan products and Mediterranean flavors. Served in our garden terrace or by the pool.',
+        'breakfast.continental': '<strong>Continental:</strong> Fresh pastries · Artisan breads · Local jams & honey',
+        'breakfast.hot': '<strong>Hot dishes:</strong> Eggs to order · Pancakes · Fresh fruit',
+        'breakfast.beverages': '<strong>Beverages:</strong> Fresh juices · Coffee · Tea selection',
+
+        // Snack Bar
+        'snackbar.title': 'Snack Bar',
+        'snackbar.desc': 'Enjoy our selection of Mediterranean tapas by the saltwater pool, surrounded by our lush garden. The perfect place to unwind under the Mallorcan sun.',
+        'snackbar.tapas': '<strong>Tapas:</strong> Artisan cheese board · Ibérico ham · Nachos with guacamole',
+        'snackbar.snacks': '<strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Fresh salads',
+
+        // Wellness
+        'wellness.subtitle': 'Wellness',
+        'wellness.title': 'Relax & Unwind',
+        'wellness.pool.title': 'Saltwater Pool & Garden',
+        'wellness.pool.text1': 'Immerse yourself in our saltwater pool, gentler on your skin and more natural than chlorine. Surrounded by our Mediterranean garden with century-old trees, it\'s the perfect oasis to escape the heat.',
+        'wellness.pool.text2': 'Relax on our sun loungers, enjoy a refreshing drink from the pool bar, and let the Mallorcan sun work its magic. Our garden provides shaded spots for those who prefer to read or simply enjoy the tranquility.',
+
+        // Location
+        'location.subtitle': 'Location',
+        'location.title': 'El Terreno, Palma',
+        'location.desc': 'Located in the historic neighborhood of El Terreno, where artists, writers and intellectuals of bohemian 1960s Palma found their inspiration. Minutes from the old town and the best beaches.',
+        'location.address': 'Address',
+        'location.phone': 'Phone',
+        'location.directions': 'Get Directions',
+
+        // CTA
+        'cta.title': 'Your retreat awaits',
+        'cta.desc': 'Experience the perfect blend of history, design and Mediterranean hospitality in the heart of Palma de Mallorca.',
+
+        // Footer
+        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca',
+        'footer.explore': 'Explore',
+        'footer.info': 'Info',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms',
+        'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
+    },
+    es: {
+        // Navigation
+        'nav.hotel': 'El Hotel',
+        'nav.rooms': 'Habitaciones',
+        'nav.food': 'Gastronomía',
+        'nav.breakfast': 'Desayuno',
+        'nav.snackbar': 'Snack Bar',
+        'nav.wellness': 'Bienestar',
+        'nav.location': 'Ubicación',
+        'nav.contact': 'Contacto',
+
+        // Buttons
+        'btn.book': 'Reservar',
+        'btn.booknow': 'Reservar Ahora',
+        'btn.viewmenu': 'Ver Menú',
+        'btn.discover': 'Descubrir Más',
+
+        // Hero
+        'hero.tagline': 'Refugio Boutique Urbano',
+        'hero.discover': 'Descubrir',
+        'hero.booking': 'Reserva ahora y disfruta de beneficios exclusivos',
+
+        // Intro
+        'intro.title': 'El refugio icónico en el corazón de El Terreno',
+        'intro.badge': 'Solo Adultos +16',
+
+        // Rooms
+        'rooms.suite.title': 'Suite Can Quetglas',
+        'rooms.suite.desc': 'Esta espaciosa suite combina tonos terrosos con luz natural y vistas impresionantes al jardín.',
+        'rooms.modernist.title': 'Habitación Modernista',
+        'rooms.modernist.desc': 'Bañada en luz natural y decorada con textiles mallorquines tradicionales y arte local.',
+        'rooms.junior.title': 'Junior Suite',
+        'rooms.junior.desc': 'Un retiro minimalista con toques artesanales que invitan a la relajación profunda.',
+        'rooms.viewall': 'Ver Todas las Habitaciones',
+
+        // Legacy
+        'legacy.title': 'Legado Perdurable',
+        'legacy.text1': 'Un palacete modernista de 1908 diseñado por un discípulo de Gaudí, que late como el corazón cultural de El Terreno, rodeado de árboles centenarios, galerías de arte local y el espíritu bohemio de la Palma de los años 60.',
+        'legacy.text2': 'Nuestros espacios presentan piezas de diseño icónicas y 9 habitaciones que encarnan una estética minimalista realzada con toques artesanales mallorquines.',
+        'legacy.more': 'Saber Más',
+
+        // Breakfast
+        'breakfast.title': 'Desayuno',
+        'breakfast.desc': 'Comienza el día con nuestra generosa selección de desayuno, con productos mallorquines locales y sabores mediterráneos. Servido en nuestra terraza jardín o junto a la piscina.',
+        'breakfast.continental': '<strong>Continental:</strong> Bollería fresca · Panes artesanos · Mermeladas locales y miel',
+        'breakfast.hot': '<strong>Platos calientes:</strong> Huevos al gusto · Tortitas · Fruta fresca',
+        'breakfast.beverages': '<strong>Bebidas:</strong> Zumos naturales · Café · Selección de tés',
+
+        // Snack Bar
+        'snackbar.title': 'Snack Bar',
+        'snackbar.desc': 'Disfruta de nuestra selección de tapas mediterráneas junto a la piscina de agua salada, rodeado de nuestro frondoso jardín. El lugar perfecto para relajarse bajo el sol mallorquín.',
+        'snackbar.tapas': '<strong>Tapas:</strong> Tabla de quesos artesanos · Jamón ibérico · Nachos con guacamole',
+        'snackbar.snacks': '<strong>Snacks:</strong> Pizzas caseras · Sándwiches gourmet · Ensaladas frescas',
+
+        // Wellness
+        'wellness.subtitle': 'Bienestar',
+        'wellness.title': 'Relájate y Desconecta',
+        'wellness.pool.title': 'Piscina de Agua Salada y Jardín',
+        'wellness.pool.text1': 'Sumérgete en nuestra piscina de agua salada, más suave para tu piel y más natural que el cloro. Rodeada de nuestro jardín mediterráneo con árboles centenarios, es el oasis perfecto para escapar del calor.',
+        'wellness.pool.text2': 'Relájate en nuestras tumbonas, disfruta de una bebida refrescante del pool bar y deja que el sol mallorquín haga su magia. Nuestro jardín ofrece zonas de sombra para quienes prefieren leer o simplemente disfrutar de la tranquilidad.',
+
+        // Location
+        'location.subtitle': 'Ubicación',
+        'location.title': 'El Terreno, Palma',
+        'location.desc': 'Situado en el histórico barrio de El Terreno, donde artistas, escritores e intelectuales de la bohemia Palma de los años 60 encontraron su inspiración. A pocos minutos del casco antiguo y las mejores playas.',
+        'location.address': 'Dirección',
+        'location.phone': 'Teléfono',
+        'location.directions': 'Cómo Llegar',
+
+        // CTA
+        'cta.title': 'Tu refugio te espera',
+        'cta.desc': 'Experimenta la mezcla perfecta de historia, diseño y hospitalidad mediterránea en el corazón de Palma de Mallorca.',
+
+        // Footer
+        'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca',
+        'footer.explore': 'Explorar',
+        'footer.info': 'Información',
+        'footer.privacy': 'Política de Privacidad',
+        'footer.terms': 'Términos',
+        'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
+    },
+    de: {
+        // Navigation
+        'nav.hotel': 'Das Hotel',
+        'nav.rooms': 'Zimmer',
+        'nav.food': 'Essen & Trinken',
+        'nav.breakfast': 'Frühstück',
+        'nav.snackbar': 'Snack Bar',
+        'nav.wellness': 'Wellness',
+        'nav.location': 'Lage',
+        'nav.contact': 'Kontakt',
+
+        // Buttons
+        'btn.book': 'Buchen',
+        'btn.booknow': 'Jetzt Buchen',
+        'btn.viewmenu': 'Menü Ansehen',
+        'btn.discover': 'Mehr Entdecken',
+
+        // Hero
+        'hero.tagline': 'Urbaner Boutique Rückzugsort',
+        'hero.discover': 'Entdecken',
+        'hero.booking': 'Jetzt buchen für exklusive Vorteile',
+
+        // Intro
+        'intro.title': 'Die ikonische Oase im Herzen von El Terreno',
+        'intro.badge': 'Nur für Erwachsene +16',
+
+        // Rooms
+        'rooms.suite.title': 'Suite Can Quetglas',
+        'rooms.suite.desc': 'Diese geräumige Suite verbindet erdige Töne mit natürlichem Licht und atemberaubendem Gartenblick.',
+        'rooms.modernist.title': 'Modernistisches Zimmer',
+        'rooms.modernist.desc': 'In natürliches Licht getaucht und mit traditionellen mallorquinischen Textilien und lokaler Kunst geschmückt.',
+        'rooms.junior.title': 'Junior Suite',
+        'rooms.junior.desc': 'Ein minimalistischer Rückzugsort mit handgefertigten Details, die zur tiefen Entspannung einladen.',
+        'rooms.viewall': 'Alle Zimmer Ansehen',
+
+        // Legacy
+        'legacy.title': 'Bleibendes Erbe',
+        'legacy.text1': 'Ein modernistischer Palast von 1908, entworfen von einem Schüler Gaudís, der als kultureller Puls von El Terreno schlägt, umgeben von jahrhundertealten Bäumen, lokalen Kunstgalerien und dem böhmischen Geist des Palma der 1960er Jahre.',
+        'legacy.text2': 'Unsere Räume präsentieren ikonische Designstücke und 9 Zimmer, die eine minimalistische Ästhetik verkörpern, verfeinert mit handwerklichen mallorquinischen Akzenten.',
+        'legacy.more': 'Mehr Erfahren',
+
+        // Breakfast
+        'breakfast.title': 'Frühstück',
+        'breakfast.desc': 'Beginnen Sie den Tag mit unserer großzügigen Frühstücksauswahl mit lokalen mallorquinischen Produkten und mediterranen Aromen. Serviert auf unserer Gartenterrasse oder am Pool.',
+        'breakfast.continental': '<strong>Kontinental:</strong> Frisches Gebäck · Handwerksbrot · Lokale Marmeladen & Honig',
+        'breakfast.hot': '<strong>Warme Gerichte:</strong> Eier nach Wunsch · Pfannkuchen · Frisches Obst',
+        'breakfast.beverages': '<strong>Getränke:</strong> Frische Säfte · Kaffee · Teeauswahl',
+
+        // Snack Bar
+        'snackbar.title': 'Snack Bar',
+        'snackbar.desc': 'Genießen Sie unsere Auswahl an mediterranen Tapas am Salzwasserpool, umgeben von unserem üppigen Garten. Der perfekte Ort, um unter der mallorquinischen Sonne zu entspannen.',
+        'snackbar.tapas': '<strong>Tapas:</strong> Handwerkliche Käseplatte · Ibérico-Schinken · Nachos mit Guacamole',
+        'snackbar.snacks': '<strong>Snacks:</strong> Hausgemachte Pizzen · Gourmet-Sandwiches · Frische Salate',
+
+        // Wellness
+        'wellness.subtitle': 'Wellness',
+        'wellness.title': 'Entspannen & Erholen',
+        'wellness.pool.title': 'Salzwasserpool & Garten',
+        'wellness.pool.text1': 'Tauchen Sie ein in unseren Salzwasserpool, sanfter zur Haut und natürlicher als Chlor. Umgeben von unserem mediterranen Garten mit jahrhundertealten Bäumen ist er die perfekte Oase, um der Hitze zu entfliehen.',
+        'wellness.pool.text2': 'Entspannen Sie auf unseren Sonnenliegen, genießen Sie ein erfrischendes Getränk von der Poolbar und lassen Sie die mallorquinische Sonne ihre Magie wirken. Unser Garten bietet schattige Plätze für diejenigen, die lieber lesen oder einfach die Ruhe genießen.',
+
+        // Location
+        'location.subtitle': 'Lage',
+        'location.title': 'El Terreno, Palma',
+        'location.desc': 'Gelegen im historischen Viertel El Terreno, wo Künstler, Schriftsteller und Intellektuelle des böhmischen Palma der 1960er Jahre ihre Inspiration fanden. Nur Minuten von der Altstadt und den besten Stränden entfernt.',
+        'location.address': 'Adresse',
+        'location.phone': 'Telefon',
+        'location.directions': 'Anfahrt',
+
+        // CTA
+        'cta.title': 'Ihr Rückzugsort erwartet Sie',
+        'cta.desc': 'Erleben Sie die perfekte Mischung aus Geschichte, Design und mediterraner Gastfreundschaft im Herzen von Palma de Mallorca.',
+
+        // Footer
+        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca',
+        'footer.explore': 'Entdecken',
+        'footer.info': 'Info',
+        'footer.privacy': 'Datenschutz',
+        'footer.terms': 'AGB',
+        'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
+    }
+};
+
+let currentLang = 'en';
+
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+
+    // Update all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Update active language in side menu
+    document.querySelectorAll('.side-menu-lang a').forEach(a => {
+        a.classList.toggle('lang-active', a.textContent === lang.toUpperCase());
+    });
+
+    // Update header language display
+    const currentLangDisplay = document.querySelector('.current-lang');
+    if (currentLangDisplay) {
+        currentLangDisplay.textContent = lang.toUpperCase();
+    }
+
+    // Save preference
+    localStorage.setItem('canquetglas-lang', lang);
+}
+
+// ============================================
+// SIDE MENU
+// ============================================
 const menuToggle = document.getElementById('menu-toggle');
 const sideMenu = document.getElementById('side-menu');
 const menuOverlay = document.getElementById('menu-overlay');
@@ -946,13 +1228,37 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeMenu();
 });
 
-// Header scroll effect
+// ============================================
+// LANGUAGE SELECTOR
+// ============================================
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
+    langLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.textContent.toLowerCase();
+        setLanguage(lang);
+    });
+});
+
+// Header language selector opens side menu
+document.querySelector('.header-lang-selector')?.addEventListener('click', openMenu);
+
+// Load saved language preference
+const savedLang = localStorage.getItem('canquetglas-lang');
+if (savedLang && translations[savedLang]) {
+    setLanguage(savedLang);
+}
+
+// ============================================
+// HEADER SCROLL EFFECT
+// ============================================
 const header = document.getElementById('site-header');
 window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Scroll animations
+// ============================================
+// SCROLL ANIMATIONS
+// ============================================
 const fadeElements = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -964,7 +1270,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 fadeElements.forEach(el => observer.observe(el));
 
-// Smooth scroll
+// ============================================
+// SMOOTH SCROLL
+// ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         if (this.classList.contains('submenu-toggle')) return;
