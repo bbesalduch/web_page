@@ -102,14 +102,15 @@
         .slider-dot.active { background: var(--color-white); }
         .slider-arrow {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.85); border: none;
+            background: transparent; border: none;
             width: 60px; height: 80px; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: all 0.3s; z-index: 10;
         }
-        .slider-arrow:hover { background: rgba(255,255,255,0.95); }
-        .slider-arrow.prev { left: 0; }
-        .slider-arrow.next { right: 0; }
+        .slider-arrow:hover { background: transparent; }
+        .slider-arrow svg { stroke: white; }
+        .slider-arrow.prev { left: 20px; }
+        .slider-arrow.next { right: 20px; }
 
         .room-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); padding: var(--spacing-xl) 0; }
         .room-info { padding-right: var(--spacing-lg); }
@@ -123,7 +124,7 @@
         .room-book { margin-top: var(--spacing-lg); }
 
         .room-amenities { background: var(--color-white); padding: var(--spacing-lg); }
-        .amenities-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-black); margin-bottom: var(--spacing-md); font-weight: 500; }
+        .amenities-title { font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); margin-bottom: var(--spacing-md); font-weight: 400; }
         .amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); }
         .amenity-item { display: flex; align-items: center; gap: var(--spacing-sm); color: var(--color-gray); font-size: 0.9rem; }
         .amenity-item svg { width: 20px; height: 20px; color: var(--color-black); flex-shrink: 0; }
@@ -300,10 +301,6 @@
 <section class="container">
     <div class="room-content">
         <div class="room-info">
-            <a href="../index.html#habitaciones" class="back-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                <span data-i18n="room.back">Back to rooms</span>
-            </a>
             <p class="room-category" data-i18n="room.category">Accommodation</p>
             <h1 class="room-title" data-i18n="rooms.deluxe">Deluxe</h1>
 
@@ -337,22 +334,22 @@
         <div class="room-amenities">
             <h3 class="amenities-title">Equipment & Services</h3>
             <div class="amenities-grid">
-                <div class="amenity-item"><span>Smart TV 50″</span></div>
-                <div class="amenity-item"><span>Kettle</span></div>
-                <div class="amenity-item"><span>Sofa Bed</span></div>
-                <div class="amenity-item"><span>Coffee Machine</span></div>
-                <div class="amenity-item"><span>Complimentary Coffee and Tea Service</span></div>
-                <div class="amenity-item"><span>Individual heating and air conditioning</span></div>
-                <div class="amenity-item"><span>Strongbox</span></div>
-                <div class="amenity-item"><span>Satellite TV</span></div>
-                <div class="amenity-item"><span>Hair dryer</span></div>
-                <div class="amenity-item"><span>Ecological bathroom toiletries</span></div>
-                <div class="amenity-item"><span>Wi-Fi Connection</span></div>
-                <div class="amenity-item"><span>Minibar</span></div>
-                <div class="amenity-item"><span>Room Service</span></div>
-                <div class="amenity-item"><span>Anti-allergy pillows</span></div>
-                <div class="amenity-item"><span>Dressing gowns and slippers</span></div>
-                <div class="amenity-item"><span>Wake-up service</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Smart TV 50″</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span>Kettle</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h20v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9z"/><path d="M2 9V7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2"/></svg><span>Sofa Bed</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span>Coffee Machine</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span>Complimentary Coffee and Tea Service</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg><span>Individual heating and air conditioning</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span>Strongbox</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span>Satellite TV</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg><span>Hair dryer</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Ecological bathroom toiletries</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg><span>Wi-Fi Connection</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="14" width="7" height="7"/></svg><span>Minibar</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Room Service</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h20v16H2z"/><path d="M2 8h20"/></svg><span>Anti-allergy pillows</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg><span>Dressing gowns and slippers</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Wake-up service</span></div>
             </div>
         </div>
     </div>
