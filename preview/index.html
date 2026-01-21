@@ -266,20 +266,23 @@
             margin-top: var(--spacing-sm);
         }
 
-        /* Rooms Slider */
+        /* Rooms Slider - Can Alomar style */
+        .rooms-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .rooms-slider-container {
+            position: relative;
+            overflow: hidden;
+        }
         .rooms-slider {
             display: flex;
-            gap: var(--spacing-md);
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding-bottom: var(--spacing-md);
-            -webkit-overflow-scrolling: touch;
+            transition: transform 0.5s ease;
         }
-        .rooms-slider::-webkit-scrollbar { display: none; }
         .room-slide {
-            flex: 0 0 calc(33.333% - var(--spacing-md));
+            flex: 0 0 calc(33.333% - 14px);
             min-width: 320px;
-            scroll-snap-align: start;
+            padding: 0 10px;
         }
         .room-slide img {
             width: 100%;
@@ -298,6 +301,35 @@
             color: var(--color-gray);
             font-size: 0.9rem;
             line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+        .room-slide .btn-outline {
+            padding: 0.8rem 1.8rem;
+        }
+        .rooms-slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: var(--spacing-lg);
+        }
+        .rooms-slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--color-gray-light);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .rooms-slider-dot.active {
+            background: var(--color-black);
+        }
+
+        @media (max-width: 1100px) {
+            .room-slide { flex: 0 0 calc(50% - 10px); }
+        }
+        @media (max-width: 700px) {
+            .room-slide { flex: 0 0 100%; }
         }
 
         /* Legacy Section */
@@ -751,27 +783,45 @@
 </section>
 
 <!-- Rooms Slider -->
-<section class="section section-cream" id="habitaciones">
+<section class="section section-cream rooms-section" id="habitaciones">
     <div class="container">
-        <div class="rooms-slider">
-            <div class="room-slide fade-in">
-                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80" alt="Suite Can Quetglas">
-                <h3 class="room-slide-title" data-i18n="rooms.suite.title">Suite Can Quetglas</h3>
-                <p class="room-slide-desc" data-i18n="rooms.suite.desc">This spacious suite combines earthy tones with natural light and stunning garden views.</p>
-            </div>
-            <div class="room-slide fade-in">
-                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Habitación Modernista">
-                <h3 class="room-slide-title" data-i18n="rooms.modernist.title">Modernist Room</h3>
-                <p class="room-slide-desc" data-i18n="rooms.modernist.desc">Bathed in natural light and adorned with traditional Mallorcan textiles and local art.</p>
-            </div>
-            <div class="room-slide fade-in">
-                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Junior Suite">
-                <h3 class="room-slide-title" data-i18n="rooms.junior.title">Junior Suite</h3>
-                <p class="room-slide-desc" data-i18n="rooms.junior.desc">A minimalist retreat with handcrafted touches that encourage deep relaxation.</p>
+        <div class="rooms-slider-container">
+            <div class="rooms-slider" id="rooms-slider">
+                <div class="room-slide fade-in">
+                    <img src="images/rooms/standard-terrace/photo-3.jpg" alt="Standard with Terrace">
+                    <h3 class="room-slide-title" data-i18n="rooms.standard">Standard with Terrace</h3>
+                    <p class="room-slide-desc" data-i18n="rooms.standard.desc">A cozy 20m² retreat with private terrace, perfect for couples seeking comfort and outdoor relaxation in the heart of El Terreno.</p>
+                    <a href="rooms/standard-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="room-slide fade-in">
+                    <img src="images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
+                    <h3 class="room-slide-title" data-i18n="rooms.deluxe">Deluxe</h3>
+                    <p class="room-slide-desc" data-i18n="rooms.deluxe.desc">Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.</p>
+                    <a href="rooms/deluxe.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="room-slide fade-in">
+                    <img src="images/rooms/deluxe-premium/photo-3.jpg" alt="Deluxe Premium">
+                    <h3 class="room-slide-title" data-i18n="rooms.deluxepremium">Deluxe Premium</h3>
+                    <p class="room-slide-desc" data-i18n="rooms.deluxepremium.desc">A 30m² retreat with premium amenities, Queen bed plus sofa bed, and proximity to our saltwater pool and Mediterranean garden.</p>
+                    <a href="rooms/deluxe-premium.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="room-slide fade-in">
+                    <img src="images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
+                    <h3 class="room-slide-title" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3>
+                    <p class="room-slide-desc" data-i18n="rooms.deluxeterrace.desc">Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.</p>
+                    <a href="rooms/deluxe-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="room-slide fade-in">
+                    <img src="images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
+                    <h3 class="room-slide-title" data-i18n="rooms.suite">Can Quetglas Suite</h3>
+                    <p class="room-slide-desc" data-i18n="rooms.suite.desc">Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.</p>
+                    <a href="rooms/suite.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
             </div>
         </div>
-        <div class="text-center" style="margin-top: var(--spacing-lg);">
-            <a href="#" class="btn btn-outline" data-i18n="rooms.viewall">View All Rooms</a>
+        <div class="rooms-slider-nav" id="rooms-slider-nav">
+            <button class="rooms-slider-dot active" data-slide="0"></button>
+            <button class="rooms-slider-dot" data-slide="1"></button>
         </div>
     </div>
 </section>
@@ -966,6 +1016,14 @@ const translations = {
         'btn.booknow': 'Book Now',
         'btn.viewmenu': 'View Menu',
         'btn.discover': 'Discover More',
+        'btn.seeroom': 'See Room',
+
+        // Room descriptions
+        'rooms.standard.desc': 'A cozy 20m² retreat with private terrace, perfect for couples seeking comfort and outdoor relaxation in the heart of El Terreno.',
+        'rooms.deluxe.desc': 'Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.',
+        'rooms.deluxepremium.desc': 'A 30m² retreat with premium amenities, Queen bed plus sofa bed, and proximity to our saltwater pool and Mediterranean garden.',
+        'rooms.deluxeterrace.desc': 'Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.',
+        'rooms.suite.desc': 'Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.',
 
         // Hero
         'hero.tagline': 'Urban Boutique Haven',
@@ -973,17 +1031,9 @@ const translations = {
         'hero.booking': 'Book now for exclusive benefits',
 
         // Intro
-        'intro.title': 'The iconic haven in the heart of El Terreno',
+        'intro.title': 'The iconic oasis in the heart of El Terreno',
         'intro.badge': 'Adults Only +14',
 
-        // Rooms
-        'rooms.suite.title': 'Suite Can Quetglas',
-        'rooms.suite.desc': 'This spacious suite combines earthy tones with natural light and stunning garden views.',
-        'rooms.modernist.title': 'Modernist Room',
-        'rooms.modernist.desc': 'Bathed in natural light and adorned with traditional Mallorcan textiles and local art.',
-        'rooms.junior.title': 'Junior Suite',
-        'rooms.junior.desc': 'A minimalist retreat with handcrafted touches that encourage deep relaxation.',
-        'rooms.viewall': 'View All Rooms',
 
         // Legacy
         'legacy.title': 'Enduring Legacy',
@@ -1054,6 +1104,14 @@ const translations = {
         'btn.booknow': 'Reservar Ahora',
         'btn.viewmenu': 'Ver Menú',
         'btn.discover': 'Descubrir Más',
+        'btn.seeroom': 'Ver Habitación',
+
+        // Room descriptions
+        'rooms.standard.desc': 'Un acogedor refugio de 20m² con terraza privada, perfecto para parejas que buscan comodidad y relax al aire libre en el corazón de El Terreno.',
+        'rooms.deluxe.desc': 'Bañadas en luz natural, nuestras habitaciones Deluxe de 30m² presentan un diseño elegante con toques mallorquines tradicionales y vistas al jardín.',
+        'rooms.deluxepremium.desc': 'Un retiro de 30m² con servicios premium, cama Queen más sofá cama, y proximidad a nuestra piscina de agua salada y jardín mediterráneo.',
+        'rooms.deluxeterrace.desc': 'Espaciosas habitaciones de 40m² que combinan el confort interior con una generosa terraza privada con vistas a nuestro jardín centenario.',
+        'rooms.suite.desc': 'Nuestra obra maestra de 50m² con frescos modernistas originales de 1908, cama King y terraza privada con vistas impresionantes.',
 
         // Hero
         'hero.tagline': 'Refugio Boutique Urbano',
@@ -1061,17 +1119,9 @@ const translations = {
         'hero.booking': 'Reserva ahora y disfruta de beneficios exclusivos',
 
         // Intro
-        'intro.title': 'El refugio icónico en el corazón de El Terreno',
+        'intro.title': 'El oasis icónico en el corazón de El Terreno',
         'intro.badge': 'Solo Adultos +14',
 
-        // Rooms
-        'rooms.suite.title': 'Suite Can Quetglas',
-        'rooms.suite.desc': 'Esta espaciosa suite combina tonos terrosos con luz natural y vistas impresionantes al jardín.',
-        'rooms.modernist.title': 'Habitación Modernista',
-        'rooms.modernist.desc': 'Bañada en luz natural y decorada con textiles mallorquines tradicionales y arte local.',
-        'rooms.junior.title': 'Junior Suite',
-        'rooms.junior.desc': 'Un retiro minimalista con toques artesanales que invitan a la relajación profunda.',
-        'rooms.viewall': 'Ver Todas las Habitaciones',
 
         // Legacy
         'legacy.title': 'Legado Perdurable',
@@ -1142,6 +1192,14 @@ const translations = {
         'btn.booknow': 'Jetzt Buchen',
         'btn.viewmenu': 'Menü Ansehen',
         'btn.discover': 'Mehr Entdecken',
+        'btn.seeroom': 'Zimmer Ansehen',
+
+        // Room descriptions
+        'rooms.standard.desc': 'Ein gemütlicher 20m² Rückzugsort mit privater Terrasse, perfekt für Paare, die Komfort und Entspannung im Freien im Herzen von El Terreno suchen.',
+        'rooms.deluxe.desc': 'In natürliches Licht getaucht, bieten unsere 30m² Deluxe-Zimmer elegantes Design mit traditionellen mallorquinischen Akzenten und Gartenblick.',
+        'rooms.deluxepremium.desc': 'Ein 30m² Rückzugsort mit Premium-Annehmlichkeiten, Queen-Bett plus Schlafsofa, und Nähe zu unserem Salzwasserpool und mediterranen Garten.',
+        'rooms.deluxeterrace.desc': 'Geräumige 40m² Zimmer, die Innenkomfort mit einer großzügigen privaten Terrasse mit Blick auf unseren jahrhundertealten Garten verbinden.',
+        'rooms.suite.desc': 'Unser 50m² Meisterwerk mit originalen modernistischen Fresken von 1908, King-Bett und privater Terrasse mit atemberaubender Aussicht.',
 
         // Hero
         'hero.tagline': 'Urbane Boutique Oase',
@@ -1152,14 +1210,6 @@ const translations = {
         'intro.title': 'Die ikonische Oase im Herzen von El Terreno',
         'intro.badge': 'Nur für Erwachsene +14',
 
-        // Rooms
-        'rooms.suite.title': 'Suite Can Quetglas',
-        'rooms.suite.desc': 'Diese geräumige Suite verbindet erdige Töne mit natürlichem Licht und atemberaubendem Gartenblick.',
-        'rooms.modernist.title': 'Modernistisches Zimmer',
-        'rooms.modernist.desc': 'In natürliches Licht getaucht und mit traditionellen mallorquinischen Textilien und lokaler Kunst geschmückt.',
-        'rooms.junior.title': 'Junior Suite',
-        'rooms.junior.desc': 'Ein minimalistischer Rückzugsort mit handgefertigten Details, die zur tiefen Entspannung einladen.',
-        'rooms.viewall': 'Alle Zimmer Ansehen',
 
         // Legacy
         'legacy.title': 'Bleibendes Erbe',
@@ -1230,6 +1280,14 @@ const translations = {
         'btn.booknow': 'Boka Nu',
         'btn.viewmenu': 'Se Meny',
         'btn.discover': 'Upptäck Mer',
+        'btn.seeroom': 'Se Rum',
+
+        // Room descriptions
+        'rooms.standard.desc': 'En mysig 20m² tillflyktsort med privat terrass, perfekt för par som söker komfort och utomhusavkoppling i hjärtat av El Terreno.',
+        'rooms.deluxe.desc': 'Badade i naturligt ljus erbjuder våra 30m² Deluxe-rum elegant design med traditionella mallorquinska inslag och trädgårdsutsikt.',
+        'rooms.deluxepremium.desc': 'En 30m² tillflyktsort med premiumbekvämligheter, Queen-säng plus bäddsoffa, och närhet till vår saltvattenpool och medelhavsträdgård.',
+        'rooms.deluxeterrace.desc': 'Rymliga 40m² rum som kombinerar inomhuskomfort med en generös privat terrass med utsikt över vår hundraåriga trädgård.',
+        'rooms.suite.desc': 'Vårt signatur 50m² mästerverk med original modernistiska fresker från 1908, King-säng och privat terrass med fantastisk utsikt.',
 
         // Hero
         'hero.tagline': 'Urban Boutique Oas',
@@ -1240,14 +1298,6 @@ const translations = {
         'intro.title': 'Den ikoniska oasen i hjärtat av El Terreno',
         'intro.badge': 'Endast Vuxna +14',
 
-        // Rooms
-        'rooms.suite.title': 'Svit Can Quetglas',
-        'rooms.suite.desc': 'Denna rymliga svit kombinerar jordnära toner med naturligt ljus och fantastisk utsikt över trädgården.',
-        'rooms.modernist.title': 'Modernistiskt Rum',
-        'rooms.modernist.desc': 'Badat i naturligt ljus och dekorerat med traditionella mallorquinska textilier och lokal konst.',
-        'rooms.junior.title': 'Junior Svit',
-        'rooms.junior.desc': 'En minimalistisk tillflyktsort med hantverksmässiga detaljer som inbjuder till djup avkoppling.',
-        'rooms.viewall': 'Se Alla Rum',
 
         // Legacy
         'legacy.title': 'Bestående Arv',
@@ -1436,6 +1486,58 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// ============================================
+// ROOMS SLIDER
+// ============================================
+const roomsSlider = document.getElementById('rooms-slider');
+const roomsSliderNav = document.getElementById('rooms-slider-nav');
+const roomsDots = roomsSliderNav.querySelectorAll('.rooms-slider-dot');
+let currentRoomsSlide = 0;
+let slidesPerView = 3;
+
+function updateSlidesPerView() {
+    if (window.innerWidth <= 700) {
+        slidesPerView = 1;
+    } else if (window.innerWidth <= 1100) {
+        slidesPerView = 2;
+    } else {
+        slidesPerView = 3;
+    }
+    updateRoomsDots();
+    showRoomsSlide(Math.min(currentRoomsSlide, getMaxSlide()));
+}
+
+function getMaxSlide() {
+    const totalSlides = 5;
+    return Math.max(0, totalSlides - slidesPerView);
+}
+
+function updateRoomsDots() {
+    const maxSlide = getMaxSlide();
+    roomsSliderNav.innerHTML = '';
+    for (let i = 0; i <= maxSlide; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'rooms-slider-dot' + (i === currentRoomsSlide ? ' active' : '');
+        dot.dataset.slide = i;
+        dot.addEventListener('click', () => showRoomsSlide(i));
+        roomsSliderNav.appendChild(dot);
+    }
+}
+
+function showRoomsSlide(index) {
+    const maxSlide = getMaxSlide();
+    currentRoomsSlide = Math.max(0, Math.min(index, maxSlide));
+    const slideWidth = 100 / slidesPerView;
+    roomsSlider.style.transform = `translateX(-${currentRoomsSlide * slideWidth}%)`;
+
+    roomsSliderNav.querySelectorAll('.rooms-slider-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentRoomsSlide);
+    });
+}
+
+updateSlidesPerView();
+window.addEventListener('resize', updateSlidesPerView);
 </script>
 
 </body>
