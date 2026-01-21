@@ -515,7 +515,6 @@
         .side-menu-nav {
             list-style: none;
             margin-top: var(--spacing-sm);
-            flex: 1;
         }
         .side-menu-nav > li {
             margin-bottom: var(--spacing-sm);
@@ -570,9 +569,9 @@
         .side-menu-lang {
             display: flex;
             gap: var(--spacing-lg);
-            padding-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
             border-top: 1px solid rgba(0,0,0,0.1);
-            margin-top: auto;
+            margin-top: var(--spacing-xl);
         }
         .side-menu-lang a {
             font-size: 0.9rem;
@@ -593,16 +592,23 @@
         .header-lang-selector {
             display: flex;
             align-items: center;
-            gap: 4px;
-            font-size: 0.75rem;
-            color: var(--color-gray);
-            cursor: pointer;
+            gap: 8px;
+            font-size: 0.7rem;
         }
-        .header-lang-selector:hover {
+        .header-lang-selector a {
+            color: var(--color-gray);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+        .header-lang-selector a:hover {
             color: var(--color-black);
         }
-        .current-lang {
-            font-weight: 500;
+        .header-lang-selector a.lang-active {
+            color: var(--color-black);
+            font-weight: 600;
+        }
+        .header-lang-separator {
+            color: var(--color-gray-light);
         }
 
         /* Menu toggle always visible */
@@ -680,8 +686,11 @@
                     <a href="#" class="btn" data-i18n="btn.book">Book</a>
                 </div>
                 <div class="header-lang-selector">
-                    <span class="current-lang">EN</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                    <span class="header-lang-separator">|</span>
+                    <a href="#" class="header-lang" data-lang="es">ES</a>
+                    <span class="header-lang-separator">|</span>
+                    <a href="#" class="header-lang" data-lang="de">DE</a>
                 </div>
             </div>
         </div>
@@ -1174,11 +1183,10 @@ function setLanguage(lang) {
         a.classList.toggle('lang-active', a.textContent === lang.toUpperCase());
     });
 
-    // Update header language display
-    const currentLangDisplay = document.querySelector('.current-lang');
-    if (currentLangDisplay) {
-        currentLangDisplay.textContent = lang.toUpperCase();
-    }
+    // Update active language in header
+    document.querySelectorAll('.header-lang').forEach(a => {
+        a.classList.toggle('lang-active', a.dataset.lang === lang);
+    });
 
     // Save preference
     localStorage.setItem('canquetglas-lang', lang);
@@ -1231,6 +1239,7 @@ document.addEventListener('keydown', (e) => {
 // ============================================
 // LANGUAGE SELECTOR
 // ============================================
+// Side menu language links
 document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
     langLink.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1239,8 +1248,14 @@ document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
     });
 });
 
-// Header language selector opens side menu
-document.querySelector('.header-lang-selector')?.addEventListener('click', openMenu);
+// Header language links
+document.querySelectorAll('.header-lang').forEach(langLink => {
+    langLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.dataset.lang;
+        setLanguage(lang);
+    });
+});
 
 // Load saved language preference
 const savedLang = localStorage.getItem('canquetglas-lang');
