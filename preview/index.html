@@ -286,7 +286,7 @@
         }
         .room-slide img {
             width: 100%;
-            height: 400px;
+            height: 280px;
             object-fit: cover;
             margin-bottom: var(--spacing-sm);
         }
@@ -324,12 +324,40 @@
         .rooms-slider-dot.active {
             background: var(--color-black);
         }
+        .rooms-slider-arrow {
+            position: absolute;
+            top: 140px;
+            background: transparent;
+            border: none;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .rooms-slider-arrow:hover {
+            background: rgba(0,0,0,0.05);
+        }
+        .rooms-slider-arrow svg {
+            stroke: var(--color-black);
+            width: 24px;
+            height: 24px;
+        }
+        .rooms-slider-arrow.prev { left: 0; }
+        .rooms-slider-arrow.next { right: 0; }
 
         @media (max-width: 1100px) {
             .room-slide { flex: 0 0 calc(50% - 10px); }
+            .room-slide img { height: 250px; }
+            .rooms-slider-arrow { top: 125px; }
         }
         @media (max-width: 700px) {
             .room-slide { flex: 0 0 100%; }
+            .room-slide img { height: 220px; }
+            .rooms-slider-arrow { top: 110px; }
         }
 
         /* Legacy Section */
@@ -785,6 +813,12 @@
 <!-- Rooms Slider -->
 <section class="section section-cream rooms-section" id="habitaciones">
     <div class="container">
+        <button class="rooms-slider-arrow prev" id="rooms-prev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/><line x1="9" y1="12" x2="21" y2="12"/></svg>
+        </button>
+        <button class="rooms-slider-arrow next" id="rooms-next" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
         <div class="rooms-slider-container">
             <div class="rooms-slider" id="rooms-slider">
                 <div class="room-slide fade-in">
@@ -1492,9 +1526,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================
 const roomsSlider = document.getElementById('rooms-slider');
 const roomsSliderNav = document.getElementById('rooms-slider-nav');
-const roomsDots = roomsSliderNav.querySelectorAll('.rooms-slider-dot');
+const roomsPrevBtn = document.getElementById('rooms-prev');
+const roomsNextBtn = document.getElementById('rooms-next');
 let currentRoomsSlide = 0;
 let slidesPerView = 3;
+let roomsAutoSlide;
 
 function updateSlidesPerView() {
     if (window.innerWidth <= 700) {
@@ -1520,7 +1556,10 @@ function updateRoomsDots() {
         const dot = document.createElement('button');
         dot.className = 'rooms-slider-dot' + (i === currentRoomsSlide ? ' active' : '');
         dot.dataset.slide = i;
-        dot.addEventListener('click', () => showRoomsSlide(i));
+        dot.addEventListener('click', () => {
+            showRoomsSlide(i);
+            resetAutoSlide();
+        });
         roomsSliderNav.appendChild(dot);
     }
 }
@@ -1536,8 +1575,44 @@ function showRoomsSlide(index) {
     });
 }
 
+function nextRoomsSlide() {
+    const maxSlide = getMaxSlide();
+    if (currentRoomsSlide >= maxSlide) {
+        showRoomsSlide(0);
+    } else {
+        showRoomsSlide(currentRoomsSlide + 1);
+    }
+}
+
+function prevRoomsSlide() {
+    const maxSlide = getMaxSlide();
+    if (currentRoomsSlide <= 0) {
+        showRoomsSlide(maxSlide);
+    } else {
+        showRoomsSlide(currentRoomsSlide - 1);
+    }
+}
+
+function resetAutoSlide() {
+    clearInterval(roomsAutoSlide);
+    roomsAutoSlide = setInterval(nextRoomsSlide, 5000);
+}
+
+// Arrow buttons
+roomsPrevBtn.addEventListener('click', () => {
+    prevRoomsSlide();
+    resetAutoSlide();
+});
+roomsNextBtn.addEventListener('click', () => {
+    nextRoomsSlide();
+    resetAutoSlide();
+});
+
 updateSlidesPerView();
 window.addEventListener('resize', updateSlidesPerView);
+
+// Auto-slide every 5 seconds
+roomsAutoSlide = setInterval(nextRoomsSlide, 5000);
 </script>
 
 </body>
