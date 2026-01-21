@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can Quetglas Suite - Hotel Can Quetglas</title>
+    <meta name="description" content="Can Quetglas Suite - 50m², King bed, private terrace, original modernist frescoes">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: 'CocoGothic'; src: url('../fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--color-black); background-color: var(--color-cream); -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.2; letter-spacing: 0.05em; }
+        a { color: var(--color-black); text-decoration: none; transition: color var(--transition-normal); }
+        a:hover { color: var(--color-accent); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--spacing-sm) 0; background-color: rgba(247, 243, 237, 0.98); backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+        .site-logo-img { height: 40px; width: auto; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
+        .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
+        .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
+        .header-cta .btn:hover { background: var(--color-dark); }
+        .header-lang-selector { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; }
+        .header-lang-selector a { color: var(--color-gray); letter-spacing: 0.05em; }
+        .header-lang-selector a:hover { color: var(--color-black); }
+        .header-lang-selector a.lang-active { color: var(--color-black); font-weight: 600; }
+        .header-lang-separator { color: var(--color-gray-light); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all var(--transition-normal); }
+        .btn-primary { background-color: var(--color-black); color: var(--color-white); }
+        .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
+        .room-hero { position: relative; height: 70vh; min-height: 500px; margin-top: 60px; }
+        .room-hero-slider { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        .room-hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease; }
+        .room-hero-slide.active { opacity: 1; }
+        .room-hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slider-nav { position: absolute; bottom: var(--spacing-md); left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10; }
+        .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; transition: all 0.3s; }
+        .slider-dot.active { background: var(--color-white); }
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10; }
+        .slider-arrow:hover { background: var(--color-white); }
+        .slider-arrow.prev { left: var(--spacing-md); }
+        .slider-arrow.next { right: var(--spacing-md); }
+        .room-content { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); padding: var(--spacing-xl) 0; }
+        .room-info { padding-right: var(--spacing-lg); }
+        .room-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-gray); margin-bottom: var(--spacing-sm); }
+        .room-title { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .room-specs { display: flex; gap: var(--spacing-lg); margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-md); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .room-spec { text-align: center; }
+        .room-spec-value { font-family: var(--font-heading); font-size: 1.8rem; color: var(--color-black); margin-bottom: 4px; }
+        .room-spec-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-gray); }
+        .room-description { color: var(--color-gray); margin-bottom: var(--spacing-md); line-height: 1.8; }
+        .room-book { margin-top: var(--spacing-lg); }
+        .room-amenities { background: var(--color-white); padding: var(--spacing-lg); }
+        .amenities-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-black); margin-bottom: var(--spacing-md); font-weight: 500; }
+        .amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm); }
+        .amenity-item { display: flex; align-items: center; gap: var(--spacing-sm); color: var(--color-gray); font-size: 0.9rem; }
+        .amenity-item svg { width: 20px; height: 20px; color: var(--color-black); flex-shrink: 0; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-gray); margin-bottom: var(--spacing-md); }
+        .back-link:hover { color: var(--color-black); }
+        .back-link svg { width: 16px; height: 16px; }
+        .other-rooms { background: var(--color-white); padding: var(--spacing-xl) 0; }
+        .other-rooms-title { font-family: var(--font-heading); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-lg); }
+        .other-rooms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); }
+        .other-room-card { position: relative; overflow: hidden; }
+        .other-room-card img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s; }
+        .other-room-card:hover img { transform: scale(1.05); }
+        .other-room-card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--spacing-sm); }
+        .other-room-card p { font-size: 0.85rem; color: var(--color-gray); }
+        @media (max-width: 1000px) { .room-content { grid-template-columns: 1fr; } .room-info { padding-right: 0; } .other-rooms-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .other-rooms-grid { grid-template-columns: 1fr; } .amenities-grid { grid-template-columns: 1fr; } .room-specs { flex-wrap: wrap; gap: var(--spacing-md); } }
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .side-menu { position: fixed; top: 0; left: 0; width: 100%; max-width: 500px; height: 100vh; background-color: var(--color-cream); z-index: 1999; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl); overflow-y: auto; }
+        .side-menu.active { transform: translateX(0); }
+        .side-menu-close { background: none; border: none; cursor: pointer; color: var(--color-black); padding: 10px; margin-left: -10px; align-self: flex-start; }
+        .side-menu-close:hover { color: var(--color-accent); }
+        .side-menu-nav { list-style: none; margin-top: var(--spacing-sm); }
+        .side-menu-nav > li { margin-bottom: var(--spacing-sm); }
+        .side-menu-nav > li > a { font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-black); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
+        .side-menu-nav > li > a:hover { color: var(--color-accent); }
+        .side-menu-nav > li > a svg { transition: transform 0.3s ease; }
+        .side-menu-nav > li.submenu-open > a svg { transform: rotate(180deg); }
+        .submenu { list-style: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: var(--spacing-md); }
+        .submenu-open .submenu { max-height: 300px; }
+        .submenu li { margin: var(--spacing-xs) 0; }
+        .submenu a { font-family: var(--font-body); font-size: 0.9rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; }
+        .submenu a:hover { color: var(--color-black); }
+        .side-menu-lang { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-sm); border-top: 1px solid rgba(0,0,0,0.1); margin-top: var(--spacing-sm); }
+        .side-menu-lang a { font-size: 0.9rem; color: var(--color-gray); letter-spacing: 0.05em; }
+        .side-menu-lang a.lang-active { color: var(--color-black); font-weight: 600; }
+        .side-menu-lang a:hover { color: var(--color-black); }
+        body.menu-open { overflow: hidden; }
+        .site-footer { background-color: var(--color-cream-dark); padding: var(--spacing-xl) 0 var(--spacing-md); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+        .footer-logo { font-family: 'CocoGothic', var(--font-heading); font-size: 1.5rem; color: var(--color-black); letter-spacing: 0.05em; margin-bottom: var(--spacing-sm); }
+        .footer-tagline { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-black); margin-bottom: var(--spacing-sm); font-weight: 500; }
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: var(--spacing-xs); }
+        .footer-nav a { color: var(--color-gray); font-size: 0.85rem; }
+        .footer-nav a:hover { color: var(--color-black); }
+        .footer-contact p { color: var(--color-gray); font-size: 0.85rem; margin-bottom: var(--spacing-xs); }
+        .footer-social { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
+        .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--color-gray-light); border-radius: 50%; color: var(--color-gray); transition: all 0.3s; }
+        .footer-social a:hover { border-color: var(--color-black); color: var(--color-black); }
+        .footer-bottom { text-align: center; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.1); }
+        .footer-copyright { font-size: 0.75rem; color: var(--color-gray); }
+        @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr 1fr; gap: var(--spacing-md); } }
+        @media (max-width: 500px) { .footer-content { grid-template-columns: 1fr; text-align: center; } .footer-social { justify-content: center; } }
+    </style>
+</head>
+<body>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+<nav class="side-menu" id="side-menu">
+    <button class="side-menu-close" id="side-menu-close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <ul class="side-menu-nav">
+        <li><a href="../index.html#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.rooms">Rooms</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="standard-terrace.html" data-i18n="rooms.standard">Standard with Terrace</a></li>
+                <li><a href="deluxe.html" data-i18n="rooms.deluxe">Deluxe</a></li>
+                <li><a href="deluxe-premium.html" data-i18n="rooms.deluxepremium">Deluxe Premium</a></li>
+                <li><a href="deluxe-terrace.html" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</a></li>
+                <li><a href="suite.html" data-i18n="rooms.suite">Can Quetglas Suite</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="../index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="../index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+            </ul>
+        </li>
+        <li><a href="../index.html#wellness" data-i18n="nav.wellness">Wellness</a></li>
+        <li><a href="../index.html#contacto" data-i18n="nav.location">Location</a></li>
+        <li><a href="../index.html#contacto" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="side-menu-lang"><a href="#" class="lang-active">EN</a><a href="#">ES</a><a href="#">DE</a><a href="#">SE</a></div>
+</nav>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+            <a href="../index.html" class="site-logo"><img src="../images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img"></a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="header-cta"><a href="#" class="btn" data-i18n="btn.book">Book</a></div>
+                <div class="header-lang-selector">
+                    <a href="#" class="header-lang lang-active" data-lang="en">EN</a><span class="header-lang-separator">|</span>
+                    <a href="#" class="header-lang" data-lang="es">ES</a><span class="header-lang-separator">|</span>
+                    <a href="#" class="header-lang" data-lang="de">DE</a><span class="header-lang-separator">|</span>
+                    <a href="#" class="header-lang" data-lang="sv">SE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="room-hero">
+    <div class="room-hero-slider">
+        <div class="room-hero-slide active"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=80" alt="Can Quetglas Suite"></div>
+        <div class="room-hero-slide"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&q=80" alt="Can Quetglas Suite - Living Area"></div>
+        <div class="room-hero-slide"><img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1600&q=80" alt="Can Quetglas Suite - Terrace"></div>
+    </div>
+    <button class="slider-arrow prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="slider-arrow next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div class="slider-nav"><button class="slider-dot active" data-slide="0"></button><button class="slider-dot" data-slide="1"></button><button class="slider-dot" data-slide="2"></button></div>
+</section>
+
+<section class="container">
+    <div class="room-content">
+        <div class="room-info">
+            <a href="../index.html#habitaciones" class="back-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg><span data-i18n="room.back">Back to rooms</span></a>
+            <p class="room-category" data-i18n="room.category.signature">Signature Suite</p>
+            <h1 class="room-title" data-i18n="rooms.suite">Can Quetglas Suite</h1>
+            <div class="room-specs">
+                <div class="room-spec"><div class="room-spec-value">50</div><div class="room-spec-label">m²</div></div>
+                <div class="room-spec"><div class="room-spec-value">2</div><div class="room-spec-label" data-i18n="room.guests">Guests</div></div>
+                <div class="room-spec"><div class="room-spec-value">1</div><div class="room-spec-label" data-i18n="room.bed.king">King Bed</div></div>
+            </div>
+            <p class="room-description" data-i18n="room.suite.desc1">Our signature Can Quetglas Suite is a 50 square meter masterpiece that showcases the building's extraordinary heritage. The suite features original modernist frescoes from 1908, meticulously preserved to transport you to the golden age of Mallorcan architecture.</p>
+            <p class="room-description" data-i18n="room.suite.desc2">A luxurious King bed, private terrace, and generous living space create the ultimate retreat. Every detail has been carefully curated to blend historic elegance with contemporary comfort, offering an experience that is truly unique to Can Quetglas.</p>
+            <div class="room-book"><a href="#" class="btn btn-primary" data-i18n="btn.booknow">Book Now</a></div>
+        </div>
+        <div class="room-amenities">
+            <h3 class="amenities-title" data-i18n="room.amenities">Amenities</h3>
+            <div class="amenities-grid">
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><span data-i18n="amenity.tv">Smart TV</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg><span data-i18n="amenity.wifi">Free WiFi</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg><span data-i18n="amenity.ac">Air Conditioning</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="14" width="7" height="7"/></svg><span data-i18n="amenity.minibar">Minibar</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span data-i18n="amenity.safe">Safe Box</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span data-i18n="amenity.terrace">Private Terrace</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span data-i18n="amenity.frescoes">Modernist Frescoes</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="amenity.pool">Pool Access</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span data-i18n="amenity.bluetooth">Bluetooth Speaker</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span data-i18n="amenity.toiletries">Premium Toiletries</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg><span data-i18n="amenity.coffee">Coffee Machine</span></div>
+                <div class="amenity-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="amenity.bathtub">Luxury Bathtub</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="other-rooms">
+    <div class="container">
+        <h2 class="other-rooms-title" data-i18n="room.other">Other Rooms</h2>
+        <div class="other-rooms-grid">
+            <a href="standard-terrace.html" class="other-room-card"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="Standard with Terrace"><h3 data-i18n="rooms.standard">Standard with Terrace</h3><p>20 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
+            <a href="deluxe.html" class="other-room-card"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="Deluxe"><h3 data-i18n="rooms.deluxe">Deluxe</h3><p>30 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
+            <a href="deluxe-premium.html" class="other-room-card"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="Deluxe Premium"><h3 data-i18n="rooms.deluxepremium">Deluxe Premium</h3><p>30 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
+            <a href="deluxe-terrace.html" class="other-room-card"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Deluxe with Terrace"><h3 data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3><p>40 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
+        </div>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand"><div class="footer-logo">Can Quetglas</div><p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p></div>
+            <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4><ul><li><a href="../index.html#hotel" data-i18n="nav.hotel">The Hotel</a></li><li><a href="../index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li><li><a href="../index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li><li><a href="../index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li><li><a href="../index.html#wellness" data-i18n="nav.wellness">Wellness</a></li></ul></div>
+            <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.info">Info</h4><ul><li><a href="../index.html#contacto" data-i18n="nav.contact">Contact</a></li><li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li><li><a href="#" data-i18n="footer.terms">Terms</a></li></ul></div>
+            <div class="footer-contact"><h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4><p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p><p>+34 871 626 000</p><p>info@hotelcanquetglas.com</p><div class="footer-social"><a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
+        </div>
+        <div class="footer-bottom"><p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p></div>
+    </div>
+</footer>
+
+<script>
+const translations = {
+    en: { 'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact', 'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite', 'btn.book': 'Book', 'btn.booknow': 'Book Now', 'room.back': 'Back to rooms', 'room.category.signature': 'Signature Suite', 'room.guests': 'Guests', 'room.bed.king': 'King Bed', 'room.amenities': 'Amenities', 'room.other': 'Other Rooms', 'room.suite.desc1': 'Our signature Can Quetglas Suite is a 50 square meter masterpiece that showcases the building\'s extraordinary heritage. The suite features original modernist frescoes from 1908, meticulously preserved to transport you to the golden age of Mallorcan architecture.', 'room.suite.desc2': 'A luxurious King bed, private terrace, and generous living space create the ultimate retreat. Every detail has been carefully curated to blend historic elegance with contemporary comfort, offering an experience that is truly unique to Can Quetglas.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Free WiFi', 'amenity.ac': 'Air Conditioning', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe Box', 'amenity.terrace': 'Private Terrace', 'amenity.frescoes': 'Modernist Frescoes', 'amenity.pool': 'Pool Access', 'amenity.bluetooth': 'Bluetooth Speaker', 'amenity.toiletries': 'Premium Toiletries', 'amenity.coffee': 'Coffee Machine', 'amenity.bathtub': 'Luxury Bathtub', 'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.' },
+    es: { 'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto', 'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas', 'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora', 'room.back': 'Volver a habitaciones', 'room.category.signature': 'Suite Signature', 'room.guests': 'Huéspedes', 'room.bed.king': 'Cama King', 'room.amenities': 'Servicios', 'room.other': 'Otras Habitaciones', 'room.suite.desc1': 'Nuestra Suite Can Quetglas signature es una obra maestra de 50 metros cuadrados que muestra el extraordinario patrimonio del edificio. La suite presenta frescos modernistas originales de 1908, meticulosamente preservados para transportarte a la edad de oro de la arquitectura mallorquina.', 'room.suite.desc2': 'Una lujosa cama King, terraza privada y generoso espacio habitable crean el refugio definitivo. Cada detalle ha sido cuidadosamente seleccionado para combinar la elegancia histórica con el confort contemporáneo, ofreciendo una experiencia verdaderamente única de Can Quetglas.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'WiFi Gratis', 'amenity.ac': 'Aire Acondicionado', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Caja Fuerte', 'amenity.terrace': 'Terraza Privada', 'amenity.frescoes': 'Frescos Modernistas', 'amenity.pool': 'Acceso Piscina', 'amenity.bluetooth': 'Altavoz Bluetooth', 'amenity.toiletries': 'Artículos Premium', 'amenity.coffee': 'Cafetera', 'amenity.bathtub': 'Bañera de Lujo', 'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.' },
+    de: { 'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite', 'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen', 'room.back': 'Zurück zu Zimmern', 'room.category.signature': 'Signature Suite', 'room.guests': 'Gäste', 'room.bed.king': 'King-Bett', 'room.amenities': 'Ausstattung', 'room.other': 'Andere Zimmer', 'room.suite.desc1': 'Unsere Signature Can Quetglas Suite ist ein 50 Quadratmeter großes Meisterwerk, das das außergewöhnliche Erbe des Gebäudes zeigt. Die Suite verfügt über originale modernistische Fresken von 1908, die sorgfältig erhalten wurden, um Sie in das goldene Zeitalter der mallorquinischen Architektur zu versetzen.', 'room.suite.desc2': 'Ein luxuriöses King-Bett, eine private Terrasse und großzügiger Wohnraum schaffen den ultimativen Rückzugsort. Jedes Detail wurde sorgfältig kuratiert, um historische Eleganz mit zeitgenössischem Komfort zu verbinden und ein Erlebnis zu bieten, das einzigartig für Can Quetglas ist.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Kostenloses WLAN', 'amenity.ac': 'Klimaanlage', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe', 'amenity.terrace': 'Private Terrasse', 'amenity.frescoes': 'Modernistische Fresken', 'amenity.pool': 'Poolzugang', 'amenity.bluetooth': 'Bluetooth-Lautsprecher', 'amenity.toiletries': 'Premium-Toilettenartikel', 'amenity.coffee': 'Kaffeemaschine', 'amenity.bathtub': 'Luxus-Badewanne', 'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.' },
+    sv: { 'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit', 'btn.book': 'Boka', 'btn.booknow': 'Boka Nu', 'room.back': 'Tillbaka till rum', 'room.category.signature': 'Signatur Svit', 'room.guests': 'Gäster', 'room.bed.king': 'King-säng', 'room.amenities': 'Bekvämligheter', 'room.other': 'Andra Rum', 'room.suite.desc1': 'Vår signatur Can Quetglas Svit är ett 50 kvadratmeter stort mästerverk som visar upp byggnadens extraordinära arv. Sviten har original modernistiska fresker från 1908, noggrant bevarade för att transportera dig till den gyllene eran av mallorquinsk arkitektur.', 'room.suite.desc2': 'En lyxig King-säng, privat terrass och generöst boendeutrymme skapar den ultimata tillflyktsorten. Varje detalj har noggrant kuraterats för att blanda historisk elegans med samtida komfort, och erbjuder en upplevelse som är unik för Can Quetglas.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Gratis WiFi', 'amenity.ac': 'Luftkonditionering', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Kassaskåp', 'amenity.terrace': 'Privat Terrass', 'amenity.frescoes': 'Modernistiska Fresker', 'amenity.pool': 'Pooltillgång', 'amenity.bluetooth': 'Bluetooth-högtalare', 'amenity.toiletries': 'Premium Toalettartiklar', 'amenity.coffee': 'Kaffemaskin', 'amenity.bathtub': 'Lyxigt Badkar', 'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.' }
+};
+
+let currentLang = 'en';
+function setLanguage(lang) { if (!translations[lang]) return; currentLang = lang; document.documentElement.lang = lang; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[lang][key]) el.innerHTML = translations[lang][key]; }); document.querySelectorAll('.side-menu-lang a').forEach(a => { const displayLang = lang === 'sv' ? 'SE' : lang.toUpperCase(); a.classList.toggle('lang-active', a.textContent === displayLang); }); document.querySelectorAll('.header-lang').forEach(a => a.classList.toggle('lang-active', a.dataset.lang === lang)); localStorage.setItem('canquetglas-lang', lang); }
+
+const menuToggle = document.getElementById('menu-toggle'); const sideMenu = document.getElementById('side-menu'); const menuOverlay = document.getElementById('menu-overlay'); const sideMenuClose = document.getElementById('side-menu-close');
+function openMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.classList.add('menu-open'); }
+function closeMenu() { sideMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+menuToggle.addEventListener('click', openMenu); sideMenuClose.addEventListener('click', closeMenu); menuOverlay.addEventListener('click', closeMenu);
+document.querySelectorAll('.submenu-toggle').forEach(toggle => { toggle.addEventListener('click', function(e) { e.preventDefault(); this.parentElement.classList.toggle('submenu-open'); }); });
+document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link => { link.addEventListener('click', closeMenu); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); let lang = this.textContent.toLowerCase(); if (lang === 'se') lang = 'sv'; setLanguage(lang); }); });
+document.querySelectorAll('.header-lang').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); }); });
+const savedLang = localStorage.getItem('canquetglas-lang'); if (savedLang && translations[savedLang]) setLanguage(savedLang);
+
+const slides = document.querySelectorAll('.room-hero-slide'); const dots = document.querySelectorAll('.slider-dot'); const prevBtn = document.querySelector('.slider-arrow.prev'); const nextBtn = document.querySelector('.slider-arrow.next'); let currentSlide = 0;
+function showSlide(index) { slides.forEach(s => s.classList.remove('active')); dots.forEach(d => d.classList.remove('active')); currentSlide = (index + slides.length) % slides.length; slides[currentSlide].classList.add('active'); dots[currentSlide].classList.add('active'); }
+prevBtn.addEventListener('click', () => showSlide(currentSlide - 1)); nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+dots.forEach((dot, i) => { dot.addEventListener('click', () => showSlide(i)); }); setInterval(() => showSlide(currentSlide + 1), 5000);
+</script>
+</body>
+</html>
