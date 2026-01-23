@@ -256,24 +256,24 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
                 </div>
                 <h3 data-i18n="location.car.title">By Car</h3>
-                <p data-i18n="location.car.desc">Easy access from the Ma-1 motorway. Free parking available nearby for our guests.</p>
+                <p data-i18n="location.car.desc">Easy access from the Ma-1 motorway. Private hotel parking available (fee applies) and free street parking nearby.</p>
                 <div class="transport-distance">10 km</div>
             </div>
             <div class="transport-card">
                 <div class="transport-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 </div>
                 <h3 data-i18n="location.santa.title">Santa Catalina</h3>
                 <p data-i18n="location.santa.desc">The vibrant neighborhood with its famous market, restaurants and local atmosphere.</p>
-                <div class="transport-distance">5 min</div>
+                <div class="transport-distance" data-i18n="location.santa.time">5 min on foot</div>
             </div>
             <div class="transport-card">
                 <div class="transport-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L6 7v15h12V7l-6-5z"/><path d="M6 22V7"/><path d="M18 22V7"/><rect x="9" y="12" width="6" height="5"/><path d="M12 2v5"/></svg>
                 </div>
                 <h3 data-i18n="location.oldtown.title">Old Town</h3>
                 <p data-i18n="location.oldtown.desc">The historic center with the Cathedral, Royal Palace and charming medieval streets.</p>
-                <div class="transport-distance">15 min</div>
+                <div class="transport-distance" data-i18n="location.oldtown.time">15 min on foot</div>
             </div>
         </div>
     </div>
@@ -291,7 +291,7 @@
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         <span data-i18n="location.nearby.castle">Bellver Castle</span>
-                        <span class="nearby-distance">1.2 km</span>
+                        <span class="nearby-distance">500 m</span>
                     </li>
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -316,7 +316,7 @@
                 </ul>
             </div>
             <div class="neighborhood-image">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="El Terreno neighborhood">
+                <img src="images/contactForm.webp" alt="El Terreno neighborhood">
             </div>
         </div>
     </div>
@@ -382,9 +382,9 @@ const translations = {
         'location.directions': 'Get Directions',
         'location.howto.title': 'How to Get Here',
         'location.airport.title': 'From the Airport', 'location.airport.desc': 'Palma de Mallorca Airport (PMI) is well connected with direct flights from major European cities.',
-        'location.car.title': 'By Car', 'location.car.desc': 'Easy access from the Ma-1 motorway. Free parking available nearby for our guests.',
-        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'The vibrant neighborhood with its famous market, restaurants and local atmosphere.',
-        'location.oldtown.title': 'Old Town', 'location.oldtown.desc': 'The historic center with the Cathedral, Royal Palace and charming medieval streets.',
+        'location.car.title': 'By Car', 'location.car.desc': 'Easy access from the Ma-1 motorway. Private hotel parking available (fee applies) and free street parking nearby.',
+        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'The vibrant neighborhood with its famous market, restaurants and local atmosphere.', 'location.santa.time': '5 min on foot',
+        'location.oldtown.title': 'Old Town', 'location.oldtown.desc': 'The historic center with the Cathedral, Royal Palace and charming medieval streets.', 'location.oldtown.time': '15 min on foot',
         'location.explore.title': 'Explore the Area', 'location.explore.desc': 'El Terreno is surrounded by fascinating attractions, from historic landmarks to pristine beaches. Discover the best of Mallorca right from our doorstep.',
         'location.nearby.castle': 'Bellver Castle', 'location.nearby.cathedral': 'Palma Cathedral', 'location.nearby.market': 'Santa Catalina Market', 'location.nearby.beach': 'Cala Major Beach', 'location.nearby.miro': 'Joan Miró Foundation',
         'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
@@ -401,9 +401,9 @@ const translations = {
         'location.directions': 'Cómo Llegar',
         'location.howto.title': 'Cómo Llegar',
         'location.airport.title': 'Desde el Aeropuerto', 'location.airport.desc': 'El aeropuerto de Palma de Mallorca (PMI) está bien conectado con vuelos directos desde las principales ciudades europeas.',
-        'location.car.title': 'En Coche', 'location.car.desc': 'Fácil acceso desde la autopista Ma-1. Aparcamiento gratuito disponible cerca para nuestros huéspedes.',
-        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'El vibrante barrio con su famoso mercado, restaurantes y ambiente local.',
-        'location.oldtown.title': 'Casco Antiguo', 'location.oldtown.desc': 'El centro histórico con la Catedral, el Palacio Real y encantadoras calles medievales.',
+        'location.car.title': 'En Coche', 'location.car.desc': 'Fácil acceso desde la autopista Ma-1. Parking privado del hotel disponible (de pago) y aparcamiento gratuito en la calle.',
+        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'El vibrante barrio con su famoso mercado, restaurantes y ambiente local.', 'location.santa.time': '5 min a pie',
+        'location.oldtown.title': 'Casco Antiguo', 'location.oldtown.desc': 'El centro histórico con la Catedral, el Palacio Real y encantadoras calles medievales.', 'location.oldtown.time': '15 min a pie',
         'location.explore.title': 'Explora la Zona', 'location.explore.desc': 'El Terreno está rodeado de fascinantes atracciones, desde monumentos históricos hasta playas vírgenes. Descubre lo mejor de Mallorca desde nuestra puerta.',
         'location.nearby.castle': 'Castillo de Bellver', 'location.nearby.cathedral': 'Catedral de Palma', 'location.nearby.market': 'Mercado de Santa Catalina', 'location.nearby.beach': 'Playa de Cala Major', 'location.nearby.miro': 'Fundación Joan Miró',
         'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
@@ -420,9 +420,9 @@ const translations = {
         'location.directions': 'Anfahrt',
         'location.howto.title': 'Anreise',
         'location.airport.title': 'Vom Flughafen', 'location.airport.desc': 'Der Flughafen Palma de Mallorca (PMI) ist gut mit Direktflügen aus großen europäischen Städten verbunden.',
-        'location.car.title': 'Mit dem Auto', 'location.car.desc': 'Einfacher Zugang von der Autobahn Ma-1. Kostenlose Parkplätze in der Nähe für unsere Gäste.',
-        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'Das lebhafte Viertel mit seinem berühmten Markt, Restaurants und lokaler Atmosphäre.',
-        'location.oldtown.title': 'Altstadt', 'location.oldtown.desc': 'Das historische Zentrum mit der Kathedrale, dem Königspalast und charmanten mittelalterlichen Gassen.',
+        'location.car.title': 'Mit dem Auto', 'location.car.desc': 'Einfacher Zugang von der Autobahn Ma-1. Privater Hotelparkplatz verfügbar (kostenpflichtig) und kostenlose Straßenparkplätze in der Nähe.',
+        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'Das lebhafte Viertel mit seinem berühmten Markt, Restaurants und lokaler Atmosphäre.', 'location.santa.time': '5 min zu Fuß',
+        'location.oldtown.title': 'Altstadt', 'location.oldtown.desc': 'Das historische Zentrum mit der Kathedrale, dem Königspalast und charmanten mittelalterlichen Gassen.', 'location.oldtown.time': '15 min zu Fuß',
         'location.explore.title': 'Die Umgebung Erkunden', 'location.explore.desc': 'El Terreno ist umgeben von faszinierenden Attraktionen, von historischen Wahrzeichen bis zu unberührten Stränden. Entdecken Sie das Beste von Mallorca direkt vor unserer Tür.',
         'location.nearby.castle': 'Schloss Bellver', 'location.nearby.cathedral': 'Kathedrale von Palma', 'location.nearby.market': 'Markt Santa Catalina', 'location.nearby.beach': 'Strand Cala Major', 'location.nearby.miro': 'Joan Miró Stiftung',
         'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
@@ -439,9 +439,9 @@ const translations = {
         'location.directions': 'Vägbeskrivning',
         'location.howto.title': 'Hur du Tar Dig Hit',
         'location.airport.title': 'Från Flygplatsen', 'location.airport.desc': 'Palma de Mallorca flygplats (PMI) har goda förbindelser med direktflyg från stora europeiska städer.',
-        'location.car.title': 'Med Bil', 'location.car.desc': 'Enkel tillgång från motorvägen Ma-1. Gratis parkering tillgänglig i närheten för våra gäster.',
-        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'Det livliga kvarteret med sin berömda marknad, restauranger och lokal atmosfär.',
-        'location.oldtown.title': 'Gamla Stan', 'location.oldtown.desc': 'Det historiska centrumet med katedralen, kungliga palatset och charmiga medeltida gator.',
+        'location.car.title': 'Med Bil', 'location.car.desc': 'Enkel tillgång från motorvägen Ma-1. Privat hotellparkering tillgänglig (avgift tillkommer) och gratis gatuparkering i närheten.',
+        'location.santa.title': 'Santa Catalina', 'location.santa.desc': 'Det livliga kvarteret med sin berömda marknad, restauranger och lokal atmosfär.', 'location.santa.time': '5 min till fots',
+        'location.oldtown.title': 'Gamla Stan', 'location.oldtown.desc': 'Det historiska centrumet med katedralen, kungliga palatset och charmiga medeltida gator.', 'location.oldtown.time': '15 min till fots',
         'location.explore.title': 'Utforska Området', 'location.explore.desc': 'El Terreno omges av fascinerande attraktioner, från historiska landmärken till orörda stränder. Upptäck det bästa av Mallorca direkt från vår tröskel.',
         'location.nearby.castle': 'Slottet Bellver', 'location.nearby.cathedral': 'Palmas Katedral', 'location.nearby.market': 'Santa Catalina Marknad', 'location.nearby.beach': 'Cala Major Strand', 'location.nearby.miro': 'Joan Miró Stiftelsen',
         'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
