@@ -516,12 +516,19 @@
             margin-bottom: var(--spacing-lg);
         }
         .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
             font-family: 'CocoGothic', var(--font-heading);
             font-size: 1.5rem;
             color: var(--color-black);
             letter-spacing: 0.05em;
             font-weight: normal;
             margin-bottom: var(--spacing-sm);
+        }
+        .footer-logo-img {
+            height: 40px;
+            width: auto;
         }
         .footer-tagline { color: var(--color-gray); font-size: 0.9rem; }
         .footer-nav-title {
@@ -1068,7 +1075,10 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="footer-logo">Can Quetglas</div>
+                <div class="footer-logo">
+                    <img src="images/logo_emblem.png" alt="Can Quetglas" class="footer-logo-img">
+                    <span>Can Quetglas</span>
+                </div>
                 <p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p>
             </div>
             <div class="footer-nav">
