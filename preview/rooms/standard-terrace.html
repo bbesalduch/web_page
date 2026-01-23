@@ -285,54 +285,36 @@
         .back-link:hover { color: var(--color-black); }
         .back-link svg { width: 16px; height: 16px; }
 
-        /* Other Rooms */
-        .other-rooms {
-            background: var(--color-white);
-            padding: var(--spacing-xl) 0;
-        }
-        .other-rooms-title {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-        }
-        .other-rooms-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-md);
-        }
-        .other-room-card {
-            position: relative;
-            overflow: hidden;
-        }
-        .other-room-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .other-room-card:hover img { transform: scale(1.05); }
-        .other-room-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: var(--spacing-sm);
-        }
-        .other-room-card p {
-            font-size: 0.85rem;
-            color: var(--color-gray);
-        }
+        /* Other Rooms Slider */
+        .other-rooms { background: var(--color-white); padding: var(--spacing-xl) 0; position: relative; overflow: hidden; }
+        .other-rooms-title { font-family: var(--font-heading); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-lg); }
+        .other-rooms-slider-container { position: relative; overflow: hidden; }
+        .other-rooms-slider { display: flex; transition: transform 0.5s ease; }
+        .other-room-slide { flex: 0 0 calc(33.333% - 14px); min-width: 280px; padding: 0 10px; }
+        .other-room-slide img { width: 100%; height: 280px; object-fit: cover; margin-bottom: var(--spacing-sm); }
+        .other-room-slide-title { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-xs); }
+        .other-room-slide-desc { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--spacing-md); }
+        .other-room-slide .btn-outline { padding: 0.8rem 1.8rem; }
+        .other-rooms-slider-nav { display: flex; justify-content: center; gap: 10px; margin-top: var(--spacing-lg); }
+        .other-rooms-slider-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-gray-light); border: none; cursor: pointer; transition: all 0.3s; }
+        .other-rooms-slider-dot.active { background: var(--color-black); }
+        .other-rooms-slider-arrow { position: absolute; top: 140px; background: transparent; border: none; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10; }
+        .other-rooms-slider-arrow:hover { background: rgba(0,0,0,0.05); }
+        .other-rooms-slider-arrow svg { stroke: var(--color-black); width: 24px; height: 24px; }
+        .other-rooms-slider-arrow.prev { left: 0; }
+        .other-rooms-slider-arrow.next { right: 0; }
 
         @media (max-width: 1000px) {
             .room-content { grid-template-columns: 1fr; }
             .room-info { padding-right: 0; }
-            .other-rooms-grid { grid-template-columns: repeat(2, 1fr); }
+            .other-room-slide { flex: 0 0 calc(50% - 10px); }
+            .other-room-slide img { height: 250px; }
+            .other-rooms-slider-arrow { top: 125px; }
         }
         @media (max-width: 600px) {
-            .other-rooms-grid { grid-template-columns: 1fr; }
+            .other-room-slide { flex: 0 0 100%; }
+            .other-room-slide img { height: 220px; }
+            .other-rooms-slider-arrow { top: 110px; }
             .amenities-grid { grid-template-columns: 1fr; }
             .room-specs { flex-wrap: wrap; gap: var(--spacing-md); }
         }
@@ -653,27 +635,43 @@
 <section class="other-rooms">
     <div class="container">
         <h2 class="other-rooms-title" data-i18n="room.other">Other Rooms</h2>
-        <div class="other-rooms-grid">
-            <a href="deluxe.html" class="other-room-card">
-                <img src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
-                <h3 data-i18n="rooms.deluxe">Deluxe</h3>
-                <p>30 m² · 2 <span data-i18n="room.guests">Guests</span></p>
-            </a>
-            <a href="deluxe-premium.html" class="other-room-card">
-                <img src="../images/rooms/deluxe-premium/photo-3.jpg" alt="Deluxe Premium">
-                <h3 data-i18n="rooms.deluxepremium">Deluxe Premium</h3>
-                <p>30 m² · 2 <span data-i18n="room.guests">Guests</span></p>
-            </a>
-            <a href="deluxe-terrace.html" class="other-room-card">
-                <img src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
-                <h3 data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3>
-                <p>40 m² · 2 <span data-i18n="room.guests">Guests</span></p>
-            </a>
-            <a href="suite.html" class="other-room-card">
-                <img src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
-                <h3 data-i18n="rooms.suite">Can Quetglas Suite</h3>
-                <p>50 m² · 2 <span data-i18n="room.guests">Guests</span></p>
-            </a>
+        <button class="other-rooms-slider-arrow prev" id="other-rooms-prev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/><line x1="9" y1="12" x2="21" y2="12"/></svg>
+        </button>
+        <button class="other-rooms-slider-arrow next" id="other-rooms-next" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
+        <div class="other-rooms-slider-container">
+            <div class="other-rooms-slider" id="other-rooms-slider">
+                <div class="other-room-slide">
+                    <img src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.deluxe">Deluxe</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.deluxe.desc">Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.</p>
+                    <a href="deluxe.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/deluxe-premium/photo-3.jpg" alt="Deluxe Premium">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.deluxepremium">Deluxe Premium</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.deluxepremium.desc">A 30m² retreat with premium amenities, Queen bed plus sofa bed, and proximity to our saltwater pool and Mediterranean garden.</p>
+                    <a href="deluxe-premium.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.deluxeterrace.desc">Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.</p>
+                    <a href="deluxe-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.suite">Can Quetglas Suite</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.suite.desc">Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.</p>
+                    <a href="suite.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+            </div>
+        </div>
+        <div class="other-rooms-slider-nav" id="other-rooms-slider-nav">
+            <button class="other-rooms-slider-dot active" data-slide="0"></button>
+            <button class="other-rooms-slider-dot" data-slide="1"></button>
         </div>
     </div>
 </section>
@@ -744,6 +742,11 @@ const translations = {
         'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Book',
         'btn.booknow': 'Book Now',
+        'btn.seeroom': 'See Room',
+        'rooms.deluxe.desc': 'Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.',
+        'rooms.deluxepremium.desc': 'A 30m² retreat with premium amenities, Queen bed plus sofa bed, and proximity to our saltwater pool and Mediterranean garden.',
+        'rooms.deluxeterrace.desc': 'Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.',
+        'rooms.suite.desc': 'Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.',
         'room.back': 'Back to rooms',
         'room.category': 'Accommodation',
         'room.guests': 'Guests',
@@ -787,6 +790,11 @@ const translations = {
         'rooms.suite': 'Suite Can Quetglas',
         'btn.book': 'Reservar',
         'btn.booknow': 'Reservar Ahora',
+        'btn.seeroom': 'Ver Habitación',
+        'rooms.deluxe.desc': 'Bañadas en luz natural, nuestras habitaciones Deluxe de 30m² presentan un diseño elegante con toques mallorquines tradicionales y vistas al jardín.',
+        'rooms.deluxepremium.desc': 'Un refugio de 30m² con amenidades premium, cama Queen más sofá cama, y proximidad a nuestra piscina de agua salada y jardín mediterráneo.',
+        'rooms.deluxeterrace.desc': 'Espaciosas habitaciones de 40m² que combinan confort interior con una generosa terraza privada con vistas a nuestro jardín centenario.',
+        'rooms.suite.desc': 'Nuestra obra maestra de 50m² con frescos modernistas originales de 1908, cama King y terraza privada con vistas impresionantes.',
         'room.back': 'Volver a habitaciones',
         'room.category': 'Alojamiento',
         'room.guests': 'Huéspedes',
@@ -830,6 +838,11 @@ const translations = {
         'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Buchen',
         'btn.booknow': 'Jetzt Buchen',
+        'btn.seeroom': 'Zimmer Ansehen',
+        'rooms.deluxe.desc': 'In natürliches Licht getaucht, bieten unsere 30m² Deluxe-Zimmer elegantes Design mit traditionellen mallorquinischen Akzenten und Gartenblick.',
+        'rooms.deluxepremium.desc': 'Ein 30m² Rückzugsort mit Premium-Ausstattung, Queen-Bett plus Schlafsofa und Nähe zu unserem Salzwasserpool und mediterranen Garten.',
+        'rooms.deluxeterrace.desc': 'Geräumige 40m² Zimmer, die Innenkomfort mit einer großzügigen privaten Terrasse mit Blick auf unseren jahrhundertealten Garten verbinden.',
+        'rooms.suite.desc': 'Unser 50m² Meisterwerk mit originalen modernistischen Fresken von 1908, King-Bett und privater Terrasse mit atemberaubender Aussicht.',
         'room.back': 'Zurück zu Zimmern',
         'room.category': 'Unterkunft',
         'room.guests': 'Gäste',
@@ -873,6 +886,11 @@ const translations = {
         'rooms.suite': 'Can Quetglas Svit',
         'btn.book': 'Boka',
         'btn.booknow': 'Boka Nu',
+        'btn.seeroom': 'Se Rum',
+        'rooms.deluxe.desc': 'Badade i naturligt ljus, våra 30m² Deluxe-rum har elegant design med traditionella mallorquinska inslag och trädgårdsutsikt.',
+        'rooms.deluxepremium.desc': 'En 30m² tillflyktsort med premium-bekvämligheter, Queen-säng plus bäddsoffa, och närhet till vår saltvattenpool och medelhavsträdgård.',
+        'rooms.deluxeterrace.desc': 'Rymliga 40m² rum som kombinerar inomhuskomfort med en generös privat terrass med utsikt över vår hundraåriga trädgård.',
+        'rooms.suite.desc': 'Vårt signatur 50m² mästerverk med original modernistiska fresker från 1908, King-säng och privat terrass med fantastisk utsikt.',
         'room.back': 'Tillbaka till rum',
         'room.category': 'Boende',
         'room.guests': 'Gäster',
@@ -1005,6 +1023,51 @@ dots.forEach((dot, i) => {
 
 // Auto-advance slider
 setInterval(() => showSlide(currentSlide + 1), 5000);
+
+// OTHER ROOMS SLIDER
+const otherRoomsSlider = document.getElementById('other-rooms-slider');
+const otherRoomsSliderNav = document.getElementById('other-rooms-slider-nav');
+const otherRoomsPrevBtn = document.getElementById('other-rooms-prev');
+const otherRoomsNextBtn = document.getElementById('other-rooms-next');
+let currentOtherRoomsSlide = 0;
+let otherSlidesPerView = 3;
+let otherRoomsAutoSlide;
+const totalOtherSlides = 4;
+
+function updateOtherSlidesPerView() {
+    if (window.innerWidth <= 600) { otherSlidesPerView = 1; }
+    else if (window.innerWidth <= 1000) { otherSlidesPerView = 2; }
+    else { otherSlidesPerView = 3; }
+    updateOtherRoomsDots();
+    showOtherRoomsSlide(Math.min(currentOtherRoomsSlide, getOtherMaxSlide()));
+}
+function getOtherMaxSlide() { return Math.max(0, totalOtherSlides - otherSlidesPerView); }
+function updateOtherRoomsDots() {
+    const maxSlide = getOtherMaxSlide();
+    otherRoomsSliderNav.innerHTML = '';
+    for (let i = 0; i <= maxSlide; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'other-rooms-slider-dot' + (i === currentOtherRoomsSlide ? ' active' : '');
+        dot.dataset.slide = i;
+        dot.addEventListener('click', () => { showOtherRoomsSlide(i); resetOtherAutoSlide(); });
+        otherRoomsSliderNav.appendChild(dot);
+    }
+}
+function showOtherRoomsSlide(index) {
+    const maxSlide = getOtherMaxSlide();
+    currentOtherRoomsSlide = Math.max(0, Math.min(index, maxSlide));
+    const slideWidth = 100 / otherSlidesPerView;
+    otherRoomsSlider.style.transform = `translateX(-${currentOtherRoomsSlide * slideWidth}%)`;
+    otherRoomsSliderNav.querySelectorAll('.other-rooms-slider-dot').forEach((dot, i) => { dot.classList.toggle('active', i === currentOtherRoomsSlide); });
+}
+function nextOtherRoomsSlide() { const maxSlide = getOtherMaxSlide(); if (currentOtherRoomsSlide >= maxSlide) { showOtherRoomsSlide(0); } else { showOtherRoomsSlide(currentOtherRoomsSlide + 1); } }
+function prevOtherRoomsSlide() { const maxSlide = getOtherMaxSlide(); if (currentOtherRoomsSlide <= 0) { showOtherRoomsSlide(maxSlide); } else { showOtherRoomsSlide(currentOtherRoomsSlide - 1); } }
+function resetOtherAutoSlide() { clearInterval(otherRoomsAutoSlide); otherRoomsAutoSlide = setInterval(nextOtherRoomsSlide, 5000); }
+otherRoomsPrevBtn.addEventListener('click', () => { prevOtherRoomsSlide(); resetOtherAutoSlide(); });
+otherRoomsNextBtn.addEventListener('click', () => { nextOtherRoomsSlide(); resetOtherAutoSlide(); });
+updateOtherSlidesPerView();
+window.addEventListener('resize', updateOtherSlidesPerView);
+otherRoomsAutoSlide = setInterval(nextOtherRoomsSlide, 5000);
 </script>
 
 </body>

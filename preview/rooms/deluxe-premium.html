@@ -67,16 +67,25 @@
         .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-gray); margin-bottom: var(--spacing-md); }
         .back-link:hover { color: var(--color-black); }
         .back-link svg { width: 16px; height: 16px; }
-        .other-rooms { background: var(--color-white); padding: var(--spacing-xl) 0; }
+        .other-rooms { background: var(--color-white); padding: var(--spacing-xl) 0; position: relative; overflow: hidden; }
         .other-rooms-title { font-family: var(--font-heading); font-size: 1.8rem; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-lg); }
-        .other-rooms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); }
-        .other-room-card { position: relative; overflow: hidden; }
-        .other-room-card img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s; }
-        .other-room-card:hover img { transform: scale(1.05); }
-        .other-room-card h3 { font-family: var(--font-heading); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: var(--spacing-sm); }
-        .other-room-card p { font-size: 0.85rem; color: var(--color-gray); }
-        @media (max-width: 1000px) { .room-content { grid-template-columns: 1fr; } .room-info { padding-right: 0; } .other-rooms-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .other-rooms-grid { grid-template-columns: 1fr; } .amenities-grid { grid-template-columns: 1fr; } .room-specs { flex-wrap: wrap; gap: var(--spacing-md); } }
+        .other-rooms-slider-container { position: relative; overflow: hidden; }
+        .other-rooms-slider { display: flex; transition: transform 0.5s ease; }
+        .other-room-slide { flex: 0 0 calc(33.333% - 14px); min-width: 280px; padding: 0 10px; }
+        .other-room-slide img { width: 100%; height: 280px; object-fit: cover; margin-bottom: var(--spacing-sm); }
+        .other-room-slide-title { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-xs); }
+        .other-room-slide-desc { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--spacing-md); }
+        .other-room-slide .btn-outline { padding: 0.8rem 1.8rem; }
+        .other-rooms-slider-nav { display: flex; justify-content: center; gap: 10px; margin-top: var(--spacing-lg); }
+        .other-rooms-slider-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-gray-light); border: none; cursor: pointer; transition: all 0.3s; }
+        .other-rooms-slider-dot.active { background: var(--color-black); }
+        .other-rooms-slider-arrow { position: absolute; top: 140px; background: transparent; border: none; width: 50px; height: 50px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10; }
+        .other-rooms-slider-arrow:hover { background: rgba(0,0,0,0.05); }
+        .other-rooms-slider-arrow svg { stroke: var(--color-black); width: 24px; height: 24px; }
+        .other-rooms-slider-arrow.prev { left: 0; }
+        .other-rooms-slider-arrow.next { right: 0; }
+        @media (max-width: 1000px) { .room-content { grid-template-columns: 1fr; } .room-info { padding-right: 0; } .other-room-slide { flex: 0 0 calc(50% - 10px); } .other-room-slide img { height: 250px; } .other-rooms-slider-arrow { top: 125px; } }
+        @media (max-width: 600px) { .other-room-slide { flex: 0 0 100%; } .other-room-slide img { height: 220px; } .other-rooms-slider-arrow { top: 110px; } .amenities-grid { grid-template-columns: 1fr; } .room-specs { flex-wrap: wrap; gap: var(--spacing-md); } }
         .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
         .menu-overlay.active { opacity: 1; visibility: visible; }
         .side-menu { position: fixed; top: 0; left: 0; width: 100%; max-width: 500px; height: 100vh; background-color: var(--color-cream); z-index: 1999; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl); overflow-y: auto; }
@@ -224,11 +233,43 @@
 <section class="other-rooms">
     <div class="container">
         <h2 class="other-rooms-title" data-i18n="room.other">Other Rooms</h2>
-        <div class="other-rooms-grid">
-            <a href="standard-terrace.html" class="other-room-card"><img src="../images/rooms/standard-terrace/photo-3.jpg" alt="Standard with Terrace"><h3 data-i18n="rooms.standard">Standard with Terrace</h3><p>20 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
-            <a href="deluxe.html" class="other-room-card"><img src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe"><h3 data-i18n="rooms.deluxe">Deluxe</h3><p>30 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
-            <a href="deluxe-terrace.html" class="other-room-card"><img src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace"><h3 data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3><p>40 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
-            <a href="suite.html" class="other-room-card"><img src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite"><h3 data-i18n="rooms.suite">Can Quetglas Suite</h3><p>50 m² · 2 <span data-i18n="room.guests">Guests</span></p></a>
+        <button class="other-rooms-slider-arrow prev" id="other-rooms-prev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/><line x1="9" y1="12" x2="21" y2="12"/></svg>
+        </button>
+        <button class="other-rooms-slider-arrow next" id="other-rooms-next" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
+        <div class="other-rooms-slider-container">
+            <div class="other-rooms-slider" id="other-rooms-slider">
+                <div class="other-room-slide">
+                    <img src="../images/rooms/standard-terrace/photo-3.jpg" alt="Standard with Terrace">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.standard">Standard with Terrace</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.standard.desc">A cozy 20m² retreat with private terrace, perfect for couples seeking comfort and outdoor relaxation in the heart of El Terreno.</p>
+                    <a href="standard-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.deluxe">Deluxe</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.deluxe.desc">Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.</p>
+                    <a href="deluxe.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.deluxeterrace.desc">Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.</p>
+                    <a href="deluxe-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+                <div class="other-room-slide">
+                    <img src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
+                    <h3 class="other-room-slide-title" data-i18n="rooms.suite">Can Quetglas Suite</h3>
+                    <p class="other-room-slide-desc" data-i18n="rooms.suite.desc">Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.</p>
+                    <a href="suite.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
+                </div>
+            </div>
+        </div>
+        <div class="other-rooms-slider-nav" id="other-rooms-slider-nav">
+            <button class="other-rooms-slider-dot active" data-slide="0"></button>
+            <button class="other-rooms-slider-dot" data-slide="1"></button>
         </div>
     </div>
 </section>
@@ -247,10 +288,10 @@
 
 <script>
 const translations = {
-    en: { 'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact', 'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite', 'btn.book': 'Book', 'btn.booknow': 'Book Now', 'room.back': 'Back to rooms', 'room.category': 'Accommodation', 'room.guests': 'Guests', 'room.bed.queensofa': 'Queen + Sofa', 'room.amenities': 'Amenities', 'room.other': 'Other Rooms', 'room.deluxepremium.desc1': 'Our Deluxe Premium rooms offer 30 square meters of elegant comfort with the added benefit of proximity to the pool and garden. These thoughtfully appointed spaces feature a Queen bed plus a comfortable sofa bed, making them ideal for guests who appreciate extra flexibility.', 'room.deluxepremium.desc2': 'Wake up to views of our Mediterranean garden and enjoy quick access to the saltwater pool. The perfect choice for those who want to make the most of our outdoor spaces while enjoying premium in-room comfort.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Free WiFi', 'amenity.ac': 'Air Conditioning', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe Box', 'amenity.poolnear': 'Near Pool', 'amenity.gardenview': 'Garden View', 'amenity.bluetooth': 'Bluetooth Speaker', 'amenity.toiletries': 'Premium Toiletries', 'amenity.coffee': 'Coffee Machine', 'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.' },
-    es: { 'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto', 'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas', 'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora', 'room.back': 'Volver a habitaciones', 'room.category': 'Alojamiento', 'room.guests': 'Huéspedes', 'room.bed.queensofa': 'Queen + Sofá', 'room.amenities': 'Servicios', 'room.other': 'Otras Habitaciones', 'room.deluxepremium.desc1': 'Nuestras habitaciones Deluxe Premium ofrecen 30 metros cuadrados de elegante confort con la ventaja añadida de estar cerca de la piscina y el jardín. Estos espacios cuidadosamente equipados cuentan con una cama Queen más un cómodo sofá cama, ideales para huéspedes que aprecian la flexibilidad.', 'room.deluxepremium.desc2': 'Despierta con vistas a nuestro jardín mediterráneo y disfruta de acceso rápido a la piscina de agua salada. La elección perfecta para quienes quieren aprovechar al máximo nuestros espacios exteriores mientras disfrutan del confort premium en la habitación.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'WiFi Gratis', 'amenity.ac': 'Aire Acondicionado', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Caja Fuerte', 'amenity.poolnear': 'Cerca de Piscina', 'amenity.gardenview': 'Vistas al Jardín', 'amenity.bluetooth': 'Altavoz Bluetooth', 'amenity.toiletries': 'Artículos Premium', 'amenity.coffee': 'Cafetera', 'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.' },
-    de: { 'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite', 'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen', 'room.back': 'Zurück zu Zimmern', 'room.category': 'Unterkunft', 'room.guests': 'Gäste', 'room.bed.queensofa': 'Queen + Sofa', 'room.amenities': 'Ausstattung', 'room.other': 'Andere Zimmer', 'room.deluxepremium.desc1': 'Unsere Deluxe Premium Zimmer bieten 30 Quadratmeter eleganten Komfort mit dem zusätzlichen Vorteil der Nähe zu Pool und Garten. Diese durchdacht ausgestatteten Räume verfügen über ein Queen-Bett plus ein bequemes Schlafsofa, ideal für Gäste, die zusätzliche Flexibilität schätzen.', 'room.deluxepremium.desc2': 'Wachen Sie mit Blick auf unseren mediterranen Garten auf und genießen Sie den schnellen Zugang zum Salzwasserpool. Die perfekte Wahl für alle, die unsere Außenbereiche optimal nutzen und gleichzeitig Premium-Zimmerkomfort genießen möchten.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Kostenloses WLAN', 'amenity.ac': 'Klimaanlage', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe', 'amenity.poolnear': 'Nahe am Pool', 'amenity.gardenview': 'Gartenblick', 'amenity.bluetooth': 'Bluetooth-Lautsprecher', 'amenity.toiletries': 'Premium-Toilettenartikel', 'amenity.coffee': 'Kaffeemaschine', 'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.' },
-    sv: { 'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit', 'btn.book': 'Boka', 'btn.booknow': 'Boka Nu', 'room.back': 'Tillbaka till rum', 'room.category': 'Boende', 'room.guests': 'Gäster', 'room.bed.queensofa': 'Queen + Soffa', 'room.amenities': 'Bekvämligheter', 'room.other': 'Andra Rum', 'room.deluxepremium.desc1': 'Våra Deluxe Premium-rum erbjuder 30 kvadratmeter av elegant komfort med den extra fördelen av närhet till pool och trädgård. Dessa genomtänkt inredda utrymmen har en Queen-säng plus en bekväm bäddsoffa, perfekta för gäster som uppskattar extra flexibilitet.', 'room.deluxepremium.desc2': 'Vakna upp till utsikt över vår medelhavssträdgård och njut av snabb tillgång till saltvattenpoolen. Det perfekta valet för dem som vill göra det mesta av våra utomhusutrymmen samtidigt som de njuter av premium rumskomfort.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Gratis WiFi', 'amenity.ac': 'Luftkonditionering', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Kassaskåp', 'amenity.poolnear': 'Nära Pool', 'amenity.gardenview': 'Trädgårdsvy', 'amenity.bluetooth': 'Bluetooth-högtalare', 'amenity.toiletries': 'Premium Toalettartiklar', 'amenity.coffee': 'Kaffemaskin', 'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.' }
+    en: { 'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact', 'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite', 'rooms.standard.desc': 'A cozy 20m² retreat with private terrace, perfect for couples seeking comfort and outdoor relaxation in the heart of El Terreno.', 'rooms.deluxe.desc': 'Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.', 'rooms.deluxeterrace.desc': 'Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.', 'rooms.suite.desc': 'Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.', 'btn.book': 'Book', 'btn.booknow': 'Book Now', 'btn.seeroom': 'See Room', 'room.back': 'Back to rooms', 'room.category': 'Accommodation', 'room.guests': 'Guests', 'room.bed.queensofa': 'Queen + Sofa', 'room.amenities': 'Amenities', 'room.other': 'Other Rooms', 'room.deluxepremium.desc1': 'Our Deluxe Premium rooms offer 30 square meters of elegant comfort with the added benefit of proximity to the pool and garden. These thoughtfully appointed spaces feature a Queen bed plus a comfortable sofa bed, making them ideal for guests who appreciate extra flexibility.', 'room.deluxepremium.desc2': 'Wake up to views of our Mediterranean garden and enjoy quick access to the saltwater pool. The perfect choice for those who want to make the most of our outdoor spaces while enjoying premium in-room comfort.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Free WiFi', 'amenity.ac': 'Air Conditioning', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe Box', 'amenity.poolnear': 'Near Pool', 'amenity.gardenview': 'Garden View', 'amenity.bluetooth': 'Bluetooth Speaker', 'amenity.toiletries': 'Premium Toiletries', 'amenity.coffee': 'Coffee Machine', 'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.' },
+    es: { 'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto', 'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas', 'rooms.standard.desc': 'Un acogedor refugio de 20m² con terraza privada, perfecto para parejas que buscan comodidad y relajación al aire libre en el corazón de El Terreno.', 'rooms.deluxe.desc': 'Bañadas en luz natural, nuestras habitaciones Deluxe de 30m² presentan un diseño elegante con toques mallorquines tradicionales y vistas al jardín.', 'rooms.deluxeterrace.desc': 'Espaciosas habitaciones de 40m² que combinan confort interior con una generosa terraza privada con vistas a nuestro jardín centenario.', 'rooms.suite.desc': 'Nuestra obra maestra de 50m² con frescos modernistas originales de 1908, cama King y terraza privada con vistas impresionantes.', 'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora', 'btn.seeroom': 'Ver Habitación', 'room.back': 'Volver a habitaciones', 'room.category': 'Alojamiento', 'room.guests': 'Huéspedes', 'room.bed.queensofa': 'Queen + Sofá', 'room.amenities': 'Servicios', 'room.other': 'Otras Habitaciones', 'room.deluxepremium.desc1': 'Nuestras habitaciones Deluxe Premium ofrecen 30 metros cuadrados de elegante confort con la ventaja añadida de estar cerca de la piscina y el jardín. Estos espacios cuidadosamente equipados cuentan con una cama Queen más un cómodo sofá cama, ideales para huéspedes que aprecian la flexibilidad.', 'room.deluxepremium.desc2': 'Despierta con vistas a nuestro jardín mediterráneo y disfruta de acceso rápido a la piscina de agua salada. La elección perfecta para quienes quieren aprovechar al máximo nuestros espacios exteriores mientras disfrutan del confort premium en la habitación.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'WiFi Gratis', 'amenity.ac': 'Aire Acondicionado', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Caja Fuerte', 'amenity.poolnear': 'Cerca de Piscina', 'amenity.gardenview': 'Vistas al Jardín', 'amenity.bluetooth': 'Altavoz Bluetooth', 'amenity.toiletries': 'Artículos Premium', 'amenity.coffee': 'Cafetera', 'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.' },
+    de: { 'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite', 'rooms.standard.desc': 'Ein gemütlicher 20m² Rückzugsort mit privater Terrasse, perfekt für Paare, die Komfort und Entspannung im Freien im Herzen von El Terreno suchen.', 'rooms.deluxe.desc': 'In natürliches Licht getaucht, bieten unsere 30m² Deluxe-Zimmer elegantes Design mit traditionellen mallorquinischen Akzenten und Gartenblick.', 'rooms.deluxeterrace.desc': 'Geräumige 40m² Zimmer, die Innenkomfort mit einer großzügigen privaten Terrasse mit Blick auf unseren jahrhundertealten Garten verbinden.', 'rooms.suite.desc': 'Unser 50m² Meisterwerk mit originalen modernistischen Fresken von 1908, King-Bett und privater Terrasse mit atemberaubender Aussicht.', 'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen', 'btn.seeroom': 'Zimmer Ansehen', 'room.back': 'Zurück zu Zimmern', 'room.category': 'Unterkunft', 'room.guests': 'Gäste', 'room.bed.queensofa': 'Queen + Sofa', 'room.amenities': 'Ausstattung', 'room.other': 'Andere Zimmer', 'room.deluxepremium.desc1': 'Unsere Deluxe Premium Zimmer bieten 30 Quadratmeter eleganten Komfort mit dem zusätzlichen Vorteil der Nähe zu Pool und Garten. Diese durchdacht ausgestatteten Räume verfügen über ein Queen-Bett plus ein bequemes Schlafsofa, ideal für Gäste, die zusätzliche Flexibilität schätzen.', 'room.deluxepremium.desc2': 'Wachen Sie mit Blick auf unseren mediterranen Garten auf und genießen Sie den schnellen Zugang zum Salzwasserpool. Die perfekte Wahl für alle, die unsere Außenbereiche optimal nutzen und gleichzeitig Premium-Zimmerkomfort genießen möchten.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Kostenloses WLAN', 'amenity.ac': 'Klimaanlage', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Safe', 'amenity.poolnear': 'Nahe am Pool', 'amenity.gardenview': 'Gartenblick', 'amenity.bluetooth': 'Bluetooth-Lautsprecher', 'amenity.toiletries': 'Premium-Toilettenartikel', 'amenity.coffee': 'Kaffeemaschine', 'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.' },
+    sv: { 'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt', 'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit', 'rooms.standard.desc': 'En mysig 20m² tillflyktsort med privat terrass, perfekt för par som söker komfort och avkoppling utomhus i hjärtat av El Terreno.', 'rooms.deluxe.desc': 'Badade i naturligt ljus, våra 30m² Deluxe-rum har elegant design med traditionella mallorquinska inslag och trädgårdsutsikt.', 'rooms.deluxeterrace.desc': 'Rymliga 40m² rum som kombinerar inomhuskomfort med en generös privat terrass med utsikt över vår hundraåriga trädgård.', 'rooms.suite.desc': 'Vårt signatur 50m² mästerverk med original modernistiska fresker från 1908, King-säng och privat terrass med fantastisk utsikt.', 'btn.book': 'Boka', 'btn.booknow': 'Boka Nu', 'btn.seeroom': 'Se Rum', 'room.back': 'Tillbaka till rum', 'room.category': 'Boende', 'room.guests': 'Gäster', 'room.bed.queensofa': 'Queen + Soffa', 'room.amenities': 'Bekvämligheter', 'room.other': 'Andra Rum', 'room.deluxepremium.desc1': 'Våra Deluxe Premium-rum erbjuder 30 kvadratmeter av elegant komfort med den extra fördelen av närhet till pool och trädgård. Dessa genomtänkt inredda utrymmen har en Queen-säng plus en bekväm bäddsoffa, perfekta för gäster som uppskattar extra flexibilitet.', 'room.deluxepremium.desc2': 'Vakna upp till utsikt över vår medelhavssträdgård och njut av snabb tillgång till saltvattenpoolen. Det perfekta valet för dem som vill göra det mesta av våra utomhusutrymmen samtidigt som de njuter av premium rumskomfort.', 'amenity.tv': 'Smart TV', 'amenity.wifi': 'Gratis WiFi', 'amenity.ac': 'Luftkonditionering', 'amenity.minibar': 'Minibar', 'amenity.safe': 'Kassaskåp', 'amenity.poolnear': 'Nära Pool', 'amenity.gardenview': 'Trädgårdsvy', 'amenity.bluetooth': 'Bluetooth-högtalare', 'amenity.toiletries': 'Premium Toalettartiklar', 'amenity.coffee': 'Kaffemaskin', 'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.' }
 };
 
 let currentLang = 'en';
@@ -271,6 +312,51 @@ const slides = document.querySelectorAll('.room-hero-slide'); const dots = docum
 function showSlide(index) { slides.forEach(s => s.classList.remove('active')); dots.forEach(d => d.classList.remove('active')); currentSlide = (index + slides.length) % slides.length; slides[currentSlide].classList.add('active'); dots[currentSlide].classList.add('active'); }
 prevBtn.addEventListener('click', () => showSlide(currentSlide - 1)); nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
 dots.forEach((dot, i) => { dot.addEventListener('click', () => showSlide(i)); }); setInterval(() => showSlide(currentSlide + 1), 5000);
+
+// OTHER ROOMS SLIDER
+const otherRoomsSlider = document.getElementById('other-rooms-slider');
+const otherRoomsSliderNav = document.getElementById('other-rooms-slider-nav');
+const otherRoomsPrevBtn = document.getElementById('other-rooms-prev');
+const otherRoomsNextBtn = document.getElementById('other-rooms-next');
+let currentOtherRoomsSlide = 0;
+let otherSlidesPerView = 3;
+let otherRoomsAutoSlide;
+const totalOtherSlides = 4;
+
+function updateOtherSlidesPerView() {
+    if (window.innerWidth <= 600) { otherSlidesPerView = 1; }
+    else if (window.innerWidth <= 1000) { otherSlidesPerView = 2; }
+    else { otherSlidesPerView = 3; }
+    updateOtherRoomsDots();
+    showOtherRoomsSlide(Math.min(currentOtherRoomsSlide, getOtherMaxSlide()));
+}
+function getOtherMaxSlide() { return Math.max(0, totalOtherSlides - otherSlidesPerView); }
+function updateOtherRoomsDots() {
+    const maxSlide = getOtherMaxSlide();
+    otherRoomsSliderNav.innerHTML = '';
+    for (let i = 0; i <= maxSlide; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'other-rooms-slider-dot' + (i === currentOtherRoomsSlide ? ' active' : '');
+        dot.dataset.slide = i;
+        dot.addEventListener('click', () => { showOtherRoomsSlide(i); resetOtherAutoSlide(); });
+        otherRoomsSliderNav.appendChild(dot);
+    }
+}
+function showOtherRoomsSlide(index) {
+    const maxSlide = getOtherMaxSlide();
+    currentOtherRoomsSlide = Math.max(0, Math.min(index, maxSlide));
+    const slideWidth = 100 / otherSlidesPerView;
+    otherRoomsSlider.style.transform = `translateX(-${currentOtherRoomsSlide * slideWidth}%)`;
+    otherRoomsSliderNav.querySelectorAll('.other-rooms-slider-dot').forEach((dot, i) => { dot.classList.toggle('active', i === currentOtherRoomsSlide); });
+}
+function nextOtherRoomsSlide() { const maxSlide = getOtherMaxSlide(); if (currentOtherRoomsSlide >= maxSlide) { showOtherRoomsSlide(0); } else { showOtherRoomsSlide(currentOtherRoomsSlide + 1); } }
+function prevOtherRoomsSlide() { const maxSlide = getOtherMaxSlide(); if (currentOtherRoomsSlide <= 0) { showOtherRoomsSlide(maxSlide); } else { showOtherRoomsSlide(currentOtherRoomsSlide - 1); } }
+function resetOtherAutoSlide() { clearInterval(otherRoomsAutoSlide); otherRoomsAutoSlide = setInterval(nextOtherRoomsSlide, 5000); }
+otherRoomsPrevBtn.addEventListener('click', () => { prevOtherRoomsSlide(); resetOtherAutoSlide(); });
+otherRoomsNextBtn.addEventListener('click', () => { nextOtherRoomsSlide(); resetOtherAutoSlide(); });
+updateOtherSlidesPerView();
+window.addEventListener('resize', updateOtherSlidesPerView);
+otherRoomsAutoSlide = setInterval(nextOtherRoomsSlide, 5000);
 </script>
 </body>
 </html>
