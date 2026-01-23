@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location - Hotel Can Quetglas</title>
+    <meta name="description" content="Hotel Can Quetglas location in El Terreno, Palma de Mallorca. How to get here from the airport and city center.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: 'CocoGothic'; src: url('fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--color-black); background-color: var(--color-cream); -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.2; letter-spacing: 0.05em; }
+        a { color: var(--color-black); text-decoration: none; transition: color var(--transition-normal); }
+        a:hover { color: var(--color-accent); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--spacing-sm) 0; background-color: rgba(247, 243, 237, 0.98); backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+        .site-logo-img { height: 40px; width: auto; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
+        .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
+        .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
+        .header-cta .btn:hover { background: var(--color-dark); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all var(--transition-normal); }
+        .btn-primary { background-color: var(--color-black); color: var(--color-white); }
+        .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
+        .btn-outline { background: transparent; color: var(--color-black); border: 1px solid var(--color-black); }
+        .btn-outline:hover { background: var(--color-black); color: var(--color-white); }
+
+        /* Language Dropdown */
+        .header-lang-dropdown { position: relative; }
+        .header-lang-current { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--color-gray); cursor: pointer; padding: 8px 0; letter-spacing: 0.05em; }
+        .header-lang-current:hover { color: var(--color-black); }
+        .header-lang-current svg { width: 12px; height: 12px; transition: transform 0.3s ease; }
+        .header-lang-dropdown:hover .header-lang-current svg { transform: rotate(180deg); }
+        .header-lang-menu { position: absolute; top: 100%; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 60px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+        .header-lang-dropdown:hover .header-lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .header-lang-menu a { display: block; padding: 10px 16px; font-size: 0.75rem; color: var(--color-gray); letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .header-lang-menu a:last-child { border-bottom: none; }
+        .header-lang-menu a:hover { background: var(--color-cream); color: var(--color-black); }
+        .header-lang-menu a.lang-active { color: var(--color-black); font-weight: 600; }
+
+        /* Page Hero */
+        .page-hero { position: relative; height: 50vh; min-height: 400px; margin-top: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .page-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
+        .page-hero-content { position: relative; z-index: 2; text-align: center; color: var(--color-white); }
+        .page-hero-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: var(--spacing-sm); }
+        .page-hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* Location Content */
+        .location-section { padding: var(--spacing-xl) 0; }
+        .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: start; }
+        .location-info h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .location-info p { color: var(--color-gray); margin-bottom: var(--spacing-md); line-height: 1.8; }
+        .location-details { margin-top: var(--spacing-lg); }
+        .location-item { display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); color: var(--color-gray); }
+        .location-item svg { width: 20px; height: 20px; color: var(--color-black); flex-shrink: 0; margin-top: 4px; }
+        .location-item strong { color: var(--color-black); display: block; margin-bottom: 4px; font-weight: 500; }
+        .location-map { height: 500px; background: var(--color-cream-dark); }
+        .location-map iframe { width: 100%; height: 100%; border: none; }
+
+        /* How to Get Here */
+        .how-to-get { background: var(--color-white); padding: var(--spacing-xl) 0; }
+        .how-to-get-title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-xl); }
+        .transport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+        .transport-card { text-align: center; padding: var(--spacing-lg); }
+        .transport-icon { width: 60px; height: 60px; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-black); border-radius: 50%; }
+        .transport-icon svg { width: 28px; height: 28px; color: var(--color-black); }
+        .transport-card h3 { font-family: var(--font-heading); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .transport-card p { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; }
+        .transport-distance { font-family: var(--font-heading); font-size: 2rem; color: var(--color-black); margin-top: var(--spacing-sm); }
+
+        /* Neighborhood */
+        .neighborhood { padding: var(--spacing-xl) 0; }
+        .neighborhood-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--spacing-xl); align-items: center; }
+        .neighborhood-text h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .neighborhood-text p { color: var(--color-gray); margin-bottom: var(--spacing-md); line-height: 1.8; }
+        .neighborhood-image img { width: 100%; height: auto; }
+        .nearby-list { list-style: none; margin-top: var(--spacing-lg); }
+        .nearby-list li { display: flex; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm) 0; border-bottom: 1px solid rgba(0,0,0,0.1); color: var(--color-gray); }
+        .nearby-list li:last-child { border-bottom: none; }
+        .nearby-list svg { width: 16px; height: 16px; color: var(--color-accent); }
+        .nearby-distance { margin-left: auto; font-size: 0.85rem; color: var(--color-gray-light); }
+
+        @media (max-width: 900px) {
+            .location-grid, .neighborhood-content { grid-template-columns: 1fr; }
+            .transport-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
+            .location-map { height: 350px; }
+        }
+
+        /* Side Menu */
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .side-menu { position: fixed; top: 0; left: 0; width: 100%; max-width: 500px; height: 100vh; background-color: var(--color-cream); z-index: 1999; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl); overflow-y: auto; }
+        .side-menu.active { transform: translateX(0); }
+        .side-menu-close { background: none; border: none; cursor: pointer; color: var(--color-black); padding: 10px; margin-left: -10px; align-self: flex-start; }
+        .side-menu-close:hover { color: var(--color-accent); }
+        .side-menu-nav { list-style: none; margin-top: var(--spacing-sm); }
+        .side-menu-nav > li { margin-bottom: var(--spacing-sm); }
+        .side-menu-nav > li > a { font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-black); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
+        .side-menu-nav > li > a:hover { color: var(--color-accent); }
+        .side-menu-nav > li > a svg { transition: transform 0.3s ease; }
+        .side-menu-nav > li.submenu-open > a svg { transform: rotate(180deg); }
+        .submenu { list-style: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: var(--spacing-md); }
+        .submenu-open .submenu { max-height: 300px; }
+        .submenu li { margin: var(--spacing-xs) 0; }
+        .submenu a { font-family: var(--font-body); font-size: 0.9rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; }
+        .submenu a:hover { color: var(--color-black); }
+        .side-menu-lang { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-sm); border-top: 1px solid rgba(0,0,0,0.1); margin-top: var(--spacing-sm); }
+        .side-menu-lang a { font-size: 0.9rem; color: var(--color-gray); letter-spacing: 0.05em; }
+        .side-menu-lang a.lang-active { color: var(--color-black); font-weight: 600; }
+        .side-menu-lang a:hover { color: var(--color-black); }
+        body.menu-open { overflow: hidden; }
+
+        /* Footer */
+        .site-footer { background-color: var(--color-cream-dark); padding: var(--spacing-xl) 0 var(--spacing-md); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+        .footer-logo { font-family: 'CocoGothic', var(--font-heading); font-size: 1.5rem; color: var(--color-black); letter-spacing: 0.05em; margin-bottom: var(--spacing-sm); }
+        .footer-tagline { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-black); margin-bottom: var(--spacing-sm); font-weight: 500; }
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: var(--spacing-xs); }
+        .footer-nav a { color: var(--color-gray); font-size: 0.85rem; }
+        .footer-nav a:hover { color: var(--color-black); }
+        .footer-contact p { color: var(--color-gray); font-size: 0.85rem; margin-bottom: var(--spacing-xs); }
+        .footer-social { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
+        .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--color-gray-light); border-radius: 50%; color: var(--color-gray); transition: all 0.3s; }
+        .footer-social a:hover { border-color: var(--color-black); color: var(--color-black); }
+        .footer-bottom { text-align: center; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.1); }
+        .footer-copyright { font-size: 0.75rem; color: var(--color-gray); }
+        @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr 1fr; gap: var(--spacing-md); } }
+        @media (max-width: 500px) { .footer-content { grid-template-columns: 1fr; text-align: center; } .footer-social { justify-content: center; } }
+    </style>
+</head>
+<body>
+
+<div class="menu-overlay" id="menu-overlay"></div>
+<nav class="side-menu" id="side-menu">
+    <button class="side-menu-close" id="side-menu-close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <ul class="side-menu-nav">
+        <li><a href="index.html#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.rooms">Rooms</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="rooms/standard-terrace.html" data-i18n="rooms.standard">Standard with Terrace</a></li>
+                <li><a href="rooms/deluxe.html" data-i18n="rooms.deluxe">Deluxe</a></li>
+                <li><a href="rooms/deluxe-premium.html" data-i18n="rooms.deluxepremium">Deluxe Premium</a></li>
+                <li><a href="rooms/deluxe-terrace.html" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</a></li>
+                <li><a href="rooms/suite.html" data-i18n="rooms.suite">Can Quetglas Suite</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+            </ul>
+        </li>
+        <li><a href="index.html#wellness" data-i18n="nav.wellness">Wellness</a></li>
+        <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="side-menu-lang"><a href="#" class="lang-active">EN</a><a href="#">ES</a><a href="#">DE</a><a href="#">SE</a></div>
+</nav>
+
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+            <a href="index.html" class="site-logo"><img src="images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img"></a>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="header-cta"><a href="#" class="btn" data-i18n="btn.book">Book</a></div>
+                <div class="header-lang-dropdown">
+                    <div class="header-lang-current">
+                        <span id="current-lang-text">EN</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="header-lang-menu">
+                        <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                        <a href="#" class="header-lang" data-lang="es">ES</a>
+                        <a href="#" class="header-lang" data-lang="de">DE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="page-hero-bg">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Palma de Mallorca">
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+        <p class="page-hero-subtitle" data-i18n="location.subtitle">Location</p>
+        <h1 class="page-hero-title" data-i18n="location.title">El Terreno, Palma</h1>
+    </div>
+</section>
+
+<!-- Location Info -->
+<section class="location-section">
+    <div class="container">
+        <div class="location-grid">
+            <div class="location-info">
+                <h2 data-i18n="location.neighborhood.title">A Historic Neighborhood</h2>
+                <p data-i18n="location.neighborhood.desc1">Located in the historic neighborhood of El Terreno, where artists, writers and intellectuals of bohemian 1960s Palma found their inspiration. This charming area maintains its authentic character while offering easy access to the city center and beaches.</p>
+                <p data-i18n="location.neighborhood.desc2">Just a short walk from the iconic Bellver Castle and the vibrant Santa Catalina market, El Terreno offers the perfect balance between tranquility and urban life.</p>
+
+                <div class="location-details">
+                    <div class="location-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div><strong data-i18n="location.address">Address</strong>Calle Santa Rita, 13<br>07014 Palma de Mallorca<br>Islas Baleares, Spain</div>
+                    </div>
+                    <div class="location-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <div><strong data-i18n="location.checkin">Check-in / Check-out</strong><span data-i18n="location.checkin.times">Check-in: 15:00 · Check-out: 11:00</span></div>
+                    </div>
+                </div>
+
+                <a href="https://maps.google.com/?q=Hotel+Can+Quetglas+Palma+de+Mallorca" target="_blank" class="btn btn-outline" style="margin-top: var(--spacing-lg);" data-i18n="location.directions">Get Directions</a>
+            </div>
+            <div class="location-map">
+                <iframe src="https://www.google.com/maps?q=Calle+Santa+Rita+13+Palma+de+Mallorca&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How to Get Here -->
+<section class="how-to-get">
+    <div class="container">
+        <h2 class="how-to-get-title" data-i18n="location.howto.title">How to Get Here</h2>
+        <div class="transport-grid">
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                </div>
+                <h3 data-i18n="location.airport.title">From the Airport</h3>
+                <p data-i18n="location.airport.desc">Palma de Mallorca Airport (PMI) is well connected with direct flights from major European cities.</p>
+                <div class="transport-distance">15 min</div>
+            </div>
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                </div>
+                <h3 data-i18n="location.car.title">By Car</h3>
+                <p data-i18n="location.car.desc">Easy access from the Ma-1 motorway. Free parking available nearby for our guests.</p>
+                <div class="transport-distance">10 km</div>
+            </div>
+            <div class="transport-card">
+                <div class="transport-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3 data-i18n="location.center.title">City Center</h3>
+                <p data-i18n="location.center.desc">Walking distance to Santa Catalina and the historic old town with its cathedral and royal palace.</p>
+                <div class="transport-distance">5 min</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Neighborhood -->
+<section class="neighborhood">
+    <div class="container">
+        <div class="neighborhood-content">
+            <div class="neighborhood-text">
+                <h2 data-i18n="location.explore.title">Explore the Area</h2>
+                <p data-i18n="location.explore.desc">El Terreno is surrounded by fascinating attractions, from historic landmarks to pristine beaches. Discover the best of Mallorca right from our doorstep.</p>
+
+                <ul class="nearby-list">
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span data-i18n="location.nearby.castle">Bellver Castle</span>
+                        <span class="nearby-distance">1.2 km</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span data-i18n="location.nearby.cathedral">Palma Cathedral</span>
+                        <span class="nearby-distance">2.5 km</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span data-i18n="location.nearby.market">Santa Catalina Market</span>
+                        <span class="nearby-distance">1.0 km</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span data-i18n="location.nearby.beach">Cala Major Beach</span>
+                        <span class="nearby-distance">1.5 km</span>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span data-i18n="location.nearby.miro">Joan Miró Foundation</span>
+                        <span class="nearby-distance">2.0 km</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="neighborhood-image">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="El Terreno neighborhood">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">Can Quetglas</div>
+                <p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4>
+                <ul>
+                    <li><a href="index.html#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+                    <li><a href="index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
+                    <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                    <li><a href="index.html#wellness" data-i18n="nav.wellness">Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
+                <ul>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="footer.terms">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4>
+                <p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p>
+                <p>+34 871 626 000</p>
+                <p>info@hotelcanquetglas.com</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+const translations = {
+    en: {
+        'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact',
+        'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Book', 'btn.booknow': 'Book Now',
+        'location.subtitle': 'Location', 'location.title': 'El Terreno, Palma',
+        'location.neighborhood.title': 'A Historic Neighborhood',
+        'location.neighborhood.desc1': 'Located in the historic neighborhood of El Terreno, where artists, writers and intellectuals of bohemian 1960s Palma found their inspiration. This charming area maintains its authentic character while offering easy access to the city center and beaches.',
+        'location.neighborhood.desc2': 'Just a short walk from the iconic Bellver Castle and the vibrant Santa Catalina market, El Terreno offers the perfect balance between tranquility and urban life.',
+        'location.address': 'Address', 'location.checkin': 'Check-in / Check-out', 'location.checkin.times': 'Check-in: 15:00 · Check-out: 11:00',
+        'location.directions': 'Get Directions',
+        'location.howto.title': 'How to Get Here',
+        'location.airport.title': 'From the Airport', 'location.airport.desc': 'Palma de Mallorca Airport (PMI) is well connected with direct flights from major European cities.',
+        'location.car.title': 'By Car', 'location.car.desc': 'Easy access from the Ma-1 motorway. Free parking available nearby for our guests.',
+        'location.center.title': 'City Center', 'location.center.desc': 'Walking distance to Santa Catalina and the historic old town with its cathedral and royal palace.',
+        'location.explore.title': 'Explore the Area', 'location.explore.desc': 'El Terreno is surrounded by fascinating attractions, from historic landmarks to pristine beaches. Discover the best of Mallorca right from our doorstep.',
+        'location.nearby.castle': 'Bellver Castle', 'location.nearby.cathedral': 'Palma Cathedral', 'location.nearby.market': 'Santa Catalina Market', 'location.nearby.beach': 'Cala Major Beach', 'location.nearby.miro': 'Joan Miró Foundation',
+        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
+    },
+    es: {
+        'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
+        'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas',
+        'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora',
+        'location.subtitle': 'Ubicación', 'location.title': 'El Terreno, Palma',
+        'location.neighborhood.title': 'Un Barrio Histórico',
+        'location.neighborhood.desc1': 'Situado en el histórico barrio de El Terreno, donde artistas, escritores e intelectuales de la bohemia Palma de los años 60 encontraron su inspiración. Esta encantadora zona mantiene su carácter auténtico ofreciendo fácil acceso al centro y las playas.',
+        'location.neighborhood.desc2': 'A pocos pasos del icónico Castillo de Bellver y del vibrante mercado de Santa Catalina, El Terreno ofrece el equilibrio perfecto entre tranquilidad y vida urbana.',
+        'location.address': 'Dirección', 'location.checkin': 'Check-in / Check-out', 'location.checkin.times': 'Check-in: 15:00 · Check-out: 11:00',
+        'location.directions': 'Cómo Llegar',
+        'location.howto.title': 'Cómo Llegar',
+        'location.airport.title': 'Desde el Aeropuerto', 'location.airport.desc': 'El aeropuerto de Palma de Mallorca (PMI) está bien conectado con vuelos directos desde las principales ciudades europeas.',
+        'location.car.title': 'En Coche', 'location.car.desc': 'Fácil acceso desde la autopista Ma-1. Aparcamiento gratuito disponible cerca para nuestros huéspedes.',
+        'location.center.title': 'Centro de la Ciudad', 'location.center.desc': 'A poca distancia a pie de Santa Catalina y del casco antiguo con su catedral y palacio real.',
+        'location.explore.title': 'Explora la Zona', 'location.explore.desc': 'El Terreno está rodeado de fascinantes atracciones, desde monumentos históricos hasta playas vírgenes. Descubre lo mejor de Mallorca desde nuestra puerta.',
+        'location.nearby.castle': 'Castillo de Bellver', 'location.nearby.cathedral': 'Catedral de Palma', 'location.nearby.market': 'Mercado de Santa Catalina', 'location.nearby.beach': 'Playa de Cala Major', 'location.nearby.miro': 'Fundación Joan Miró',
+        'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
+    },
+    de: {
+        'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen',
+        'location.subtitle': 'Lage', 'location.title': 'El Terreno, Palma',
+        'location.neighborhood.title': 'Ein Historisches Viertel',
+        'location.neighborhood.desc1': 'Gelegen im historischen Viertel El Terreno, wo Künstler, Schriftsteller und Intellektuelle des böhmischen Palma der 1960er Jahre ihre Inspiration fanden. Diese charmante Gegend bewahrt ihren authentischen Charakter und bietet einfachen Zugang zum Stadtzentrum und den Stränden.',
+        'location.neighborhood.desc2': 'Nur einen kurzen Spaziergang vom ikonischen Schloss Bellver und dem lebhaften Markt Santa Catalina entfernt, bietet El Terreno die perfekte Balance zwischen Ruhe und urbanem Leben.',
+        'location.address': 'Adresse', 'location.checkin': 'Check-in / Check-out', 'location.checkin.times': 'Check-in: 15:00 · Check-out: 11:00',
+        'location.directions': 'Anfahrt',
+        'location.howto.title': 'Anreise',
+        'location.airport.title': 'Vom Flughafen', 'location.airport.desc': 'Der Flughafen Palma de Mallorca (PMI) ist gut mit Direktflügen aus großen europäischen Städten verbunden.',
+        'location.car.title': 'Mit dem Auto', 'location.car.desc': 'Einfacher Zugang von der Autobahn Ma-1. Kostenlose Parkplätze in der Nähe für unsere Gäste.',
+        'location.center.title': 'Stadtzentrum', 'location.center.desc': 'Fußläufig zu Santa Catalina und der historischen Altstadt mit ihrer Kathedrale und dem königlichen Palast.',
+        'location.explore.title': 'Die Umgebung Erkunden', 'location.explore.desc': 'El Terreno ist umgeben von faszinierenden Attraktionen, von historischen Wahrzeichen bis zu unberührten Stränden. Entdecken Sie das Beste von Mallorca direkt vor unserer Tür.',
+        'location.nearby.castle': 'Schloss Bellver', 'location.nearby.cathedral': 'Kathedrale von Palma', 'location.nearby.market': 'Markt Santa Catalina', 'location.nearby.beach': 'Strand Cala Major', 'location.nearby.miro': 'Joan Miró Stiftung',
+        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
+    },
+    sv: {
+        'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit',
+        'btn.book': 'Boka', 'btn.booknow': 'Boka Nu',
+        'location.subtitle': 'Läge', 'location.title': 'El Terreno, Palma',
+        'location.neighborhood.title': 'Ett Historiskt Kvarter',
+        'location.neighborhood.desc1': 'Beläget i det historiska kvarteret El Terreno, där konstnärer, författare och intellektuella från det bohemiska 1960-talets Palma fann sin inspiration. Detta charmiga område behåller sin autentiska karaktär samtidigt som det erbjuder enkel tillgång till centrum och stränderna.',
+        'location.neighborhood.desc2': 'Bara en kort promenad från det ikoniska slottet Bellver och den livliga marknaden Santa Catalina, erbjuder El Terreno den perfekta balansen mellan lugn och stadsliv.',
+        'location.address': 'Adress', 'location.checkin': 'Incheckning / Utcheckning', 'location.checkin.times': 'Incheckning: 15:00 · Utcheckning: 11:00',
+        'location.directions': 'Vägbeskrivning',
+        'location.howto.title': 'Hur du Tar Dig Hit',
+        'location.airport.title': 'Från Flygplatsen', 'location.airport.desc': 'Palma de Mallorca flygplats (PMI) har goda förbindelser med direktflyg från stora europeiska städer.',
+        'location.car.title': 'Med Bil', 'location.car.desc': 'Enkel tillgång från motorvägen Ma-1. Gratis parkering tillgänglig i närheten för våra gäster.',
+        'location.center.title': 'Stadskärnan', 'location.center.desc': 'Gångavstånd till Santa Catalina och den historiska gamla stan med sin katedral och kungliga palatset.',
+        'location.explore.title': 'Utforska Området', 'location.explore.desc': 'El Terreno omges av fascinerande attraktioner, från historiska landmärken till orörda stränder. Upptäck det bästa av Mallorca direkt från vår tröskel.',
+        'location.nearby.castle': 'Slottet Bellver', 'location.nearby.cathedral': 'Palmas Katedral', 'location.nearby.market': 'Santa Catalina Marknad', 'location.nearby.beach': 'Cala Major Strand', 'location.nearby.miro': 'Joan Miró Stiftelsen',
+        'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
+    }
+};
+
+let currentLang = 'en';
+
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.querySelectorAll('.side-menu-lang a').forEach(a => {
+        const displayLang = lang === 'sv' ? 'SE' : lang.toUpperCase();
+        a.classList.toggle('lang-active', a.textContent === displayLang);
+    });
+    document.querySelectorAll('.header-lang').forEach(a => {
+        a.classList.toggle('lang-active', a.dataset.lang === lang);
+    });
+    const currentLangText = document.getElementById('current-lang-text');
+    if (currentLangText) currentLangText.textContent = lang === 'sv' ? 'SE' : lang.toUpperCase();
+    localStorage.setItem('canquetglas-lang', lang);
+}
+
+// Side Menu
+const menuToggle = document.getElementById('menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const sideMenuClose = document.getElementById('side-menu-close');
+
+function openMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.classList.add('menu-open'); }
+function closeMenu() { sideMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+
+menuToggle.addEventListener('click', openMenu);
+sideMenuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) { e.preventDefault(); this.parentElement.classList.toggle('submenu-open'); });
+});
+document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link => { link.addEventListener('click', closeMenu); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// Language selectors
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); let lang = this.textContent.toLowerCase(); if (lang === 'se') lang = 'sv'; setLanguage(lang); });
+});
+document.querySelectorAll('.header-lang').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); });
+});
+
+const savedLang = localStorage.getItem('canquetglas-lang');
+if (savedLang && translations[savedLang]) setLanguage(savedLang);
+</script>
+
+</body>
+</html>

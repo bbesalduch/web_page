@@ -28,11 +28,17 @@
         .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
         .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
         .header-cta .btn:hover { background: var(--color-dark); }
-        .header-lang-selector { display: flex; align-items: center; gap: 8px; font-size: 0.7rem; }
-        .header-lang-selector a { color: var(--color-gray); letter-spacing: 0.05em; }
-        .header-lang-selector a:hover { color: var(--color-black); }
-        .header-lang-selector a.lang-active { color: var(--color-black); font-weight: 600; }
-        .header-lang-separator { color: var(--color-gray-light); }
+        .header-lang-dropdown { position: relative; }
+        .header-lang-current { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--color-gray); cursor: pointer; padding: 8px 0; letter-spacing: 0.05em; }
+        .header-lang-current:hover { color: var(--color-black); }
+        .header-lang-current svg { width: 12px; height: 12px; transition: transform 0.3s ease; }
+        .header-lang-dropdown:hover .header-lang-current svg { transform: rotate(180deg); }
+        .header-lang-menu { position: absolute; top: 100%; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 60px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+        .header-lang-dropdown:hover .header-lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .header-lang-menu a { display: block; padding: 10px 16px; font-size: 0.75rem; color: var(--color-gray); letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .header-lang-menu a:last-child { border-bottom: none; }
+        .header-lang-menu a:hover { background: var(--color-cream); color: var(--color-black); }
+        .header-lang-menu a.lang-active { color: var(--color-black); font-weight: 600; }
         .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all var(--transition-normal); }
         .btn-primary { background-color: var(--color-black); color: var(--color-white); }
         .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
@@ -152,8 +158,8 @@
             </ul>
         </li>
         <li><a href="../index.html#wellness" data-i18n="nav.wellness">Wellness</a></li>
-        <li><a href="../index.html#contacto" data-i18n="nav.location">Location</a></li>
-        <li><a href="../index.html#contacto" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="../location.html" data-i18n="nav.location">Location</a></li>
+        <li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="side-menu-lang"><a href="#" class="lang-active">EN</a><a href="#">ES</a><a href="#">DE</a><a href="#">SE</a></div>
 </nav>
@@ -165,11 +171,14 @@
             <a href="../index.html" class="site-logo"><img src="../images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img"></a>
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <div class="header-cta"><a href="#" class="btn" data-i18n="btn.book">Book</a></div>
-                <div class="header-lang-selector">
-                    <a href="#" class="header-lang lang-active" data-lang="en">EN</a><span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="es">ES</a><span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="de">DE</a><span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="sv">SE</a>
+                <div class="header-lang-dropdown">
+                    <div class="header-lang-current"><span id="current-lang-text">EN</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+                    <div class="header-lang-menu">
+                        <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                        <a href="#" class="header-lang" data-lang="es">ES</a>
+                        <a href="#" class="header-lang" data-lang="de">DE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SE</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -280,7 +289,7 @@
         <div class="footer-content">
             <div class="footer-brand"><div class="footer-logo">Can Quetglas</div><p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p></div>
             <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4><ul><li><a href="../index.html#hotel" data-i18n="nav.hotel">The Hotel</a></li><li><a href="../index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li><li><a href="../index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li><li><a href="../index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li><li><a href="../index.html#wellness" data-i18n="nav.wellness">Wellness</a></li></ul></div>
-            <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.info">Info</h4><ul><li><a href="../index.html#contacto" data-i18n="nav.contact">Contact</a></li><li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li><li><a href="#" data-i18n="footer.terms">Terms</a></li></ul></div>
+            <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.info">Info</h4><ul><li><a href="../location.html" data-i18n="nav.location">Location</a></li><li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li><li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li><li><a href="#" data-i18n="footer.terms">Terms</a></li></ul></div>
             <div class="footer-contact"><h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4><p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p><p>+34 871 626 000</p><p>info@hotelcanquetglas.com</p><div class="footer-social"><a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
         </div>
         <div class="footer-bottom"><p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p></div>
@@ -296,7 +305,7 @@ const translations = {
 };
 
 let currentLang = 'en';
-function setLanguage(lang) { if (!translations[lang]) return; currentLang = lang; document.documentElement.lang = lang; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[lang][key]) el.innerHTML = translations[lang][key]; }); document.querySelectorAll('.side-menu-lang a').forEach(a => { const displayLang = lang === 'sv' ? 'SE' : lang.toUpperCase(); a.classList.toggle('lang-active', a.textContent === displayLang); }); document.querySelectorAll('.header-lang').forEach(a => a.classList.toggle('lang-active', a.dataset.lang === lang)); localStorage.setItem('canquetglas-lang', lang); }
+function setLanguage(lang) { if (!translations[lang]) return; currentLang = lang; document.documentElement.lang = lang; document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (translations[lang][key]) el.innerHTML = translations[lang][key]; }); document.querySelectorAll('.side-menu-lang a').forEach(a => { const displayLang = lang === 'sv' ? 'SE' : lang.toUpperCase(); a.classList.toggle('lang-active', a.textContent === displayLang); }); document.querySelectorAll('.header-lang').forEach(a => a.classList.toggle('lang-active', a.dataset.lang === lang)); const currentLangText = document.getElementById('current-lang-text'); if (currentLangText) currentLangText.textContent = lang === 'sv' ? 'SE' : lang.toUpperCase(); localStorage.setItem('canquetglas-lang', lang); }
 
 const menuToggle = document.getElementById('menu-toggle'); const sideMenu = document.getElementById('side-menu'); const menuOverlay = document.getElementById('menu-overlay'); const sideMenuClose = document.getElementById('side-menu-close');
 function openMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.classList.add('menu-open'); }

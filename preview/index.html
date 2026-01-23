@@ -700,27 +700,67 @@
             color: var(--color-black);
         }
 
-        /* Header language selector */
-        .header-lang-selector {
+        /* Header language dropdown */
+        .header-lang-dropdown {
+            position: relative;
+        }
+        .header-lang-current {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.7rem;
-        }
-        .header-lang-selector a {
+            gap: 6px;
+            font-size: 0.75rem;
             color: var(--color-gray);
-            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 0;
             letter-spacing: 0.05em;
         }
-        .header-lang-selector a:hover {
+        .header-lang-current:hover {
             color: var(--color-black);
         }
-        .header-lang-selector a.lang-active {
+        .header-lang-current svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.3s ease;
+        }
+        .header-lang-dropdown:hover .header-lang-current svg {
+            transform: rotate(180deg);
+        }
+        .header-lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--color-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-width: 60px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .header-lang-dropdown:hover .header-lang-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .header-lang-menu a {
+            display: block;
+            padding: 10px 16px;
+            font-size: 0.75rem;
+            color: var(--color-gray);
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .header-lang-menu a:last-child {
+            border-bottom: none;
+        }
+        .header-lang-menu a:hover {
+            background: var(--color-cream);
+            color: var(--color-black);
+        }
+        .header-lang-menu a.lang-active {
             color: var(--color-black);
             font-weight: 600;
-        }
-        .header-lang-separator {
-            color: var(--color-gray-light);
         }
 
         /* Menu toggle always visible */
@@ -779,8 +819,8 @@
             </ul>
         </li>
         <li><a href="#wellness" data-i18n="nav.wellness">Wellness</a></li>
-        <li><a href="#contacto" data-i18n="nav.location">Location</a></li>
-        <li><a href="#contacto" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
 
     <div class="side-menu-lang">
@@ -807,14 +847,17 @@
                 <div class="header-cta">
                     <a href="#" class="btn" data-i18n="btn.book">Book</a>
                 </div>
-                <div class="header-lang-selector">
-                    <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
-                    <span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="es">ES</a>
-                    <span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="de">DE</a>
-                    <span class="header-lang-separator">|</span>
-                    <a href="#" class="header-lang" data-lang="sv">SE</a>
+                <div class="header-lang-dropdown">
+                    <div class="header-lang-current">
+                        <span id="current-lang-text">EN</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="header-lang-menu">
+                        <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                        <a href="#" class="header-lang" data-lang="es">ES</a>
+                        <a href="#" class="header-lang" data-lang="de">DE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SE</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1041,7 +1084,8 @@
             <div class="footer-nav">
                 <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
                 <ul>
-                    <li><a href="#contacto" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
                     <li><a href="#" data-i18n="footer.terms">Terms</a></li>
                 </ul>
@@ -1449,10 +1493,16 @@ function setLanguage(lang) {
         a.classList.toggle('lang-active', a.textContent === displayLang);
     });
 
-    // Update active language in header
+    // Update active language in header dropdown
     document.querySelectorAll('.header-lang').forEach(a => {
         a.classList.toggle('lang-active', a.dataset.lang === lang);
     });
+
+    // Update dropdown current language text
+    const currentLangText = document.getElementById('current-lang-text');
+    if (currentLangText) {
+        currentLangText.textContent = lang === 'sv' ? 'SE' : lang.toUpperCase();
+    }
 
     // Save preference
     localStorage.setItem('canquetglas-lang', lang);
