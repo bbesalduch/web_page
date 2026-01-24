@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Hotel Can Quetglas</title>
-    <meta name="description" content="Contact Hotel Can Quetglas in Palma de Mallorca. Phone, email and contact form for reservations and inquiries.">
+    <title>Wellness - Hotel Can Quetglas</title>
+    <meta name="description" content="Rooftop wellness at Hotel Can Quetglas. Yoga, pilates, massages by THINKCOSMETIC, and relaxation with views over Palma de Mallorca.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <!-- reCAPTCHA v3 - Replace YOUR_RECAPTCHA_SITE_KEY with your actual site key -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcqfFQsAAAAAAFYak2ThPSDb29so0BX43yeJnGX"></script>
 
     <style>
         @font-face { font-family: 'CocoGothic'; src: url('fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
@@ -51,7 +48,7 @@
         .header-lang-menu a.lang-active { color: var(--color-black); font-weight: 600; }
 
         /* Page Hero */
-        .page-hero { position: relative; height: 50vh; min-height: 400px; margin-top: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .page-hero { position: relative; height: 60vh; min-height: 450px; margin-top: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .page-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
         .page-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
@@ -59,45 +56,54 @@
         .page-hero-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: var(--spacing-sm); }
         .page-hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; letter-spacing: 0.1em; }
 
-        /* Contact Content */
-        .contact-section { padding: var(--spacing-xl) 0; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--spacing-xl); align-items: start; }
-        .contact-info h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
-        .contact-info p { color: var(--color-gray); margin-bottom: var(--spacing-lg); line-height: 1.8; }
-        .contact-item { display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
-        .contact-item-icon { width: 50px; height: 50px; border: 1px solid var(--color-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .contact-item-icon svg { width: 20px; height: 20px; color: var(--color-black); }
-        .contact-item-content { padding-top: 4px; }
-        .contact-item-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gray); margin-bottom: 4px; }
-        .contact-item-value { color: var(--color-black); font-size: 1rem; }
-        .contact-item-value a { color: var(--color-black); }
-        .contact-item-value a:hover { color: var(--color-accent); }
+        /* Wellness Intro */
+        .wellness-intro { padding: var(--spacing-xl) 0; text-align: center; }
+        .wellness-intro h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .wellness-intro p { color: var(--color-gray); max-width: 700px; margin: 0 auto; line-height: 1.8; }
 
-        .contact-social { margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid rgba(0,0,0,0.1); }
-        .contact-social-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gray); margin-bottom: var(--spacing-md); }
-        .contact-social-links { display: flex; gap: var(--spacing-sm); }
-        .contact-social-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border: 1px solid var(--color-black); border-radius: 50%; color: var(--color-black); transition: all 0.3s; }
-        .contact-social-links a:hover { background: var(--color-black); color: var(--color-white); }
-
-        /* Contact Form */
-        .contact-form-container { background: var(--color-white); padding: var(--spacing-lg); }
-        .contact-form-title { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
-        .form-group { margin-bottom: var(--spacing-md); }
-        .form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-gray); margin-bottom: var(--spacing-xs); }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 1rem; font-family: var(--font-body); font-size: 0.9rem; border: 1px solid rgba(0,0,0,0.15); background: var(--color-cream); color: var(--color-black); transition: border-color 0.3s; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--color-black); }
-        .form-group textarea { resize: vertical; min-height: 150px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-md); }
-        .form-submit { margin-top: var(--spacing-md); }
-        .form-submit .btn { width: 100%; }
+        /* Services Grid */
+        .services-section { background: var(--color-white); padding: var(--spacing-xl) 0; }
+        .services-title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-lg); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+        .service-card { text-align: center; padding: var(--spacing-lg); }
+        .service-icon { width: 80px; height: 80px; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-black); border-radius: 50%; }
+        .service-icon svg { width: 36px; height: 36px; color: var(--color-black); }
+        .service-card h3 { font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .service-card p { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; }
 
         @media (max-width: 900px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .form-row { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
         }
 
-        /* Hide reCAPTCHA badge (v3 is invisible) */
-        .grecaptcha-badge { visibility: hidden; }
+        /* Massages Section */
+        .massages-section { padding: var(--spacing-xl) 0; }
+        .massages-header { text-align: center; margin-bottom: var(--spacing-lg); }
+        .massages-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .massages-brand { color: var(--color-accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: var(--spacing-md); }
+        .massages-brand-desc { color: var(--color-gray); max-width: 600px; margin: 0 auto; font-size: 0.9rem; line-height: 1.7; }
+
+        .massage-list { max-width: 800px; margin: 0 auto; }
+        .massage-item { display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md) 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .massage-item:last-child { border-bottom: none; }
+        .massage-content { flex: 1; }
+        .massage-title { font-family: var(--font-heading); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        .massage-duration { font-size: 0.75rem; color: var(--color-gray-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .massage-desc { color: var(--color-gray); font-size: 0.85rem; line-height: 1.6; }
+        .massage-price { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-black); white-space: nowrap; }
+
+        .massage-notes { max-width: 800px; margin: var(--spacing-lg) auto 0; padding: var(--spacing-md); background: var(--color-cream-dark); font-size: 0.8rem; color: var(--color-gray); }
+        .massage-notes p { margin-bottom: 0.5rem; }
+        .massage-notes p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 600px) {
+            .massage-item { flex-direction: column; gap: var(--spacing-sm); }
+            .massage-price { align-self: flex-start; }
+        }
+
+        /* CTA Section */
+        .wellness-cta { background: var(--color-white); padding: var(--spacing-xl) 0; text-align: center; }
+        .wellness-cta h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .wellness-cta p { color: var(--color-gray); margin-bottom: var(--spacing-md); }
 
         /* Side Menu */
         .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
@@ -202,104 +208,111 @@
 <!-- Page Hero -->
 <section class="page-hero">
     <div class="page-hero-bg">
-        <img src="images/contact.jpg" alt="Hotel Can Quetglas">
+        <img src="images/wellness-hero.jpg" alt="Rooftop wellness">
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-        <p class="page-hero-subtitle" data-i18n="contact.subtitle">Get in Touch</p>
-        <h1 class="page-hero-title" data-i18n="nav.contact">Contact</h1>
+        <p class="page-hero-subtitle" data-i18n="wellness.subtitle">Rooftop Retreat</p>
+        <h1 class="page-hero-title" data-i18n="nav.wellness">Wellness</h1>
     </div>
 </section>
 
-<!-- Contact Content -->
-<section class="contact-section">
+<!-- Wellness Intro -->
+<section class="wellness-intro">
     <div class="container">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2 data-i18n="contact.title">We'd Love to Hear From You</h2>
-                <p data-i18n="contact.intro">Whether you have a question about our rooms, services, or anything else, our team is ready to answer all your questions.</p>
+        <h2 data-i18n="wellness.intro.title">Your Private Sanctuary</h2>
+        <p data-i18n="wellness.intro.desc">Escape to our rooftop terrace, a tranquil retreat with panoramic views over Palma de Mallorca and Bellver Castle. Enjoy a refreshing drink, join a yoga or pilates class, or indulge in a relaxing massage using organic Mallorcan products.</p>
+    </div>
+</section>
 
-                <div class="contact-item">
-                    <div class="contact-item-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    </div>
-                    <div class="contact-item-content">
-                        <div class="contact-item-label" data-i18n="contact.phone">Phone</div>
-                        <div class="contact-item-value"><a href="tel:+34871626000">+34 871 626 000</a></div>
-                    </div>
+<!-- Services -->
+<section class="services-section">
+    <div class="container">
+        <h2 class="services-title" data-i18n="wellness.services.title">Rooftop Experiences</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12a6 6 0 0 0 0 12h8"/><path d="M12 2v4"/><path d="M8 4h8"/><path d="M7 8h10"/></svg>
                 </div>
-
-                <div class="contact-item">
-                    <div class="contact-item-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </div>
-                    <div class="contact-item-content">
-                        <div class="contact-item-label">Email</div>
-                        <div class="contact-item-value"><a href="mailto:info@hotelcanquetglas.com">info@hotelcanquetglas.com</a></div>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="contact-item-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <div class="contact-item-content">
-                        <div class="contact-item-label" data-i18n="contact.address">Address</div>
-                        <div class="contact-item-value">Calle Santa Rita, 13<br>07014 Palma de Mallorca</div>
-                    </div>
-                </div>
-
-                <div class="contact-social">
-                    <div class="contact-social-title" data-i18n="contact.followus">Follow Us</div>
-                    <div class="contact-social-links">
-                        <a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                        </a>
-                        <a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        </a>
-                    </div>
-                </div>
+                <h3 data-i18n="wellness.service.drinks.title">Rooftop Drinks</h3>
+                <p data-i18n="wellness.service.drinks.desc">Unwind with a glass of cava or a refreshing cocktail while watching the sunset over the Mediterranean. The perfect way to end a day in Mallorca.</p>
             </div>
-
-            <div class="contact-form-container">
-                <h3 class="contact-form-title" data-i18n="contact.form.title">Send Us a Message</h3>
-                <form id="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" data-i18n="contact.form.name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone" data-i18n="contact.form.phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" data-i18n="contact.form.subject">Subject</label>
-                            <select id="subject" name="subject">
-                                <option value="reservation" data-i18n="contact.form.subject.reservation">Reservation Inquiry</option>
-                                <option value="general" data-i18n="contact.form.subject.general">General Question</option>
-                                <option value="feedback" data-i18n="contact.form.subject.feedback">Feedback</option>
-                                <option value="other" data-i18n="contact.form.subject.other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-i18n="contact.form.message">Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <div class="form-submit">
-                        <button type="submit" class="btn btn-primary" data-i18n="contact.form.send">Send Message</button>
-                    </div>
-                </form>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                </div>
+                <h3 data-i18n="wellness.service.yoga.title">Yoga & Pilates</h3>
+                <p data-i18n="wellness.service.yoga.desc">Join our private yoga and pilates sessions on the rooftop terrace. Connect with your body and mind in a serene setting with breathtaking views.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+                </div>
+                <h3 data-i18n="wellness.service.massage.title">Massages</h3>
+                <p data-i18n="wellness.service.massage.desc">Treat yourself to a professional massage using 100% organic products from Mallorca by THINKCOSMETIC. Available on the rooftop, in the massage room, or in your room.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Massages Menu -->
+<section class="massages-section">
+    <div class="container">
+        <div class="massages-header">
+            <h2 data-i18n="wellness.massages.title">Massage Menu</h2>
+            <p class="massages-brand">by THINKCOSMETIC</p>
+            <p class="massages-brand-desc" data-i18n="wellness.massages.brand">Alimenta Spa Mediterráneo - 100% organic products crafted in Mallorca with natural ingredients from the Mediterranean.</p>
+        </div>
+
+        <div class="massage-list">
+            <div class="massage-item">
+                <div class="massage-content">
+                    <h3 class="massage-title" data-i18n="wellness.massage.relaxing.title">Relaxing Massage</h3>
+                    <p class="massage-duration">60 min</p>
+                    <p class="massage-desc" data-i18n="wellness.massage.relaxing.desc">Full body massage with 100% organic sweet almond body oil from Mallorca. A gentle treatment to relieve stress and promote deep relaxation.</p>
+                </div>
+                <div class="massage-price">95€</div>
+            </div>
+            <div class="massage-item">
+                <div class="massage-content">
+                    <h3 class="massage-title" data-i18n="wellness.massage.decontracting.title">Decontracting Massage</h3>
+                    <p class="massage-duration">60 min</p>
+                    <p class="massage-desc" data-i18n="wellness.massage.decontracting.desc">Therapeutic massage with 100% organic intense mint & rosemary oil. Ideal for releasing muscle tension and revitalizing the body.</p>
+                </div>
+                <div class="massage-price">100€</div>
+            </div>
+            <div class="massage-item">
+                <div class="massage-content">
+                    <h3 class="massage-title" data-i18n="wellness.massage.cupping.title">Cupping Treatment</h3>
+                    <p class="massage-duration">60 min</p>
+                    <p class="massage-desc" data-i18n="wellness.massage.cupping.desc">Ancient therapy combining suction and massage techniques to release deep tension, improve circulation, and promote natural healing.</p>
+                </div>
+                <div class="massage-price">100€</div>
+            </div>
+            <div class="massage-item">
+                <div class="massage-content">
+                    <h3 class="massage-title" data-i18n="wellness.massage.ayurvedic.title">Ayurvedic Massage</h3>
+                    <p class="massage-duration">60 min</p>
+                    <p class="massage-desc" data-i18n="wellness.massage.ayurvedic.desc">Traditional Indian-inspired massage with warm 100% organic sweet almond oil. Designed to balance body, mind, and vital energy.</p>
+                </div>
+                <div class="massage-price">110€</div>
+            </div>
+        </div>
+
+        <div class="massage-notes">
+            <p data-i18n="wellness.notes.vat">* All prices include VAT.</p>
+            <p data-i18n="wellness.notes.location">* Massages are available on the rooftop (+10€), in the massage room, or in your room.</p>
+            <p data-i18n="wellness.notes.cancellation">* Free cancellation up to 24h before the appointment. Later cancellations will be charged 100%.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="wellness-cta">
+    <div class="container">
+        <h2 data-i18n="wellness.cta.title">Book Your Wellness Experience</h2>
+        <p data-i18n="wellness.cta.desc">Contact us to schedule your massage, yoga or pilates session.</p>
+        <a href="contact.html" class="btn btn-primary" data-i18n="nav.contact">Contact</a>
     </div>
 </section>
 
@@ -328,6 +341,7 @@
                 <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
                 <ul>
                     <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
                     <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
                     <li><a href="#" data-i18n="footer.terms">Terms</a></li>
                 </ul>
@@ -355,48 +369,80 @@ const translations = {
         'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact',
         'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Book', 'btn.booknow': 'Book Now',
-        'contact.subtitle': 'Get in Touch', 'contact.title': 'We\'d Love to Hear From You',
-        'contact.intro': 'Whether you have a question about our rooms, services, or anything else, our team is ready to answer all your questions.',
-        'contact.phone': 'Phone', 'contact.address': 'Address',
-        'contact.followus': 'Follow Us',
-        'contact.form.title': 'Send Us a Message', 'contact.form.name': 'Name', 'contact.form.phone': 'Phone', 'contact.form.subject': 'Subject', 'contact.form.message': 'Message', 'contact.form.send': 'Send Message',
-        'contact.form.subject.reservation': 'Reservation Inquiry', 'contact.form.subject.general': 'General Question', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Other',
+        'wellness.subtitle': 'Rooftop Retreat',
+        'wellness.intro.title': 'Your Private Sanctuary',
+        'wellness.intro.desc': 'Escape to our rooftop terrace, a tranquil retreat with panoramic views over Palma de Mallorca and Bellver Castle. Enjoy a refreshing drink, join a yoga or pilates class, or indulge in a relaxing massage using organic Mallorcan products.',
+        'wellness.services.title': 'Rooftop Experiences',
+        'wellness.service.drinks.title': 'Rooftop Drinks', 'wellness.service.drinks.desc': 'Unwind with a glass of cava or a refreshing cocktail while watching the sunset over the Mediterranean. The perfect way to end a day in Mallorca.',
+        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Join our private yoga and pilates sessions on the rooftop terrace. Connect with your body and mind in a serene setting with breathtaking views.',
+        'wellness.service.massage.title': 'Massages', 'wellness.service.massage.desc': 'Treat yourself to a professional massage using 100% organic products from Mallorca by THINKCOSMETIC. Available on the rooftop, in the massage room, or in your room.',
+        'wellness.massages.title': 'Massage Menu', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% organic products crafted in Mallorca with natural ingredients from the Mediterranean.',
+        'wellness.massage.relaxing.title': 'Relaxing Massage', 'wellness.massage.relaxing.desc': 'Full body massage with 100% organic sweet almond body oil from Mallorca. A gentle treatment to relieve stress and promote deep relaxation.',
+        'wellness.massage.decontracting.title': 'Decontracting Massage', 'wellness.massage.decontracting.desc': 'Therapeutic massage with 100% organic intense mint & rosemary oil. Ideal for releasing muscle tension and revitalizing the body.',
+        'wellness.massage.cupping.title': 'Cupping Treatment', 'wellness.massage.cupping.desc': 'Ancient therapy combining suction and massage techniques to release deep tension, improve circulation, and promote natural healing.',
+        'wellness.massage.ayurvedic.title': 'Ayurvedic Massage', 'wellness.massage.ayurvedic.desc': 'Traditional Indian-inspired massage with warm 100% organic sweet almond oil. Designed to balance body, mind, and vital energy.',
+        'wellness.notes.vat': '* All prices include VAT.', 'wellness.notes.location': '* Massages are available on the rooftop (+10€), in the massage room, or in your room.', 'wellness.notes.cancellation': '* Free cancellation up to 24h before the appointment. Later cancellations will be charged 100%.',
+        'wellness.cta.title': 'Book Your Wellness Experience', 'wellness.cta.desc': 'Contact us to schedule your massage, yoga or pilates session.',
         'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
     },
     es: {
         'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
         'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas',
         'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora',
-        'contact.subtitle': 'Contacta con Nosotros', 'contact.title': 'Nos Encantaría Saber de Ti',
-        'contact.intro': 'Ya sea que tengas una pregunta sobre nuestras habitaciones, servicios o cualquier otra cosa, nuestro equipo está listo para responder todas tus preguntas.',
-        'contact.phone': 'Teléfono', 'contact.address': 'Dirección',
-        'contact.followus': 'Síguenos',
-        'contact.form.title': 'Envíanos un Mensaje', 'contact.form.name': 'Nombre', 'contact.form.phone': 'Teléfono', 'contact.form.subject': 'Asunto', 'contact.form.message': 'Mensaje', 'contact.form.send': 'Enviar Mensaje',
-        'contact.form.subject.reservation': 'Consulta de Reserva', 'contact.form.subject.general': 'Pregunta General', 'contact.form.subject.feedback': 'Comentarios', 'contact.form.subject.other': 'Otro',
+        'wellness.subtitle': 'Refugio en la Azotea',
+        'wellness.intro.title': 'Tu Santuario Privado',
+        'wellness.intro.desc': 'Escapa a nuestra terraza en la azotea, un refugio tranquilo con vistas panorámicas sobre Palma de Mallorca y el Castillo de Bellver. Disfruta de una bebida refrescante, únete a una clase de yoga o pilates, o date un relajante masaje con productos orgánicos mallorquines.',
+        'wellness.services.title': 'Experiencias en la Azotea',
+        'wellness.service.drinks.title': 'Copas en la Azotea', 'wellness.service.drinks.desc': 'Relájate con una copa de cava o un cóctel refrescante mientras contemplas la puesta de sol sobre el Mediterráneo. La forma perfecta de terminar un día en Mallorca.',
+        'wellness.service.yoga.title': 'Yoga y Pilates', 'wellness.service.yoga.desc': 'Únete a nuestras sesiones privadas de yoga y pilates en la terraza de la azotea. Conecta con tu cuerpo y mente en un entorno sereno con vistas impresionantes.',
+        'wellness.service.massage.title': 'Masajes', 'wellness.service.massage.desc': 'Date un capricho con un masaje profesional usando productos 100% orgánicos de Mallorca por THINKCOSMETIC. Disponible en la azotea, en la sala de masajes o en tu habitación.',
+        'wellness.massages.title': 'Carta de Masajes', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - Productos 100% orgánicos elaborados en Mallorca con ingredientes naturales del Mediterráneo.',
+        'wellness.massage.relaxing.title': 'Masaje Relajante', 'wellness.massage.relaxing.desc': 'Masaje corporal completo con aceite de almendras dulces 100% orgánico de Mallorca. Un tratamiento suave para aliviar el estrés y promover una relajación profunda.',
+        'wellness.massage.decontracting.title': 'Masaje Descontracturante', 'wellness.massage.decontracting.desc': 'Masaje terapéutico con aceite intenso de menta y romero 100% orgánico. Ideal para liberar tensiones musculares y revitalizar el cuerpo.',
+        'wellness.massage.cupping.title': 'Tratamiento con Ventosas', 'wellness.massage.cupping.desc': 'Terapia ancestral que combina succión y masaje para liberar tensiones profundas, mejorar la circulación y promover la curación natural.',
+        'wellness.massage.ayurvedic.title': 'Masaje Ayurvédico', 'wellness.massage.ayurvedic.desc': 'Masaje inspirado en la tradición india con aceite de almendras dulces caliente 100% orgánico. Diseñado para equilibrar cuerpo, mente y energía vital.',
+        'wellness.notes.vat': '* Todos los precios incluyen IVA.', 'wellness.notes.location': '* Los masajes están disponibles en la azotea (+10€), en la sala de masajes o en tu habitación.', 'wellness.notes.cancellation': '* Cancelación gratuita hasta 24h antes de la cita. Las cancelaciones posteriores se cobrarán al 100%.',
+        'wellness.cta.title': 'Reserva tu Experiencia Wellness', 'wellness.cta.desc': 'Contáctanos para programar tu masaje, clase de yoga o pilates.',
         'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
     },
     de: {
         'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
         'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen',
-        'contact.subtitle': 'Kontaktieren Sie Uns', 'contact.title': 'Wir Freuen Uns von Ihnen zu Hören',
-        'contact.intro': 'Ob Sie eine Frage zu unseren Zimmern, Dienstleistungen oder etwas anderem haben, unser Team ist bereit, alle Ihre Fragen zu beantworten.',
-        'contact.phone': 'Telefon', 'contact.address': 'Adresse',
-        'contact.followus': 'Folgen Sie Uns',
-        'contact.form.title': 'Senden Sie Uns eine Nachricht', 'contact.form.name': 'Name', 'contact.form.phone': 'Telefon', 'contact.form.subject': 'Betreff', 'contact.form.message': 'Nachricht', 'contact.form.send': 'Nachricht Senden',
-        'contact.form.subject.reservation': 'Reservierungsanfrage', 'contact.form.subject.general': 'Allgemeine Frage', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Sonstiges',
+        'wellness.subtitle': 'Dachterrassen-Rückzugsort',
+        'wellness.intro.title': 'Ihr Privates Refugium',
+        'wellness.intro.desc': 'Entfliehen Sie auf unsere Dachterrasse, ein ruhiger Rückzugsort mit Panoramablick über Palma de Mallorca und das Schloss Bellver. Genießen Sie ein erfrischendes Getränk, nehmen Sie an einer Yoga- oder Pilates-Stunde teil oder gönnen Sie sich eine entspannende Massage mit biologischen mallorquinischen Produkten.',
+        'wellness.services.title': 'Dachterrassen-Erlebnisse',
+        'wellness.service.drinks.title': 'Getränke auf der Dachterrasse', 'wellness.service.drinks.desc': 'Entspannen Sie bei einem Glas Cava oder einem erfrischenden Cocktail und beobachten Sie den Sonnenuntergang über dem Mittelmeer. Der perfekte Abschluss eines Tages auf Mallorca.',
+        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Nehmen Sie an unseren privaten Yoga- und Pilates-Sessions auf der Dachterrasse teil. Verbinden Sie sich mit Körper und Geist in einer ruhigen Umgebung mit atemberaubender Aussicht.',
+        'wellness.service.massage.title': 'Massagen', 'wellness.service.massage.desc': 'Gönnen Sie sich eine professionelle Massage mit 100% biologischen Produkten aus Mallorca von THINKCOSMETIC. Verfügbar auf der Dachterrasse, im Massageraum oder in Ihrem Zimmer.',
+        'wellness.massages.title': 'Massage-Menü', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% biologische Produkte, hergestellt auf Mallorca mit natürlichen Zutaten aus dem Mittelmeerraum.',
+        'wellness.massage.relaxing.title': 'Entspannungsmassage', 'wellness.massage.relaxing.desc': 'Ganzkörpermassage mit 100% biologischem Süßmandelöl aus Mallorca. Eine sanfte Behandlung zur Stresslinderung und tiefen Entspannung.',
+        'wellness.massage.decontracting.title': 'Dekontrakmassage', 'wellness.massage.decontracting.desc': 'Therapeutische Massage mit 100% biologischem intensivem Minz- und Rosmarinöl. Ideal zum Lösen von Muskelverspannungen und zur Revitalisierung des Körpers.',
+        'wellness.massage.cupping.title': 'Schröpfbehandlung', 'wellness.massage.cupping.desc': 'Alte Therapie, die Saugtechniken und Massage kombiniert, um tiefe Verspannungen zu lösen, die Durchblutung zu verbessern und natürliche Heilung zu fördern.',
+        'wellness.massage.ayurvedic.title': 'Ayurvedische Massage', 'wellness.massage.ayurvedic.desc': 'Traditionell indisch inspirierte Massage mit warmem 100% biologischem Süßmandelöl. Entwickelt, um Körper, Geist und Lebensenergie auszugleichen.',
+        'wellness.notes.vat': '* Alle Preise verstehen sich inkl. MwSt.', 'wellness.notes.location': '* Massagen sind auf der Dachterrasse (+10€), im Massageraum oder in Ihrem Zimmer verfügbar.', 'wellness.notes.cancellation': '* Kostenlose Stornierung bis 24h vor dem Termin. Spätere Stornierungen werden zu 100% berechnet.',
+        'wellness.cta.title': 'Buchen Sie Ihr Wellness-Erlebnis', 'wellness.cta.desc': 'Kontaktieren Sie uns, um Ihre Massage, Yoga- oder Pilates-Session zu buchen.',
         'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
     },
     sv: {
         'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
         'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit',
         'btn.book': 'Boka', 'btn.booknow': 'Boka Nu',
-        'contact.subtitle': 'Kontakta Oss', 'contact.title': 'Vi Vill Gärna Höra Från Dig',
-        'contact.intro': 'Oavsett om du har en fråga om våra rum, tjänster eller något annat, är vårt team redo att svara på alla dina frågor.',
-        'contact.phone': 'Telefon', 'contact.address': 'Adress',
-        'contact.followus': 'Följ Oss',
-        'contact.form.title': 'Skicka Oss ett Meddelande', 'contact.form.name': 'Namn', 'contact.form.phone': 'Telefon', 'contact.form.subject': 'Ämne', 'contact.form.message': 'Meddelande', 'contact.form.send': 'Skicka Meddelande',
-        'contact.form.subject.reservation': 'Bokningsförfrågan', 'contact.form.subject.general': 'Allmän Fråga', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Annat',
+        'wellness.subtitle': 'Takterrass-retreat',
+        'wellness.intro.title': 'Din Privata Fristad',
+        'wellness.intro.desc': 'Fly till vår takterrass, en fridfull reträtt med panoramautsikt över Palma de Mallorca och slottet Bellver. Njut av en uppfriskande drink, delta i en yoga- eller pilatesklass, eller unna dig en avkopplande massage med ekologiska mallorquinska produkter.',
+        'wellness.services.title': 'Takterrass-upplevelser',
+        'wellness.service.drinks.title': 'Drinkar på Takterrassen', 'wellness.service.drinks.desc': 'Koppla av med ett glas cava eller en uppfriskande cocktail medan du tittar på solnedgången över Medelhavet. Det perfekta sättet att avsluta en dag på Mallorca.',
+        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Delta i våra privata yoga- och pilatessessioner på takterrassen. Förbind dig med din kropp och själ i en fridfull miljö med hänförande utsikt.',
+        'wellness.service.massage.title': 'Massager', 'wellness.service.massage.desc': 'Unna dig en professionell massage med 100% ekologiska produkter från Mallorca av THINKCOSMETIC. Tillgänglig på takterrassen, i massagerummet eller på ditt rum.',
+        'wellness.massages.title': 'Massagemeny', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% ekologiska produkter tillverkade på Mallorca med naturliga ingredienser från Medelhavet.',
+        'wellness.massage.relaxing.title': 'Avkopplande Massage', 'wellness.massage.relaxing.desc': 'Helkroppsmassage med 100% ekologisk söt mandelolja från Mallorca. En skonsam behandling för att lindra stress och främja djup avslappning.',
+        'wellness.massage.decontracting.title': 'Avspännande Massage', 'wellness.massage.decontracting.desc': 'Terapeutisk massage med 100% ekologisk intensiv mynta- och rosmarinolja. Idealisk för att släppa muskelspänningar och revitalisera kroppen.',
+        'wellness.massage.cupping.title': 'Koppningsbehandling', 'wellness.massage.cupping.desc': 'Uråldrig terapi som kombinerar sugning och massagetekniker för att frigöra djupa spänningar, förbättra cirkulationen och främja naturlig läkning.',
+        'wellness.massage.ayurvedic.title': 'Ayurvedisk Massage', 'wellness.massage.ayurvedic.desc': 'Traditionellt indiskt inspirerad massage med varm 100% ekologisk söt mandelolja. Designad för att balansera kropp, sinne och livsenergi.',
+        'wellness.notes.vat': '* Alla priser inkluderar moms.', 'wellness.notes.location': '* Massager finns tillgängliga på takterrassen (+10€), i massagerummet eller på ditt rum.', 'wellness.notes.cancellation': '* Gratis avbokning upp till 24h före mötet. Senare avbokningar debiteras 100%.',
+        'wellness.cta.title': 'Boka Din Wellness-upplevelse', 'wellness.cta.desc': 'Kontakta oss för att boka din massage, yoga- eller pilatessession.',
         'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
     }
 };
@@ -452,55 +498,6 @@ document.querySelectorAll('.header-lang').forEach(langLink => {
 
 const savedLang = localStorage.getItem('canquetglas-lang');
 if (savedLang && translations[savedLang]) setLanguage(savedLang);
-
-// Contact form submission with reCAPTCHA
-const RECAPTCHA_SITE_KEY = '6LcqfFQsAAAAAAFYak2ThPSDb29so0BX43yeJnGX';
-
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = this;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-
-    // Disable button and show loading
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    // Get reCAPTCHA token
-    grecaptcha.ready(function() {
-        grecaptcha.execute(RECAPTCHA_SITE_KEY, {action: 'contact'}).then(function(token) {
-            // Create form data
-            const formData = new FormData(form);
-            formData.append('g-recaptcha-response', token);
-
-            // Send to PHP
-            fetch('send-email.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(currentLang === 'es' ? '¡Gracias! Tu mensaje ha sido enviado.' :
-                          currentLang === 'de' ? 'Vielen Dank! Ihre Nachricht wurde gesendet.' :
-                          currentLang === 'sv' ? 'Tack! Ditt meddelande har skickats.' :
-                          'Thank you! Your message has been sent.');
-                    form.reset();
-                } else {
-                    alert(data.message || 'Error sending message. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error sending message. Please try again later.');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-            });
-        });
-    });
-});
 </script>
 
 </body>
