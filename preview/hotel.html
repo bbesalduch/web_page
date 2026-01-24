@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hotel - Hotel Can Quetglas</title>
+    <meta name="description" content="Discover Can Quetglas, a modernist palace from 1908 in Palma de Mallorca. A listed heritage building transformed into a boutique hotel preserving its original frescoes and architectural details.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: 'CocoGothic'; src: url('fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--color-black); background-color: var(--color-cream); -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.2; letter-spacing: 0.05em; }
+        a { color: var(--color-black); text-decoration: none; transition: color var(--transition-normal); }
+        a:hover { color: var(--color-accent); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--spacing-sm) 0; background-color: rgba(247, 243, 237, 0.98); backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+        .site-logo-img { height: 40px; width: auto; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
+        .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
+        .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
+        .header-cta .btn:hover { background: var(--color-dark); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all var(--transition-normal); }
+        .btn-primary { background-color: var(--color-black); color: var(--color-white); }
+        .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
+        .btn-outline { background: transparent; color: var(--color-black); border: 1px solid var(--color-black); }
+        .btn-outline:hover { background: var(--color-black); color: var(--color-white); }
+
+        /* Language Dropdown */
+        .header-lang-dropdown { position: relative; }
+        .header-lang-current { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--color-gray); cursor: pointer; padding: 8px 0; letter-spacing: 0.05em; }
+        .header-lang-current:hover { color: var(--color-black); }
+        .header-lang-current svg { width: 12px; height: 12px; transition: transform 0.3s ease; }
+        .header-lang-dropdown:hover .header-lang-current svg { transform: rotate(180deg); }
+        .header-lang-menu { position: absolute; top: 100%; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 60px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+        .header-lang-dropdown:hover .header-lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .header-lang-menu a { display: block; padding: 10px 16px; font-size: 0.75rem; color: var(--color-gray); letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .header-lang-menu a:last-child { border-bottom: none; }
+        .header-lang-menu a:hover { background: var(--color-cream); color: var(--color-black); }
+        .header-lang-menu a.lang-active { color: var(--color-black); font-weight: 600; }
+
+        /* Hero Slider */
+        .hero-slider { position: relative; height: 85vh; min-height: 600px; margin-top: 60px; overflow: hidden; }
+        .hero-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease; }
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.25); }
+        .hero-content { position: absolute; bottom: 15%; left: 0; right: 0; z-index: 2; text-align: center; color: var(--color-white); }
+        .hero-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: var(--spacing-sm); }
+        .hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 7vw, 5rem); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: var(--spacing-sm); }
+        .hero-tagline { font-family: var(--font-heading); font-size: clamp(1rem, 2vw, 1.3rem); font-style: italic; letter-spacing: 0.05em; opacity: 0.9; }
+
+        /* Slider Controls */
+        .slider-controls { position: absolute; bottom: var(--spacing-md); left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 12px; }
+        .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; }
+        .slider-dot.active { background: var(--color-white); transform: scale(1.2); }
+        .slider-arrows { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 var(--spacing-md); z-index: 10; transform: translateY(-50%); pointer-events: none; }
+        .slider-arrow { width: 50px; height: 50px; border: 1px solid rgba(255,255,255,0.5); background: rgba(0,0,0,0.2); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; pointer-events: auto; }
+        .slider-arrow:hover { background: rgba(0,0,0,0.5); border-color: white; }
+        .slider-arrow svg { width: 20px; height: 20px; }
+
+        /* Intro Section */
+        .hotel-intro { padding: var(--spacing-xl) 0; text-align: center; }
+        .hotel-intro h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-md); }
+        .hotel-intro-text { color: var(--color-gray); max-width: 800px; margin: 0 auto; line-height: 2; font-size: 1.05rem; }
+
+        /* Feature Section */
+        .feature-section { padding: 0; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .feature-grid.reverse { direction: rtl; }
+        .feature-grid.reverse > * { direction: ltr; }
+        .feature-image { position: relative; min-height: 550px; }
+        .feature-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+        .feature-content { background: var(--color-white); padding: var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
+        .feature-content.alt { background: var(--color-cream-dark); }
+        .feature-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-gray); margin-bottom: var(--spacing-sm); }
+        .feature-content h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .feature-content p { color: var(--color-gray); margin-bottom: var(--spacing-sm); line-height: 1.9; }
+        .feature-content p:last-of-type { margin-bottom: 0; }
+        .feature-list { list-style: none; margin-top: var(--spacing-md); }
+        .feature-list li { color: var(--color-gray); padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: var(--spacing-sm); }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list svg { width: 16px; height: 16px; color: var(--color-accent); flex-shrink: 0; }
+
+        @media (max-width: 900px) {
+            .feature-grid, .feature-grid.reverse { grid-template-columns: 1fr; direction: ltr; }
+            .feature-image { min-height: 350px; }
+        }
+
+        /* Quote Section */
+        .quote-section { padding: var(--spacing-xl) 0; background: var(--color-black); text-align: center; }
+        .quote-text { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--color-white); font-style: italic; max-width: 900px; margin: 0 auto var(--spacing-md); line-height: 1.6; letter-spacing: 0.03em; }
+        .quote-author { color: rgba(255,255,255,0.6); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; }
+
+        /* Timeline Section */
+        .timeline-section { padding: var(--spacing-xl) 0; background: var(--color-cream); }
+        .timeline-header { text-align: center; margin-bottom: var(--spacing-lg); }
+        .timeline-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; }
+        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,0.15); transform: translateX(-50%); }
+        .timeline-item { display: flex; align-items: flex-start; margin-bottom: var(--spacing-lg); }
+        .timeline-item:nth-child(odd) { flex-direction: row-reverse; text-align: right; }
+        .timeline-item:nth-child(odd) .timeline-content { padding-right: var(--spacing-lg); padding-left: 0; }
+        .timeline-item:nth-child(even) .timeline-content { padding-left: var(--spacing-lg); }
+        .timeline-year { width: 80px; flex-shrink: 0; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); position: relative; }
+        .timeline-year::after { content: ''; position: absolute; width: 12px; height: 12px; background: var(--color-accent); border-radius: 50%; }
+        .timeline-item:nth-child(odd) .timeline-year::after { left: -6px; }
+        .timeline-item:nth-child(even) .timeline-year::after { right: -6px; }
+        .timeline-content { flex: 1; }
+        .timeline-content h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--spacing-xs); }
+        .timeline-content p { color: var(--color-gray); font-size: 0.95rem; line-height: 1.7; }
+
+        @media (max-width: 700px) {
+            .timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(odd) { flex-direction: column; text-align: left; }
+            .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { padding-left: var(--spacing-lg); padding-right: 0; }
+            .timeline-year { margin-bottom: var(--spacing-sm); }
+            .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after, .timeline-item:nth-child(even) .timeline-year::after { left: -60px; right: auto; }
+        }
+
+        /* CTA Section */
+        .hotel-cta { padding: var(--spacing-xl) 0; background: var(--color-cream-dark); text-align: center; }
+        .hotel-cta h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-sm); }
+        .hotel-cta p { color: var(--color-gray); margin-bottom: var(--spacing-md); max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* Side Menu */
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .side-menu { position: fixed; top: 0; left: -400px; width: 400px; max-width: 90vw; height: 100vh; background: var(--color-cream); z-index: 1999; transition: left 0.4s ease; display: flex; flex-direction: column; padding: var(--spacing-lg); }
+        .side-menu.active { left: 0; }
+        .side-menu-close { position: absolute; top: var(--spacing-md); right: var(--spacing-md); background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-black); }
+        .side-menu-nav { margin-top: var(--spacing-lg); }
+        .side-menu-nav ul { list-style: none; }
+        .side-menu-nav > ul > li { margin-bottom: var(--spacing-sm); }
+        .side-menu-nav a { font-family: var(--font-heading); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .side-menu-nav .submenu { margin-top: var(--spacing-xs); padding-left: var(--spacing-sm); display: none; }
+        .side-menu-nav .submenu-open .submenu { display: block; }
+        .side-menu-nav .submenu a { font-size: 1rem; text-transform: none; }
+        .submenu-toggle { display: flex; align-items: center; gap: var(--spacing-xs); }
+        .submenu-toggle svg { width: 14px; height: 14px; transition: transform 0.3s; }
+        .submenu-open .submenu-toggle svg { transform: rotate(180deg); }
+        .side-menu-lang { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-sm); border-top: 1px solid rgba(0,0,0,0.1); margin-top: var(--spacing-sm); }
+        .side-menu-lang a { font-size: 0.9rem; color: var(--color-gray); letter-spacing: 0.05em; }
+        .side-menu-lang a.lang-active { color: var(--color-black); font-weight: 600; }
+        .side-menu-lang a:hover { color: var(--color-black); }
+
+        /* Footer */
+        .site-footer { background-color: var(--color-cream-dark); padding: var(--spacing-xl) 0 var(--spacing-md); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+        .footer-logo { display: flex; align-items: center; gap: var(--spacing-sm); font-family: 'CocoGothic', var(--font-heading); font-size: 1.5rem; color: var(--color-black); letter-spacing: 0.05em; margin-bottom: var(--spacing-sm); }
+        .footer-logo-img { height: 40px; width: auto; }
+        .footer-tagline { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-black); margin-bottom: var(--spacing-sm); font-weight: 500; }
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: 0.5rem; }
+        .footer-nav a { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav a:hover { color: var(--color-black); }
+        .footer-bottom { text-align: center; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.1); }
+        .footer-bottom p { font-size: 0.8rem; color: var(--color-gray); }
+
+        @media (max-width: 900px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-logo { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Side Menu -->
+<div class="menu-overlay" id="menu-overlay"></div>
+<nav class="side-menu" id="side-menu">
+    <button class="side-menu-close" id="side-menu-close">&times;</button>
+    <div class="side-menu-nav">
+        <ul>
+            <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle" data-i18n="nav.rooms">Rooms <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+                <ul class="submenu">
+                    <li><a href="rooms/standard-terrace.html" data-i18n="rooms.standard">Standard with Terrace</a></li>
+                    <li><a href="rooms/deluxe.html" data-i18n="rooms.deluxe">Deluxe</a></li>
+                    <li><a href="rooms/deluxe-premium.html" data-i18n="rooms.deluxepremium">Deluxe Premium</a></li>
+                    <li><a href="rooms/deluxe-terrace.html" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</a></li>
+                    <li><a href="rooms/suite.html" data-i18n="rooms.suite">Can Quetglas Suite</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle" data-i18n="nav.food">Food & Beverages <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+                <ul class="submenu">
+                    <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                </ul>
+            </li>
+            <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
+            <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="side-menu-lang"><a href="#" class="lang-active">EN</a><a href="#">ES</a><a href="#">DE</a><a href="#">SV</a></div>
+</nav>
+
+<!-- Header -->
+<header class="site-header" id="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="index.html" class="site-logo">
+                <img src="images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img">
+            </a>
+            <div class="header-actions" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div class="header-cta">
+                    <a href="#" class="btn" data-i18n="btn.book">Book</a>
+                </div>
+                <div class="header-lang-dropdown">
+                    <div class="header-lang-current">
+                        <span id="current-lang-text">EN</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="header-lang-menu">
+                        <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                        <a href="#" class="header-lang" data-lang="es">ES</a>
+                        <a href="#" class="header-lang" data-lang="de">DE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Slider -->
+<section class="hero-slider" id="hero-slider">
+    <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80" alt="Can Quetglas Facade">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Historic Interior">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80" alt="Architectural Details">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1920&q=80" alt="Garden View">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+        <p class="hero-subtitle" data-i18n="hotel.hero.subtitle">A Modernist Palace</p>
+        <h1 class="hero-title">Can Quetglas</h1>
+        <p class="hero-tagline" data-i18n="hotel.hero.tagline">Heritage, elegance and Mediterranean soul since 1908</p>
+    </div>
+
+    <div class="slider-arrows">
+        <button class="slider-arrow prev" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="slider-arrow next" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </div>
+    <div class="slider-controls">
+        <span class="slider-dot active"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+        <span class="slider-dot"></span>
+    </div>
+</section>
+
+<!-- Intro Section -->
+<section class="hotel-intro">
+    <div class="container">
+        <h2 data-i18n="hotel.intro.title">Where History Meets Hospitality</h2>
+        <p class="hotel-intro-text" data-i18n="hotel.intro.text">Welcome to Can Quetglas, a carefully restored modernist palace nestled in the heart of El Terreno, one of Palma de Mallorca's most charming and historic neighbourhoods. Our boutique hotel offers an intimate retreat where the grandeur of the past blends seamlessly with contemporary comfort, creating an experience that is both timeless and uniquely Mallorcan.</p>
+    </div>
+</section>
+
+<!-- Architecture Section -->
+<section class="feature-section">
+    <div class="feature-grid">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=1200&q=80" alt="Modernist Architecture">
+        </div>
+        <div class="feature-content">
+            <p class="feature-subtitle" data-i18n="hotel.architecture.subtitle">Architectural Heritage</p>
+            <h2 data-i18n="hotel.architecture.title">A Modernist Masterpiece</h2>
+            <p data-i18n="hotel.architecture.text1">Built in 1908 during the golden age of Mallorcan modernism, Can Quetglas stands as a testament to the island's rich architectural heritage. The building showcases the distinctive style of the era, with elegant facades, ornate ironwork, and intricate decorative details that speak to the craftsmanship of a bygone age.</p>
+            <p data-i18n="hotel.architecture.text2">Every corner of our palace reveals original features that have been lovingly preserved: hand-painted frescoes, hydraulic tile floors with geometric patterns, carved wooden doors, and stained glass windows that cast dancing colors across our rooms.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Heritage Section -->
+<section class="feature-section">
+    <div class="feature-grid reverse">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" alt="Listed Building">
+        </div>
+        <div class="feature-content alt">
+            <p class="feature-subtitle" data-i18n="hotel.heritage.subtitle">Protected Heritage</p>
+            <h2 data-i18n="hotel.heritage.title">A Listed Building</h2>
+            <p data-i18n="hotel.heritage.text1">Can Quetglas holds the distinction of being a catalogued heritage building, recognised for its historical and architectural significance. This designation reflects our commitment to preserving not just a structure, but a piece of Palma's cultural identity.</p>
+            <p data-i18n="hotel.heritage.text2">Our restoration was carried out with the utmost respect for the building's original character. Working closely with heritage conservation experts, we have maintained the authentic elements while thoughtfully integrating modern amenities to ensure your comfort.</p>
+            <ul class="feature-list">
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="hotel.heritage.item1">Original 1908 modernist frescoes</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="hotel.heritage.item2">Authentic hydraulic tile flooring</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="hotel.heritage.item3">Period ironwork and balustrades</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="hotel.heritage.item4">Restored stained glass windows</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Quote Section -->
+<section class="quote-section">
+    <div class="container">
+        <p class="quote-text" data-i18n="hotel.quote.text">"To stay at Can Quetglas is to experience the soul of Mallorca — its history, its light, its enduring beauty."</p>
+        <p class="quote-author" data-i18n="hotel.quote.author">— The Can Quetglas Philosophy</p>
+    </div>
+</section>
+
+<!-- El Terreno Section -->
+<section class="feature-section">
+    <div class="feature-grid">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80" alt="El Terreno Neighbourhood">
+        </div>
+        <div class="feature-content">
+            <p class="feature-subtitle" data-i18n="hotel.terreno.subtitle">Our Neighbourhood</p>
+            <h2 data-i18n="hotel.terreno.title">El Terreno</h2>
+            <p data-i18n="hotel.terreno.text1">El Terreno was once the glamorous summer retreat of Palma's aristocracy and international celebrities. In the early 20th century, this hillside neighbourhood attracted artists, writers, and bohemian spirits who were drawn to its Mediterranean gardens, stunning views, and creative energy.</p>
+            <p data-i18n="hotel.terreno.text2">Today, El Terreno is experiencing a renaissance. Just minutes from the historic centre and the seafront, yet peacefully removed from the crowds, it offers the perfect base to explore Palma while enjoying the authentic atmosphere of a traditional Mallorcan neighbourhood.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+    <div class="container">
+        <div class="timeline-header">
+            <h2 data-i18n="hotel.timeline.title">Our Story</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">1908</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="hotel.timeline.1908.title">The Beginning</h3>
+                    <p data-i18n="hotel.timeline.1908.text">Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era with its distinctive frescoes and ornate details.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1920s</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="hotel.timeline.1920.title">The Golden Era</h3>
+                    <p data-i18n="hotel.timeline.1920.text">El Terreno becomes the fashionable summer destination for Palma's elite and visiting artists, with Can Quetglas at the heart of the neighbourhood's social scene.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2020s</div>
+                <div class="timeline-content">
+                    <h3 data-i18n="hotel.timeline.2020.title">A New Chapter</h3>
+                    <p data-i18n="hotel.timeline.2020.text">After a careful restoration respecting its heritage status, Can Quetglas opens as a boutique hotel, sharing its beauty and history with guests from around the world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="hotel-cta">
+    <div class="container">
+        <h2 data-i18n="hotel.cta.title">Experience Can Quetglas</h2>
+        <p data-i18n="hotel.cta.text">Discover our rooms, each one a unique blend of historic charm and modern comfort.</p>
+        <a href="index.html#habitaciones" class="btn btn-primary" data-i18n="btn.seerooms">View Our Rooms</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/logo_emblem.png" alt="Can Quetglas" class="footer-logo-img">
+                    Can Quetglas
+                </div>
+                <p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4>
+                <ul>
+                    <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
+                    <li><a href="index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
+                    <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                    <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
+                <ul>
+                    <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="footer.terms">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title">Social</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">TripAdvisor</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">© 2026 Hotel Can Quetglas. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Translations
+const translations = {
+    en: {
+        'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact',
+        'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Book', 'btn.seerooms': 'View Our Rooms',
+        'hotel.hero.subtitle': 'A Modernist Palace', 'hotel.hero.tagline': 'Heritage, elegance and Mediterranean soul since 1908',
+        'hotel.intro.title': 'Where History Meets Hospitality', 'hotel.intro.text': 'Welcome to Can Quetglas, a carefully restored modernist palace nestled in the heart of El Terreno, one of Palma de Mallorca\'s most charming and historic neighbourhoods. Our boutique hotel offers an intimate retreat where the grandeur of the past blends seamlessly with contemporary comfort, creating an experience that is both timeless and uniquely Mallorcan.',
+        'hotel.architecture.subtitle': 'Architectural Heritage', 'hotel.architecture.title': 'A Modernist Masterpiece', 'hotel.architecture.text1': 'Built in 1908 during the golden age of Mallorcan modernism, Can Quetglas stands as a testament to the island\'s rich architectural heritage. The building showcases the distinctive style of the era, with elegant facades, ornate ironwork, and intricate decorative details that speak to the craftsmanship of a bygone age.', 'hotel.architecture.text2': 'Every corner of our palace reveals original features that have been lovingly preserved: hand-painted frescoes, hydraulic tile floors with geometric patterns, carved wooden doors, and stained glass windows that cast dancing colors across our rooms.',
+        'hotel.heritage.subtitle': 'Protected Heritage', 'hotel.heritage.title': 'A Listed Building', 'hotel.heritage.text1': 'Can Quetglas holds the distinction of being a catalogued heritage building, recognised for its historical and architectural significance. This designation reflects our commitment to preserving not just a structure, but a piece of Palma\'s cultural identity.', 'hotel.heritage.text2': 'Our restoration was carried out with the utmost respect for the building\'s original character. Working closely with heritage conservation experts, we have maintained the authentic elements while thoughtfully integrating modern amenities to ensure your comfort.',
+        'hotel.heritage.item1': 'Original 1908 modernist frescoes', 'hotel.heritage.item2': 'Authentic hydraulic tile flooring', 'hotel.heritage.item3': 'Period ironwork and balustrades', 'hotel.heritage.item4': 'Restored stained glass windows',
+        'hotel.quote.text': '"To stay at Can Quetglas is to experience the soul of Mallorca — its history, its light, its enduring beauty."', 'hotel.quote.author': '— The Can Quetglas Philosophy',
+        'hotel.terreno.subtitle': 'Our Neighbourhood', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno was once the glamorous summer retreat of Palma\'s aristocracy and international celebrities. In the early 20th century, this hillside neighbourhood attracted artists, writers, and bohemian spirits who were drawn to its Mediterranean gardens, stunning views, and creative energy.', 'hotel.terreno.text2': 'Today, El Terreno is experiencing a renaissance. Just minutes from the historic centre and the seafront, yet peacefully removed from the crowds, it offers the perfect base to explore Palma while enjoying the authentic atmosphere of a traditional Mallorcan neighbourhood.',
+        'hotel.timeline.title': 'Our Story', 'hotel.timeline.1908.title': 'The Beginning', 'hotel.timeline.1908.text': 'Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era with its distinctive frescoes and ornate details.', 'hotel.timeline.1920.title': 'The Golden Era', 'hotel.timeline.1920.text': 'El Terreno becomes the fashionable summer destination for Palma\'s elite and visiting artists, with Can Quetglas at the heart of the neighbourhood\'s social scene.', 'hotel.timeline.2020.title': 'A New Chapter', 'hotel.timeline.2020.text': 'After a careful restoration respecting its heritage status, Can Quetglas opens as a boutique hotel, sharing its beauty and history with guests from around the world.',
+        'hotel.cta.title': 'Experience Can Quetglas', 'hotel.cta.text': 'Discover our rooms, each one a unique blend of historic charm and modern comfort.',
+        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
+    },
+    es: {
+        'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
+        'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas',
+        'btn.book': 'Reservar', 'btn.seerooms': 'Ver Habitaciones',
+        'hotel.hero.subtitle': 'Un Palacete Modernista', 'hotel.hero.tagline': 'Patrimonio, elegancia y alma mediterránea desde 1908',
+        'hotel.intro.title': 'Donde la Historia se Une con la Hospitalidad', 'hotel.intro.text': 'Bienvenido a Can Quetglas, un palacete modernista cuidadosamente restaurado en el corazón de El Terreno, uno de los barrios más encantadores e históricos de Palma de Mallorca. Nuestro hotel boutique ofrece un refugio íntimo donde la grandeza del pasado se fusiona armoniosamente con el confort contemporáneo, creando una experiencia atemporal y genuinamente mallorquina.',
+        'hotel.architecture.subtitle': 'Patrimonio Arquitectónico', 'hotel.architecture.title': 'Una Obra Maestra Modernista', 'hotel.architecture.text1': 'Construido en 1908 durante la edad de oro del modernismo mallorquín, Can Quetglas es un testimonio del rico patrimonio arquitectónico de la isla. El edificio exhibe el estilo distintivo de la época, con elegantes fachadas, forja ornamental y detalles decorativos que hablan de la artesanía de una era pasada.', 'hotel.architecture.text2': 'Cada rincón de nuestro palacete revela elementos originales que han sido cuidadosamente preservados: frescos pintados a mano, suelos de baldosa hidráulica con patrones geométricos, puertas de madera tallada y vidrieras que proyectan colores danzantes en nuestras estancias.',
+        'hotel.heritage.subtitle': 'Patrimonio Protegido', 'hotel.heritage.title': 'Edificio Catalogado', 'hotel.heritage.text1': 'Can Quetglas ostenta la distinción de ser un edificio patrimonial catalogado, reconocido por su significado histórico y arquitectónico. Esta designación refleja nuestro compromiso de preservar no solo una estructura, sino una pieza de la identidad cultural de Palma.', 'hotel.heritage.text2': 'Nuestra restauración se llevó a cabo con el máximo respeto por el carácter original del edificio. Trabajando estrechamente con expertos en conservación patrimonial, hemos mantenido los elementos auténticos mientras integramos cuidadosamente las comodidades modernas para garantizar su confort.',
+        'hotel.heritage.item1': 'Frescos modernistas originales de 1908', 'hotel.heritage.item2': 'Suelos de baldosa hidráulica auténticos', 'hotel.heritage.item3': 'Forja y balaustradas de época', 'hotel.heritage.item4': 'Vidrieras restauradas',
+        'hotel.quote.text': '"Alojarse en Can Quetglas es experimentar el alma de Mallorca — su historia, su luz, su belleza perdurable."', 'hotel.quote.author': '— La Filosofía Can Quetglas',
+        'hotel.terreno.subtitle': 'Nuestro Barrio', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno fue en su día el glamuroso refugio veraniego de la aristocracia palmesana y celebridades internacionales. A principios del siglo XX, este barrio en la ladera atraía a artistas, escritores y espíritus bohemios cautivados por sus jardines mediterráneos, sus impresionantes vistas y su energía creativa.', 'hotel.terreno.text2': 'Hoy, El Terreno está viviendo un renacimiento. A pocos minutos del centro histórico y el paseo marítimo, pero apaciblemente alejado de las multitudes, ofrece la base perfecta para explorar Palma mientras disfruta de la atmósfera auténtica de un barrio tradicional mallorquín.',
+        'hotel.timeline.title': 'Nuestra Historia', 'hotel.timeline.1908.title': 'El Comienzo', 'hotel.timeline.1908.text': 'Can Quetglas se construye como residencia privada, exhibiendo la mejor arquitectura modernista de la época con sus distintivos frescos y detalles ornamentales.', 'hotel.timeline.1920.title': 'La Época Dorada', 'hotel.timeline.1920.text': 'El Terreno se convierte en el destino veraniego de moda para la élite palmesana y artistas visitantes, con Can Quetglas en el corazón de la vida social del barrio.', 'hotel.timeline.2020.title': 'Un Nuevo Capítulo', 'hotel.timeline.2020.text': 'Tras una cuidadosa restauración respetando su catalogación patrimonial, Can Quetglas abre como hotel boutique, compartiendo su belleza e historia con huéspedes de todo el mundo.',
+        'hotel.cta.title': 'Experimente Can Quetglas', 'hotel.cta.text': 'Descubra nuestras habitaciones, cada una una mezcla única de encanto histórico y confort moderno.',
+        'footer.tagline': 'Su hogar lejos de casa<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Info', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
+    },
+    de: {
+        'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Buchen', 'btn.seerooms': 'Zimmer Ansehen',
+        'hotel.hero.subtitle': 'Ein Modernistischer Palast', 'hotel.hero.tagline': 'Erbe, Eleganz und mediterrane Seele seit 1908',
+        'hotel.intro.title': 'Wo Geschichte auf Gastfreundschaft Trifft', 'hotel.intro.text': 'Willkommen im Can Quetglas, einem sorgfältig restaurierten modernistischen Palast im Herzen von El Terreno, einem der charmantesten und historischsten Viertel von Palma de Mallorca. Unser Boutique-Hotel bietet einen intimen Rückzugsort, wo die Pracht der Vergangenheit nahtlos mit zeitgenössischem Komfort verschmilzt.',
+        'hotel.architecture.subtitle': 'Architektonisches Erbe', 'hotel.architecture.title': 'Ein Modernistisches Meisterwerk', 'hotel.architecture.text1': 'Das 1908 während der goldenen Ära des mallorquinischen Modernismus erbaute Can Quetglas ist ein Zeugnis des reichen architektonischen Erbes der Insel. Das Gebäude zeigt den unverwechselbaren Stil der Epoche mit eleganten Fassaden, kunstvollen Schmiedearbeiten und aufwendigen dekorativen Details.', 'hotel.architecture.text2': 'Jede Ecke unseres Palastes offenbart originale Merkmale, die liebevoll bewahrt wurden: handgemalte Fresken, hydraulische Fliesenböden mit geometrischen Mustern, geschnitzte Holztüren und Buntglasfenster.',
+        'hotel.heritage.subtitle': 'Geschütztes Erbe', 'hotel.heritage.title': 'Ein Denkmalgeschütztes Gebäude', 'hotel.heritage.text1': 'Can Quetglas hat die Auszeichnung, ein katalogisiertes Kulturgut zu sein, anerkannt für seine historische und architektonische Bedeutung. Diese Bezeichnung spiegelt unser Engagement wider, nicht nur ein Gebäude zu erhalten, sondern ein Stück von Palmas kultureller Identität.', 'hotel.heritage.text2': 'Unsere Restaurierung wurde mit größtem Respekt für den ursprünglichen Charakter des Gebäudes durchgeführt. In enger Zusammenarbeit mit Denkmalschutzexperten haben wir die authentischen Elemente bewahrt und gleichzeitig moderne Annehmlichkeiten integriert.',
+        'hotel.heritage.item1': 'Originale modernistische Fresken von 1908', 'hotel.heritage.item2': 'Authentische hydraulische Fliesenböden', 'hotel.heritage.item3': 'Zeitgenössische Schmiedearbeiten und Balustraden', 'hotel.heritage.item4': 'Restaurierte Buntglasfenster',
+        'hotel.quote.text': '"Im Can Quetglas zu wohnen bedeutet, die Seele Mallorcas zu erleben — seine Geschichte, sein Licht, seine bleibende Schönheit."', 'hotel.quote.author': '— Die Can Quetglas Philosophie',
+        'hotel.terreno.subtitle': 'Unsere Nachbarschaft', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno war einst der glamouröse Sommerrückzugsort der Aristokratie Palmas und internationaler Berühmtheiten. Zu Beginn des 20. Jahrhunderts zog dieses Hangviertel Künstler, Schriftsteller und Bohemiens an, die von seinen mediterranen Gärten, atemberaubenden Aussichten und kreativer Energie angezogen wurden.', 'hotel.terreno.text2': 'Heute erlebt El Terreno eine Renaissance. Nur wenige Minuten vom historischen Zentrum und der Strandpromenade entfernt, aber friedlich abseits der Menschenmassen, bietet es die perfekte Basis, um Palma zu erkunden.',
+        'hotel.timeline.title': 'Unsere Geschichte', 'hotel.timeline.1908.title': 'Der Anfang', 'hotel.timeline.1908.text': 'Can Quetglas wird als Privatresidenz erbaut und zeigt die feinste modernistische Architektur der Ära mit seinen unverwechselbaren Fresken und kunstvollen Details.', 'hotel.timeline.1920.title': 'Die Goldene Ära', 'hotel.timeline.1920.text': 'El Terreno wird zum modischen Sommerziel für Palmas Elite und besuchende Künstler, mit Can Quetglas im Herzen des gesellschaftlichen Lebens.', 'hotel.timeline.2020.title': 'Ein Neues Kapitel', 'hotel.timeline.2020.text': 'Nach einer sorgfältigen Restaurierung unter Wahrung des Denkmalschutzes öffnet Can Quetglas als Boutique-Hotel und teilt seine Schönheit und Geschichte mit Gästen aus aller Welt.',
+        'hotel.cta.title': 'Erleben Sie Can Quetglas', 'hotel.cta.text': 'Entdecken Sie unsere Zimmer, jedes eine einzigartige Mischung aus historischem Charme und modernem Komfort.',
+        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
+    },
+    sv: {
+        'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit',
+        'btn.book': 'Boka', 'btn.seerooms': 'Se Våra Rum',
+        'hotel.hero.subtitle': 'Ett Modernistiskt Palats', 'hotel.hero.tagline': 'Arv, elegans och medelhavsjäl sedan 1908',
+        'hotel.intro.title': 'Där Historia Möter Gästfrihet', 'hotel.intro.text': 'Välkommen till Can Quetglas, ett noggrant restaurerat modernistiskt palats beläget i hjärtat av El Terreno, en av Palma de Mallorcas mest charmiga och historiska stadsdelar. Vårt boutiquehotell erbjuder en intim tillflyktsort där det förgångnas storhet smälter samman med samtida komfort.',
+        'hotel.architecture.subtitle': 'Arkitektoniskt Arv', 'hotel.architecture.title': 'Ett Modernistiskt Mästerverk', 'hotel.architecture.text1': 'Byggt 1908 under den mallorquinska modernismens guldålder står Can Quetglas som ett bevis på öns rika arkitektoniska arv. Byggnaden uppvisar erans distinktiva stil med eleganta fasader, utsmyckade smidesarbeten och intrikata dekorativa detaljer.', 'hotel.architecture.text2': 'Varje hörn av vårt palats avslöjar originaldetaljer som kärleksfullt bevarats: handmålade fresker, hydrauliska klinkergolv med geometriska mönster, snidade trädörrar och glasmålningar som kastar dansande färger genom våra rum.',
+        'hotel.heritage.subtitle': 'Skyddat Arv', 'hotel.heritage.title': 'En K-märkt Byggnad', 'hotel.heritage.text1': 'Can Quetglas har utmärkelsen att vara en kulturskyddad byggnad, erkänd för sin historiska och arkitektoniska betydelse. Denna beteckning speglar vårt engagemang för att bevara inte bara en struktur, utan en del av Palmas kulturella identitet.', 'hotel.heritage.text2': 'Vår restaurering genomfördes med yttersta respekt för byggnadens ursprungliga karaktär. I nära samarbete med kulturarvsexperter har vi bevarat de autentiska elementen samtidigt som vi omsorgsfullt integrerat moderna bekvämligheter.',
+        'hotel.heritage.item1': 'Originella modernistiska fresker från 1908', 'hotel.heritage.item2': 'Autentiska hydrauliska klinkergolv', 'hotel.heritage.item3': 'Tidsenliga smidesarbeten och balustrader', 'hotel.heritage.item4': 'Restaurerade glasmålningar',
+        'hotel.quote.text': '"Att bo på Can Quetglas är att uppleva Mallorcas själ — dess historia, dess ljus, dess bestående skönhet."', 'hotel.quote.author': '— Can Quetglas Filosofi',
+        'hotel.terreno.subtitle': 'Vår Stadsdel', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno var en gång den glamorösa sommarreträtten för Palmas aristokrati och internationella kändisar. I början av 1900-talet lockade denna sluttande stadsdel konstnärer, författare och bohemer som drogs till dess medelhavsträdgårdar, fantastiska utsikter och kreativa energi.', 'hotel.terreno.text2': 'Idag upplever El Terreno en renässans. Bara minuter från det historiska centret och strandpromenaden, men fridfullt avskilt från folkmassor, erbjuder det den perfekta basen för att utforska Palma.',
+        'hotel.timeline.title': 'Vår Historia', 'hotel.timeline.1908.title': 'Början', 'hotel.timeline.1908.text': 'Can Quetglas byggs som privatbostad och uppvisar erans finaste modernistiska arkitektur med sina distinkta fresker och utsmyckade detaljer.', 'hotel.timeline.1920.title': 'Guldåldern', 'hotel.timeline.1920.text': 'El Terreno blir det fashionabla sommarresmålet för Palmas elit och besökande konstnärer, med Can Quetglas i hjärtat av stadsdelens sociala liv.', 'hotel.timeline.2020.title': 'Ett Nytt Kapitel', 'hotel.timeline.2020.text': 'Efter en noggrann restaurering med respekt för dess kulturskyddsstatus öppnar Can Quetglas som boutiquehotell och delar sin skönhet och historia med gäster från hela världen.',
+        'hotel.cta.title': 'Upplev Can Quetglas', 'hotel.cta.text': 'Upptäck våra rum, vart och ett en unik blandning av historisk charm och modern komfort.',
+        'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
+    }
+};
+
+let currentLang = 'en';
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.querySelectorAll('.side-menu-lang a').forEach(a => {
+        a.classList.toggle('lang-active', a.textContent === lang.toUpperCase());
+    });
+    document.querySelectorAll('.header-lang').forEach(a => {
+        a.classList.toggle('lang-active', a.dataset.lang === lang);
+    });
+    const currentLangText = document.getElementById('current-lang-text');
+    if (currentLangText) currentLangText.textContent = lang.toUpperCase();
+    localStorage.setItem('canquetglas-lang', lang);
+}
+
+// Side Menu
+const menuToggle = document.getElementById('menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const sideMenuClose = document.getElementById('side-menu-close');
+
+function openMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.classList.add('menu-open'); }
+function closeMenu() { sideMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+
+menuToggle.addEventListener('click', openMenu);
+sideMenuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) { e.preventDefault(); this.parentElement.classList.toggle('submenu-open'); });
+});
+document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link => { link.addEventListener('click', closeMenu); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// Language selectors
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); const lang = this.textContent.toLowerCase(); setLanguage(lang); });
+});
+document.querySelectorAll('.header-lang').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); });
+});
+
+// Load saved language
+const savedLang = localStorage.getItem('canquetglas-lang');
+if (savedLang && translations[savedLang]) setLanguage(savedLang);
+
+// Hero Slider
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.slider-dot');
+const prevBtn = document.querySelector('.slider-arrow.prev');
+const nextBtn = document.querySelector('.slider-arrow.next');
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(index) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+
+function startSlideshow() { slideInterval = setInterval(nextSlide, 5000); }
+function stopSlideshow() { clearInterval(slideInterval); }
+
+prevBtn.addEventListener('click', () => { stopSlideshow(); prevSlide(); startSlideshow(); });
+nextBtn.addEventListener('click', () => { stopSlideshow(); nextSlide(); startSlideshow(); });
+dots.forEach((dot, i) => { dot.addEventListener('click', () => { stopSlideshow(); showSlide(i); startSlideshow(); }); });
+
+startSlideshow();
+</script>
+
+</body>
+</html>
