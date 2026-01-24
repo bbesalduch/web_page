@@ -100,30 +100,25 @@
         .quote-text { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--color-white); font-style: italic; max-width: 900px; margin: 0 auto var(--spacing-md); line-height: 1.6; letter-spacing: 0.03em; }
         .quote-author { color: rgba(255,255,255,0.6); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; }
 
-        /* Timeline Section */
-        .timeline-section { padding: var(--spacing-xl) 0; background: var(--color-cream); }
+        /* Timeline Section - Horizontal */
+        .timeline-section { padding: var(--spacing-xl) 0; background: var(--color-cream); overflow: hidden; }
         .timeline-header { text-align: center; margin-bottom: var(--spacing-lg); }
         .timeline-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; }
-        .timeline { max-width: 800px; margin: 0 auto; position: relative; }
-        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(0,0,0,0.15); transform: translateX(-50%); }
-        .timeline-item { display: flex; align-items: flex-start; margin-bottom: var(--spacing-lg); }
-        .timeline-item:nth-child(odd) { flex-direction: row-reverse; text-align: right; }
-        .timeline-item:nth-child(odd) .timeline-content { padding-right: var(--spacing-lg); padding-left: 0; }
-        .timeline-item:nth-child(even) .timeline-content { padding-left: var(--spacing-lg); }
-        .timeline-year { width: 80px; flex-shrink: 0; font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-accent); position: relative; }
-        .timeline-year::after { content: ''; position: absolute; width: 12px; height: 12px; background: var(--color-accent); border-radius: 50%; }
-        .timeline-item:nth-child(odd) .timeline-year::after { left: -6px; }
-        .timeline-item:nth-child(even) .timeline-year::after { right: -6px; }
-        .timeline-content { flex: 1; }
-        .timeline-content h3 { font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--spacing-xs); }
-        .timeline-content p { color: var(--color-gray); font-size: 0.95rem; line-height: 1.7; }
+        .timeline-horizontal { display: flex; justify-content: space-between; position: relative; max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-md); }
+        .timeline-horizontal::before { content: ''; position: absolute; top: 85px; left: 10%; right: 10%; height: 1px; background: rgba(0,0,0,0.15); }
+        .timeline-h-item { flex: 1; text-align: center; position: relative; padding: 0 var(--spacing-sm); }
+        .timeline-h-year { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--color-accent); margin-bottom: var(--spacing-sm); letter-spacing: 0.05em; }
+        .timeline-h-dot { width: 14px; height: 14px; background: var(--color-accent); border-radius: 50%; margin: 0 auto var(--spacing-md); position: relative; z-index: 1; }
+        .timeline-h-content h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-xs); color: var(--color-black); }
+        .timeline-h-content p { color: var(--color-gray); font-size: 0.85rem; line-height: 1.7; max-width: 220px; margin: 0 auto; }
 
-        @media (max-width: 700px) {
-            .timeline::before { left: 20px; }
-            .timeline-item, .timeline-item:nth-child(odd) { flex-direction: column; text-align: left; }
-            .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content { padding-left: var(--spacing-lg); padding-right: 0; }
-            .timeline-year { margin-bottom: var(--spacing-sm); }
-            .timeline-year::after, .timeline-item:nth-child(odd) .timeline-year::after, .timeline-item:nth-child(even) .timeline-year::after { left: -60px; right: auto; }
+        @media (max-width: 900px) {
+            .timeline-horizontal { flex-direction: column; gap: var(--spacing-lg); }
+            .timeline-horizontal::before { display: none; }
+            .timeline-h-item { display: flex; align-items: flex-start; text-align: left; gap: var(--spacing-md); padding: 0; }
+            .timeline-h-year { font-size: 1.5rem; min-width: 70px; margin-bottom: 0; }
+            .timeline-h-dot { display: none; }
+            .timeline-h-content p { max-width: none; margin: 0; }
         }
 
         /* CTA Section */
@@ -354,26 +349,37 @@
         <div class="timeline-header">
             <h2 data-i18n="hotel.timeline.title">Our Story</h2>
         </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">1908</div>
-                <div class="timeline-content">
+        <div class="timeline-horizontal">
+            <div class="timeline-h-item">
+                <div class="timeline-h-year">1908</div>
+                <div class="timeline-h-dot"></div>
+                <div class="timeline-h-content">
                     <h3 data-i18n="hotel.timeline.1908.title">The Beginning</h3>
-                    <p data-i18n="hotel.timeline.1908.text">Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era with its distinctive frescoes and ornate details.</p>
+                    <p data-i18n="hotel.timeline.1908.text">Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era.</p>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">1920s</div>
-                <div class="timeline-content">
-                    <h3 data-i18n="hotel.timeline.1920.title">The Golden Era</h3>
-                    <p data-i18n="hotel.timeline.1920.text">El Terreno becomes the fashionable summer destination for Palma's elite and visiting artists, with Can Quetglas at the heart of the neighbourhood's social scene.</p>
+            <div class="timeline-h-item">
+                <div class="timeline-h-year">1992</div>
+                <div class="timeline-h-dot"></div>
+                <div class="timeline-h-content">
+                    <h3 data-i18n="hotel.timeline.1992.title">A New Home</h3>
+                    <p data-i18n="hotel.timeline.1992.text">The current owners acquire the property and undertake a major renovation, transforming it into their family residence.</p>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2020s</div>
-                <div class="timeline-content">
-                    <h3 data-i18n="hotel.timeline.2020.title">A New Chapter</h3>
-                    <p data-i18n="hotel.timeline.2020.text">After a careful restoration respecting its heritage status, Can Quetglas opens as a boutique hotel, sharing its beauty and history with guests from around the world.</p>
+            <div class="timeline-h-item">
+                <div class="timeline-h-year">2017</div>
+                <div class="timeline-h-dot"></div>
+                <div class="timeline-h-content">
+                    <h3 data-i18n="hotel.timeline.2017.title">The Vision</h3>
+                    <p data-i18n="hotel.timeline.2017.text">The owners decide to share this architectural gem with the world, beginning the transformation into a boutique hotel.</p>
+                </div>
+            </div>
+            <div class="timeline-h-item">
+                <div class="timeline-h-year">2022</div>
+                <div class="timeline-h-dot"></div>
+                <div class="timeline-h-content">
+                    <h3 data-i18n="hotel.timeline.2022.title">Grand Opening</h3>
+                    <p data-i18n="hotel.timeline.2022.text">In July 2022, Can Quetglas opens its doors as a boutique hotel, welcoming guests from around the world.</p>
                 </div>
             </div>
         </div>
@@ -448,7 +454,7 @@ const translations = {
         'hotel.heritage.item1': 'Original 1908 modernist frescoes', 'hotel.heritage.item2': 'Authentic hydraulic tile flooring', 'hotel.heritage.item3': 'Period ironwork and balustrades', 'hotel.heritage.item4': 'Restored stained glass windows',
         'hotel.quote.text': '"To stay at Can Quetglas is to experience the soul of Mallorca — its history, its light, its enduring beauty."', 'hotel.quote.author': '— The Can Quetglas Philosophy',
         'hotel.terreno.subtitle': 'Our Neighbourhood', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno was once the glamorous summer retreat of Palma\'s aristocracy and international celebrities. In the early 20th century, this hillside neighbourhood attracted artists, writers, and bohemian spirits who were drawn to its Mediterranean gardens, stunning views, and creative energy.', 'hotel.terreno.text2': 'Today, El Terreno is experiencing a renaissance. Just minutes from the historic centre and the seafront, yet peacefully removed from the crowds, it offers the perfect base to explore Palma while enjoying the authentic atmosphere of a traditional Mallorcan neighbourhood.',
-        'hotel.timeline.title': 'Our Story', 'hotel.timeline.1908.title': 'The Beginning', 'hotel.timeline.1908.text': 'Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era with its distinctive frescoes and ornate details.', 'hotel.timeline.1920.title': 'The Golden Era', 'hotel.timeline.1920.text': 'El Terreno becomes the fashionable summer destination for Palma\'s elite and visiting artists, with Can Quetglas at the heart of the neighbourhood\'s social scene.', 'hotel.timeline.2020.title': 'A New Chapter', 'hotel.timeline.2020.text': 'After a careful restoration respecting its heritage status, Can Quetglas opens as a boutique hotel, sharing its beauty and history with guests from around the world.',
+        'hotel.timeline.title': 'Our Story', 'hotel.timeline.1908.title': 'The Beginning', 'hotel.timeline.1908.text': 'Can Quetglas is built as a private residence, showcasing the finest modernist architecture of the era.', 'hotel.timeline.1992.title': 'A New Home', 'hotel.timeline.1992.text': 'The current owners acquire the property and undertake a major renovation, transforming it into their family residence.', 'hotel.timeline.2017.title': 'The Vision', 'hotel.timeline.2017.text': 'The owners decide to share this architectural gem with the world, beginning the transformation into a boutique hotel.', 'hotel.timeline.2022.title': 'Grand Opening', 'hotel.timeline.2022.text': 'In July 2022, Can Quetglas opens its doors as a boutique hotel, welcoming guests from around the world.',
         'hotel.cta.title': 'Experience Can Quetglas', 'hotel.cta.text': 'Discover our rooms, each one a unique blend of historic charm and modern comfort.',
         'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
     },
@@ -463,7 +469,7 @@ const translations = {
         'hotel.heritage.item1': 'Frescos modernistas originales de 1908', 'hotel.heritage.item2': 'Suelos de baldosa hidráulica auténticos', 'hotel.heritage.item3': 'Forja y balaustradas de época', 'hotel.heritage.item4': 'Vidrieras restauradas',
         'hotel.quote.text': '"Alojarse en Can Quetglas es experimentar el alma de Mallorca — su historia, su luz, su belleza perdurable."', 'hotel.quote.author': '— La Filosofía Can Quetglas',
         'hotel.terreno.subtitle': 'Nuestro Barrio', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno fue en su día el glamuroso refugio veraniego de la aristocracia palmesana y celebridades internacionales. A principios del siglo XX, este barrio en la ladera atraía a artistas, escritores y espíritus bohemios cautivados por sus jardines mediterráneos, sus impresionantes vistas y su energía creativa.', 'hotel.terreno.text2': 'Hoy, El Terreno está viviendo un renacimiento. A pocos minutos del centro histórico y el paseo marítimo, pero apaciblemente alejado de las multitudes, ofrece la base perfecta para explorar Palma mientras disfruta de la atmósfera auténtica de un barrio tradicional mallorquín.',
-        'hotel.timeline.title': 'Nuestra Historia', 'hotel.timeline.1908.title': 'El Comienzo', 'hotel.timeline.1908.text': 'Can Quetglas se construye como residencia privada, exhibiendo la mejor arquitectura modernista de la época con sus distintivos frescos y detalles ornamentales.', 'hotel.timeline.1920.title': 'La Época Dorada', 'hotel.timeline.1920.text': 'El Terreno se convierte en el destino veraniego de moda para la élite palmesana y artistas visitantes, con Can Quetglas en el corazón de la vida social del barrio.', 'hotel.timeline.2020.title': 'Un Nuevo Capítulo', 'hotel.timeline.2020.text': 'Tras una cuidadosa restauración respetando su catalogación patrimonial, Can Quetglas abre como hotel boutique, compartiendo su belleza e historia con huéspedes de todo el mundo.',
+        'hotel.timeline.title': 'Nuestra Historia', 'hotel.timeline.1908.title': 'El Comienzo', 'hotel.timeline.1908.text': 'Can Quetglas se construye como residencia privada, exhibiendo la mejor arquitectura modernista de la época.', 'hotel.timeline.1992.title': 'Un Nuevo Hogar', 'hotel.timeline.1992.text': 'Los actuales propietarios adquieren la propiedad y realizan una gran reforma, convirtiéndola en su residencia familiar.', 'hotel.timeline.2017.title': 'La Visión', 'hotel.timeline.2017.text': 'Los propietarios deciden compartir esta joya arquitectónica con el mundo, iniciando la transformación en hotel boutique.', 'hotel.timeline.2022.title': 'Gran Apertura', 'hotel.timeline.2022.text': 'En julio de 2022, Can Quetglas abre sus puertas como hotel boutique, dando la bienvenida a huéspedes de todo el mundo.',
         'hotel.cta.title': 'Experimente Can Quetglas', 'hotel.cta.text': 'Descubra nuestras habitaciones, cada una una mezcla única de encanto histórico y confort moderno.',
         'footer.tagline': 'Su hogar lejos de casa<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Info', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
     },
@@ -478,7 +484,7 @@ const translations = {
         'hotel.heritage.item1': 'Originale modernistische Fresken von 1908', 'hotel.heritage.item2': 'Authentische hydraulische Fliesenböden', 'hotel.heritage.item3': 'Zeitgenössische Schmiedearbeiten und Balustraden', 'hotel.heritage.item4': 'Restaurierte Buntglasfenster',
         'hotel.quote.text': '"Im Can Quetglas zu wohnen bedeutet, die Seele Mallorcas zu erleben — seine Geschichte, sein Licht, seine bleibende Schönheit."', 'hotel.quote.author': '— Die Can Quetglas Philosophie',
         'hotel.terreno.subtitle': 'Unsere Nachbarschaft', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno war einst der glamouröse Sommerrückzugsort der Aristokratie Palmas und internationaler Berühmtheiten. Zu Beginn des 20. Jahrhunderts zog dieses Hangviertel Künstler, Schriftsteller und Bohemiens an, die von seinen mediterranen Gärten, atemberaubenden Aussichten und kreativer Energie angezogen wurden.', 'hotel.terreno.text2': 'Heute erlebt El Terreno eine Renaissance. Nur wenige Minuten vom historischen Zentrum und der Strandpromenade entfernt, aber friedlich abseits der Menschenmassen, bietet es die perfekte Basis, um Palma zu erkunden.',
-        'hotel.timeline.title': 'Unsere Geschichte', 'hotel.timeline.1908.title': 'Der Anfang', 'hotel.timeline.1908.text': 'Can Quetglas wird als Privatresidenz erbaut und zeigt die feinste modernistische Architektur der Ära mit seinen unverwechselbaren Fresken und kunstvollen Details.', 'hotel.timeline.1920.title': 'Die Goldene Ära', 'hotel.timeline.1920.text': 'El Terreno wird zum modischen Sommerziel für Palmas Elite und besuchende Künstler, mit Can Quetglas im Herzen des gesellschaftlichen Lebens.', 'hotel.timeline.2020.title': 'Ein Neues Kapitel', 'hotel.timeline.2020.text': 'Nach einer sorgfältigen Restaurierung unter Wahrung des Denkmalschutzes öffnet Can Quetglas als Boutique-Hotel und teilt seine Schönheit und Geschichte mit Gästen aus aller Welt.',
+        'hotel.timeline.title': 'Unsere Geschichte', 'hotel.timeline.1908.title': 'Der Anfang', 'hotel.timeline.1908.text': 'Can Quetglas wird als Privatresidenz erbaut und zeigt die feinste modernistische Architektur der Ära.', 'hotel.timeline.1992.title': 'Ein Neues Zuhause', 'hotel.timeline.1992.text': 'Die heutigen Eigentümer erwerben das Anwesen und führen eine umfassende Renovierung durch, um es in ihr Familienhaus zu verwandeln.', 'hotel.timeline.2017.title': 'Die Vision', 'hotel.timeline.2017.text': 'Die Eigentümer beschließen, dieses architektonische Juwel mit der Welt zu teilen und beginnen die Umwandlung in ein Boutique-Hotel.', 'hotel.timeline.2022.title': 'Große Eröffnung', 'hotel.timeline.2022.text': 'Im Juli 2022 öffnet Can Quetglas seine Türen als Boutique-Hotel und heißt Gäste aus aller Welt willkommen.',
         'hotel.cta.title': 'Erleben Sie Can Quetglas', 'hotel.cta.text': 'Entdecken Sie unsere Zimmer, jedes eine einzigartige Mischung aus historischem Charme und modernem Komfort.',
         'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
     },
@@ -493,7 +499,7 @@ const translations = {
         'hotel.heritage.item1': 'Originella modernistiska fresker från 1908', 'hotel.heritage.item2': 'Autentiska hydrauliska klinkergolv', 'hotel.heritage.item3': 'Tidsenliga smidesarbeten och balustrader', 'hotel.heritage.item4': 'Restaurerade glasmålningar',
         'hotel.quote.text': '"Att bo på Can Quetglas är att uppleva Mallorcas själ — dess historia, dess ljus, dess bestående skönhet."', 'hotel.quote.author': '— Can Quetglas Filosofi',
         'hotel.terreno.subtitle': 'Vår Stadsdel', 'hotel.terreno.title': 'El Terreno', 'hotel.terreno.text1': 'El Terreno var en gång den glamorösa sommarreträtten för Palmas aristokrati och internationella kändisar. I början av 1900-talet lockade denna sluttande stadsdel konstnärer, författare och bohemer som drogs till dess medelhavsträdgårdar, fantastiska utsikter och kreativa energi.', 'hotel.terreno.text2': 'Idag upplever El Terreno en renässans. Bara minuter från det historiska centret och strandpromenaden, men fridfullt avskilt från folkmassor, erbjuder det den perfekta basen för att utforska Palma.',
-        'hotel.timeline.title': 'Vår Historia', 'hotel.timeline.1908.title': 'Början', 'hotel.timeline.1908.text': 'Can Quetglas byggs som privatbostad och uppvisar erans finaste modernistiska arkitektur med sina distinkta fresker och utsmyckade detaljer.', 'hotel.timeline.1920.title': 'Guldåldern', 'hotel.timeline.1920.text': 'El Terreno blir det fashionabla sommarresmålet för Palmas elit och besökande konstnärer, med Can Quetglas i hjärtat av stadsdelens sociala liv.', 'hotel.timeline.2020.title': 'Ett Nytt Kapitel', 'hotel.timeline.2020.text': 'Efter en noggrann restaurering med respekt för dess kulturskyddsstatus öppnar Can Quetglas som boutiquehotell och delar sin skönhet och historia med gäster från hela världen.',
+        'hotel.timeline.title': 'Vår Historia', 'hotel.timeline.1908.title': 'Början', 'hotel.timeline.1908.text': 'Can Quetglas byggs som privatbostad och uppvisar erans finaste modernistiska arkitektur.', 'hotel.timeline.1992.title': 'Ett Nytt Hem', 'hotel.timeline.1992.text': 'De nuvarande ägarna förvärvar fastigheten och genomför en omfattande renovering för att förvandla den till sin familjebostad.', 'hotel.timeline.2017.title': 'Visionen', 'hotel.timeline.2017.text': 'Ägarna bestämmer sig för att dela denna arkitektoniska pärla med världen och påbörjar omvandlingen till boutiquehotell.', 'hotel.timeline.2022.title': 'Stor Öppning', 'hotel.timeline.2022.text': 'I juli 2022 öppnar Can Quetglas sina dörrar som boutiquehotell och välkomnar gäster från hela världen.',
         'hotel.cta.title': 'Upplev Can Quetglas', 'hotel.cta.text': 'Upptäck våra rum, vart och ett en unik blandning av historisk charm och modern komfort.',
         'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
     }
