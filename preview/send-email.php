@@ -1,7 +1,7 @@
 <?php
 // Configuration
 $to_email = "info@hotelcanquetglas.com";
-$recaptcha_secret = "YOUR_RECAPTCHA_SECRET_KEY"; // Replace with your reCAPTCHA secret key
+$recaptcha_secret = "6LcqfFQsAAAAAKLNrRNhclvYha2Xmn2_gb3R6fwo";
 
 // Set headers for JSON response
 header('Content-Type: application/json');
