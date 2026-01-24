@@ -105,10 +105,13 @@
         .timeline-header { text-align: center; margin-bottom: var(--spacing-lg); }
         .timeline-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; }
         .timeline-horizontal { display: flex; justify-content: space-between; position: relative; max-width: 1100px; margin: 0 auto; padding: 0 var(--spacing-md); }
-        .timeline-horizontal::before { content: ''; position: absolute; top: 85px; left: 10%; right: 10%; height: 1px; background: rgba(0,0,0,0.15); }
+        .timeline-horizontal::before { display: none; }
         .timeline-h-item { flex: 1; text-align: center; position: relative; padding: 0 var(--spacing-sm); }
         .timeline-h-year { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--color-accent); margin-bottom: var(--spacing-sm); letter-spacing: 0.05em; }
         .timeline-h-dot { width: 14px; height: 14px; background: var(--color-accent); border-radius: 50%; margin: 0 auto var(--spacing-md); position: relative; z-index: 1; }
+        .timeline-h-dot::before { content: ''; position: absolute; top: 50%; left: -150%; right: -150%; height: 1px; background: rgba(0,0,0,0.15); z-index: -1; }
+        .timeline-h-item:first-child .timeline-h-dot::before { left: 50%; }
+        .timeline-h-item:last-child .timeline-h-dot::before { right: 50%; }
         .timeline-h-content h3 { font-family: var(--font-heading); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-xs); color: var(--color-black); }
         .timeline-h-content p { color: var(--color-gray); font-size: 0.85rem; line-height: 1.7; max-width: 220px; margin: 0 auto; }
 
@@ -303,7 +306,7 @@
 <section class="feature-section">
     <div class="feature-grid reverse">
         <div class="feature-image">
-            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80" alt="Listed Building">
+            <img src="images/salonCanQuetglas.jpg" alt="Can Quetglas Salon - Heritage Interior">
         </div>
         <div class="feature-content alt">
             <p class="feature-subtitle" data-i18n="hotel.heritage.subtitle">Protected Heritage</p>
@@ -332,7 +335,7 @@
 <section class="feature-section">
     <div class="feature-grid">
         <div class="feature-image">
-            <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1200&q=80" alt="El Terreno Neighbourhood">
+            <img src="images/elTerreno.jpg" alt="El Terreno Neighbourhood">
         </div>
         <div class="feature-content">
             <p class="feature-subtitle" data-i18n="hotel.terreno.subtitle">Our Neighbourhood</p>
