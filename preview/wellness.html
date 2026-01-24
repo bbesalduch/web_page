@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wellness - Hotel Can Quetglas</title>
-    <meta name="description" content="Rooftop wellness at Hotel Can Quetglas. Yoga, pilates, massages by THINKCOSMETIC, and relaxation with views over Palma de Mallorca.">
+    <meta name="description" content="Wellness at Hotel Can Quetglas. Saltwater pool, Mediterranean garden, massages with organic Mallorcan products, yoga and pilates in Palma de Mallorca.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +33,8 @@
         .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
         .btn-outline { background: transparent; color: var(--color-black); border: 1px solid var(--color-black); }
         .btn-outline:hover { background: var(--color-black); color: var(--color-white); }
+        .btn-text { background: none; padding: 0; border-bottom: 1px solid var(--color-black); font-size: 0.85rem; letter-spacing: 0.05em; }
+        .btn-text:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
         /* Language Dropdown */
         .header-lang-dropdown { position: relative; }
@@ -59,51 +61,67 @@
         /* Wellness Intro */
         .wellness-intro { padding: var(--spacing-xl) 0; text-align: center; }
         .wellness-intro h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
-        .wellness-intro p { color: var(--color-gray); max-width: 700px; margin: 0 auto; line-height: 1.8; }
+        .wellness-intro p { color: var(--color-gray); max-width: 750px; margin: 0 auto; line-height: 1.9; font-size: 1.05rem; }
 
-        /* Services Grid */
-        .services-section { background: var(--color-white); padding: var(--spacing-xl) 0; }
-        .services-title { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-bottom: var(--spacing-lg); }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
-        .service-card { text-align: center; padding: var(--spacing-lg); }
-        .service-icon { width: 80px; height: 80px; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-black); border-radius: 50%; }
-        .service-icon svg { width: 36px; height: 36px; color: var(--color-black); }
-        .service-card h3 { font-family: var(--font-heading); font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
-        .service-card p { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; }
+        /* Feature Section - Pool & Garden */
+        .feature-section { padding: 0; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .feature-grid.reverse { direction: rtl; }
+        .feature-grid.reverse > * { direction: ltr; }
+        .feature-image { position: relative; min-height: 500px; }
+        .feature-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+        .feature-content { background: var(--color-white); padding: var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
+        .feature-content.alt { background: var(--color-cream-dark); }
+        .feature-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-gray); margin-bottom: var(--spacing-sm); }
+        .feature-content h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .feature-content p { color: var(--color-gray); margin-bottom: var(--spacing-sm); line-height: 1.8; }
+        .feature-content p:last-of-type { margin-bottom: var(--spacing-md); }
 
         @media (max-width: 900px) {
-            .services-grid { grid-template-columns: 1fr; gap: var(--spacing-md); }
+            .feature-grid, .feature-grid.reverse { grid-template-columns: 1fr; direction: ltr; }
+            .feature-image { min-height: 350px; }
         }
 
-        /* Massages Section */
-        .massages-section { padding: var(--spacing-xl) 0; }
-        .massages-header { text-align: center; margin-bottom: var(--spacing-lg); }
-        .massages-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
-        .massages-brand { color: var(--color-accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: var(--spacing-md); }
-        .massages-brand-desc { color: var(--color-gray); max-width: 600px; margin: 0 auto; font-size: 0.9rem; line-height: 1.7; }
+        /* Treatments Section */
+        .treatments-section { padding: var(--spacing-xl) 0; background: var(--color-cream); }
+        .treatments-header { text-align: center; margin-bottom: var(--spacing-lg); }
+        .treatments-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .treatments-brand { color: var(--color-accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: var(--spacing-md); }
+        .treatments-desc { color: var(--color-gray); max-width: 700px; margin: 0 auto; line-height: 1.8; }
 
-        .massage-list { max-width: 800px; margin: 0 auto; }
-        .massage-item { display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md) 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
-        .massage-item:last-child { border-bottom: none; }
-        .massage-content { flex: 1; }
-        .massage-title { font-family: var(--font-heading); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
-        .massage-duration { font-size: 0.75rem; color: var(--color-gray-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-        .massage-desc { color: var(--color-gray); font-size: 0.85rem; line-height: 1.6; }
-        .massage-price { font-family: var(--font-heading); font-size: 1.5rem; color: var(--color-black); white-space: nowrap; }
+        .treatments-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); max-width: 900px; margin: 0 auto var(--spacing-lg); }
+        .treatment-card { text-align: center; padding: var(--spacing-md); }
+        .treatment-card h3 { font-family: var(--font-heading); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--spacing-xs); }
+        .treatment-card p { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; }
 
-        .massage-notes { max-width: 800px; margin: var(--spacing-lg) auto 0; padding: var(--spacing-md); background: var(--color-cream-dark); font-size: 0.8rem; color: var(--color-gray); }
-        .massage-notes p { margin-bottom: 0.5rem; }
-        .massage-notes p:last-child { margin-bottom: 0; }
+        .treatments-cta { text-align: center; }
+        .treatments-cta p { color: var(--color-gray); margin-bottom: var(--spacing-md); font-size: 0.9rem; }
 
         @media (max-width: 600px) {
-            .massage-item { flex-direction: column; gap: var(--spacing-sm); }
-            .massage-price { align-self: flex-start; }
+            .treatments-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Activities Section */
+        .activities-section { background: var(--color-white); padding: var(--spacing-xl) 0; }
+        .activities-header { text-align: center; margin-bottom: var(--spacing-lg); }
+        .activities-header h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .activities-header p { color: var(--color-gray); max-width: 600px; margin: 0 auto; }
+
+        .activities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); max-width: 800px; margin: 0 auto; }
+        .activity-card { text-align: center; padding: var(--spacing-lg) var(--spacing-md); background: var(--color-cream); }
+        .activity-icon { width: 70px; height: 70px; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center; border: 1px solid var(--color-black); border-radius: 50%; }
+        .activity-icon svg { width: 32px; height: 32px; color: var(--color-black); }
+        .activity-card h3 { font-family: var(--font-heading); font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
+        .activity-card p { color: var(--color-gray); font-size: 0.9rem; line-height: 1.7; }
+
+        @media (max-width: 600px) {
+            .activities-grid { grid-template-columns: 1fr; }
         }
 
         /* CTA Section */
-        .wellness-cta { background: var(--color-white); padding: var(--spacing-xl) 0; text-align: center; }
+        .wellness-cta { background: var(--color-cream-dark); padding: var(--spacing-xl) 0; text-align: center; }
         .wellness-cta h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-sm); }
-        .wellness-cta p { color: var(--color-gray); margin-bottom: var(--spacing-md); }
+        .wellness-cta p { color: var(--color-gray); margin-bottom: var(--spacing-md); max-width: 500px; margin-left: auto; margin-right: auto; }
 
         /* Side Menu */
         .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
@@ -208,11 +226,11 @@
 <!-- Page Hero -->
 <section class="page-hero">
     <div class="page-hero-bg">
-        <img src="images/wellness-hero.jpg" alt="Rooftop wellness">
+        <img src="images/wellness-hero.jpg" alt="Wellness at Can Quetglas">
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-        <p class="page-hero-subtitle" data-i18n="wellness.subtitle">Rooftop Retreat</p>
+        <p class="page-hero-subtitle" data-i18n="wellness.subtitle">Relax & Restore</p>
         <h1 class="page-hero-title" data-i18n="nav.wellness">Wellness</h1>
     </div>
 </section>
@@ -220,89 +238,99 @@
 <!-- Wellness Intro -->
 <section class="wellness-intro">
     <div class="container">
-        <h2 data-i18n="wellness.intro.title">Your Private Sanctuary</h2>
-        <p data-i18n="wellness.intro.desc">Escape to our rooftop terrace, a tranquil retreat with panoramic views over Palma de Mallorca and Bellver Castle. Enjoy a refreshing drink, join a yoga or pilates class, or indulge in a relaxing massage using organic Mallorcan products.</p>
+        <h2 data-i18n="wellness.intro.title">A Sanctuary for the Senses</h2>
+        <p data-i18n="wellness.intro.desc">At Hotel Can Quetglas, wellness is woven into every corner. From the gentle embrace of our saltwater pool to the shade of century-old trees in our Mediterranean garden, every space invites you to slow down, breathe deeply, and reconnect with yourself.</p>
     </div>
 </section>
 
-<!-- Services -->
-<section class="services-section">
+<!-- Saltwater Pool & Garden -->
+<section class="feature-section">
+    <div class="feature-grid">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=900&q=80" alt="Saltwater Pool">
+        </div>
+        <div class="feature-content">
+            <p class="feature-subtitle" data-i18n="wellness.pool.subtitle">Natural Oasis</p>
+            <h2 data-i18n="wellness.pool.title">Saltwater Pool</h2>
+            <p data-i18n="wellness.pool.text1">Immerse yourself in our saltwater pool, gentler on your skin and more natural than chlorine. The mineral-rich water leaves your skin soft and refreshed, while the serene atmosphere invites you to unwind.</p>
+            <p data-i18n="wellness.pool.text2">Relax on our sun loungers, enjoy a refreshing drink from the pool bar, and let the Mallorcan sun work its magic.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Mediterranean Garden -->
+<section class="feature-section">
+    <div class="feature-grid reverse">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Mediterranean Garden">
+        </div>
+        <div class="feature-content alt">
+            <p class="feature-subtitle" data-i18n="wellness.garden.subtitle">Century-Old Beauty</p>
+            <h2 data-i18n="wellness.garden.title">Mediterranean Garden</h2>
+            <p data-i18n="wellness.garden.text1">Our garden is a living legacy, home to century-old trees that have witnessed generations of guests seeking peace and tranquility. Orange and lemon trees, bougainvillea, and native Mediterranean plants create a fragrant sanctuary.</p>
+            <p data-i18n="wellness.garden.text2">Find your perfect spot under the shade, read a book, or simply enjoy the birdsong and the gentle rustle of leaves.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Treatments Section -->
+<section class="treatments-section">
     <div class="container">
-        <h2 class="services-title" data-i18n="wellness.services.title">Rooftop Experiences</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12a6 6 0 0 0 0 12h8"/><path d="M12 2v4"/><path d="M8 4h8"/><path d="M7 8h10"/></svg>
-                </div>
-                <h3 data-i18n="wellness.service.drinks.title">Rooftop Drinks</h3>
-                <p data-i18n="wellness.service.drinks.desc">Unwind with a glass of cava or a refreshing cocktail while watching the sunset over the Mediterranean. The perfect way to end a day in Mallorca.</p>
+        <div class="treatments-header">
+            <h2 data-i18n="wellness.treatments.title">Massage & Treatments</h2>
+            <p class="treatments-brand">by THINKCOSMETIC</p>
+            <p class="treatments-desc" data-i18n="wellness.treatments.desc">Indulge in our selection of massages and treatments using Alimenta Spa Mediterráneo products, 100% organic and crafted in Mallorca with natural ingredients from the Mediterranean.</p>
+        </div>
+
+        <div class="treatments-grid">
+            <div class="treatment-card">
+                <h3 data-i18n="wellness.treatment.relaxing">Relaxing Massage</h3>
+                <p data-i18n="wellness.treatment.relaxing.desc">Full body massage with organic sweet almond oil to relieve stress and promote deep relaxation.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
+            <div class="treatment-card">
+                <h3 data-i18n="wellness.treatment.decontracting">Decontracting Massage</h3>
+                <p data-i18n="wellness.treatment.decontracting.desc">Therapeutic massage with mint and rosemary oil to release muscle tension and revitalize the body.</p>
+            </div>
+            <div class="treatment-card">
+                <h3 data-i18n="wellness.treatment.cupping">Cupping Treatment</h3>
+                <p data-i18n="wellness.treatment.cupping.desc">Ancient therapy combining suction and massage to improve circulation and promote natural healing.</p>
+            </div>
+            <div class="treatment-card">
+                <h3 data-i18n="wellness.treatment.ayurvedic">Ayurvedic Massage</h3>
+                <p data-i18n="wellness.treatment.ayurvedic.desc">Traditional Indian-inspired massage with warm almond oil to balance body, mind, and vital energy.</p>
+            </div>
+        </div>
+
+        <div class="treatments-cta">
+            <p data-i18n="wellness.treatments.note">Treatments available in our massage room, on the rooftop terrace, or in the privacy of your room.</p>
+            <a href="documents/carta-masajes.pdf" target="_blank" class="btn btn-outline" data-i18n="wellness.treatments.menu">View Treatment Menu</a>
+        </div>
+    </div>
+</section>
+
+<!-- Activities Section -->
+<section class="activities-section">
+    <div class="container">
+        <div class="activities-header">
+            <h2 data-i18n="wellness.activities.title">Wellness Activities</h2>
+            <p data-i18n="wellness.activities.desc">Enhance your stay with our selection of wellness activities designed to nurture body and mind.</p>
+        </div>
+
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
                 </div>
-                <h3 data-i18n="wellness.service.yoga.title">Yoga & Pilates</h3>
-                <p data-i18n="wellness.service.yoga.desc">Join our private yoga and pilates sessions on the rooftop terrace. Connect with your body and mind in a serene setting with breathtaking views.</p>
+                <h3 data-i18n="wellness.activity.yoga">Yoga & Pilates</h3>
+                <p data-i18n="wellness.activity.yoga.desc">Private sessions in our garden or rooftop terrace. Connect with your body in a serene setting with breathtaking views over Palma.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+            <div class="activity-card">
+                <div class="activity-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 11h1a3 3 0 0 1 0 6h-1"/><path d="M9 12a6 6 0 0 0 0 12h8"/><path d="M12 2v4"/><path d="M8 4h8"/><path d="M7 8h10"/></svg>
                 </div>
-                <h3 data-i18n="wellness.service.massage.title">Massages</h3>
-                <p data-i18n="wellness.service.massage.desc">Treat yourself to a professional massage using 100% organic products from Mallorca by THINKCOSMETIC. Available on the rooftop, in the massage room, or in your room.</p>
+                <h3 data-i18n="wellness.activity.rooftop">Rooftop Terrace</h3>
+                <p data-i18n="wellness.activity.rooftop.desc">Our rooftop offers panoramic views of Palma and Bellver Castle. The perfect spot to enjoy a sunset drink or a morning stretch.</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Massages Menu -->
-<section class="massages-section">
-    <div class="container">
-        <div class="massages-header">
-            <h2 data-i18n="wellness.massages.title">Massage Menu</h2>
-            <p class="massages-brand">by THINKCOSMETIC</p>
-            <p class="massages-brand-desc" data-i18n="wellness.massages.brand">Alimenta Spa Mediterráneo - 100% organic products crafted in Mallorca with natural ingredients from the Mediterranean.</p>
-        </div>
-
-        <div class="massage-list">
-            <div class="massage-item">
-                <div class="massage-content">
-                    <h3 class="massage-title" data-i18n="wellness.massage.relaxing.title">Relaxing Massage</h3>
-                    <p class="massage-duration">60 min</p>
-                    <p class="massage-desc" data-i18n="wellness.massage.relaxing.desc">Full body massage with 100% organic sweet almond body oil from Mallorca. A gentle treatment to relieve stress and promote deep relaxation.</p>
-                </div>
-                <div class="massage-price">95€</div>
-            </div>
-            <div class="massage-item">
-                <div class="massage-content">
-                    <h3 class="massage-title" data-i18n="wellness.massage.decontracting.title">Decontracting Massage</h3>
-                    <p class="massage-duration">60 min</p>
-                    <p class="massage-desc" data-i18n="wellness.massage.decontracting.desc">Therapeutic massage with 100% organic intense mint & rosemary oil. Ideal for releasing muscle tension and revitalizing the body.</p>
-                </div>
-                <div class="massage-price">100€</div>
-            </div>
-            <div class="massage-item">
-                <div class="massage-content">
-                    <h3 class="massage-title" data-i18n="wellness.massage.cupping.title">Cupping Treatment</h3>
-                    <p class="massage-duration">60 min</p>
-                    <p class="massage-desc" data-i18n="wellness.massage.cupping.desc">Ancient therapy combining suction and massage techniques to release deep tension, improve circulation, and promote natural healing.</p>
-                </div>
-                <div class="massage-price">100€</div>
-            </div>
-            <div class="massage-item">
-                <div class="massage-content">
-                    <h3 class="massage-title" data-i18n="wellness.massage.ayurvedic.title">Ayurvedic Massage</h3>
-                    <p class="massage-duration">60 min</p>
-                    <p class="massage-desc" data-i18n="wellness.massage.ayurvedic.desc">Traditional Indian-inspired massage with warm 100% organic sweet almond oil. Designed to balance body, mind, and vital energy.</p>
-                </div>
-                <div class="massage-price">110€</div>
-            </div>
-        </div>
-
-        <div class="massage-notes">
-            <p data-i18n="wellness.notes.vat">* All prices include VAT.</p>
-            <p data-i18n="wellness.notes.location">* Massages are available on the rooftop (+10€), in the massage room, or in your room.</p>
-            <p data-i18n="wellness.notes.cancellation">* Free cancellation up to 24h before the appointment. Later cancellations will be charged 100%.</p>
         </div>
     </div>
 </section>
@@ -311,7 +339,7 @@
 <section class="wellness-cta">
     <div class="container">
         <h2 data-i18n="wellness.cta.title">Book Your Wellness Experience</h2>
-        <p data-i18n="wellness.cta.desc">Contact us to schedule your massage, yoga or pilates session.</p>
+        <p data-i18n="wellness.cta.desc">Contact us to schedule your massage, yoga session, or to learn more about our wellness offerings.</p>
         <a href="contact.html" class="btn btn-primary" data-i18n="nav.contact">Contact</a>
     </div>
 </section>
@@ -369,80 +397,148 @@ const translations = {
         'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact',
         'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Book', 'btn.booknow': 'Book Now',
-        'wellness.subtitle': 'Rooftop Retreat',
-        'wellness.intro.title': 'Your Private Sanctuary',
-        'wellness.intro.desc': 'Escape to our rooftop terrace, a tranquil retreat with panoramic views over Palma de Mallorca and Bellver Castle. Enjoy a refreshing drink, join a yoga or pilates class, or indulge in a relaxing massage using organic Mallorcan products.',
-        'wellness.services.title': 'Rooftop Experiences',
-        'wellness.service.drinks.title': 'Rooftop Drinks', 'wellness.service.drinks.desc': 'Unwind with a glass of cava or a refreshing cocktail while watching the sunset over the Mediterranean. The perfect way to end a day in Mallorca.',
-        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Join our private yoga and pilates sessions on the rooftop terrace. Connect with your body and mind in a serene setting with breathtaking views.',
-        'wellness.service.massage.title': 'Massages', 'wellness.service.massage.desc': 'Treat yourself to a professional massage using 100% organic products from Mallorca by THINKCOSMETIC. Available on the rooftop, in the massage room, or in your room.',
-        'wellness.massages.title': 'Massage Menu', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% organic products crafted in Mallorca with natural ingredients from the Mediterranean.',
-        'wellness.massage.relaxing.title': 'Relaxing Massage', 'wellness.massage.relaxing.desc': 'Full body massage with 100% organic sweet almond body oil from Mallorca. A gentle treatment to relieve stress and promote deep relaxation.',
-        'wellness.massage.decontracting.title': 'Decontracting Massage', 'wellness.massage.decontracting.desc': 'Therapeutic massage with 100% organic intense mint & rosemary oil. Ideal for releasing muscle tension and revitalizing the body.',
-        'wellness.massage.cupping.title': 'Cupping Treatment', 'wellness.massage.cupping.desc': 'Ancient therapy combining suction and massage techniques to release deep tension, improve circulation, and promote natural healing.',
-        'wellness.massage.ayurvedic.title': 'Ayurvedic Massage', 'wellness.massage.ayurvedic.desc': 'Traditional Indian-inspired massage with warm 100% organic sweet almond oil. Designed to balance body, mind, and vital energy.',
-        'wellness.notes.vat': '* All prices include VAT.', 'wellness.notes.location': '* Massages are available on the rooftop (+10€), in the massage room, or in your room.', 'wellness.notes.cancellation': '* Free cancellation up to 24h before the appointment. Later cancellations will be charged 100%.',
-        'wellness.cta.title': 'Book Your Wellness Experience', 'wellness.cta.desc': 'Contact us to schedule your massage, yoga or pilates session.',
+        'wellness.subtitle': 'Relax & Restore',
+        'wellness.intro.title': 'A Sanctuary for the Senses',
+        'wellness.intro.desc': 'At Hotel Can Quetglas, wellness is woven into every corner. From the gentle embrace of our saltwater pool to the shade of century-old trees in our Mediterranean garden, every space invites you to slow down, breathe deeply, and reconnect with yourself.',
+        'wellness.pool.subtitle': 'Natural Oasis',
+        'wellness.pool.title': 'Saltwater Pool',
+        'wellness.pool.text1': 'Immerse yourself in our saltwater pool, gentler on your skin and more natural than chlorine. The mineral-rich water leaves your skin soft and refreshed, while the serene atmosphere invites you to unwind.',
+        'wellness.pool.text2': 'Relax on our sun loungers, enjoy a refreshing drink from the pool bar, and let the Mallorcan sun work its magic.',
+        'wellness.garden.subtitle': 'Century-Old Beauty',
+        'wellness.garden.title': 'Mediterranean Garden',
+        'wellness.garden.text1': 'Our garden is a living legacy, home to century-old trees that have witnessed generations of guests seeking peace and tranquility. Orange and lemon trees, bougainvillea, and native Mediterranean plants create a fragrant sanctuary.',
+        'wellness.garden.text2': 'Find your perfect spot under the shade, read a book, or simply enjoy the birdsong and the gentle rustle of leaves.',
+        'wellness.treatments.title': 'Massage & Treatments',
+        'wellness.treatments.desc': 'Indulge in our selection of massages and treatments using Alimenta Spa Mediterráneo products, 100% organic and crafted in Mallorca with natural ingredients from the Mediterranean.',
+        'wellness.treatment.relaxing': 'Relaxing Massage',
+        'wellness.treatment.relaxing.desc': 'Full body massage with organic sweet almond oil to relieve stress and promote deep relaxation.',
+        'wellness.treatment.decontracting': 'Decontracting Massage',
+        'wellness.treatment.decontracting.desc': 'Therapeutic massage with mint and rosemary oil to release muscle tension and revitalize the body.',
+        'wellness.treatment.cupping': 'Cupping Treatment',
+        'wellness.treatment.cupping.desc': 'Ancient therapy combining suction and massage to improve circulation and promote natural healing.',
+        'wellness.treatment.ayurvedic': 'Ayurvedic Massage',
+        'wellness.treatment.ayurvedic.desc': 'Traditional Indian-inspired massage with warm almond oil to balance body, mind, and vital energy.',
+        'wellness.treatments.note': 'Treatments available in our massage room, on the rooftop terrace, or in the privacy of your room.',
+        'wellness.treatments.menu': 'View Treatment Menu',
+        'wellness.activities.title': 'Wellness Activities',
+        'wellness.activities.desc': 'Enhance your stay with our selection of wellness activities designed to nurture body and mind.',
+        'wellness.activity.yoga': 'Yoga & Pilates',
+        'wellness.activity.yoga.desc': 'Private sessions in our garden or rooftop terrace. Connect with your body in a serene setting with breathtaking views over Palma.',
+        'wellness.activity.rooftop': 'Rooftop Terrace',
+        'wellness.activity.rooftop.desc': 'Our rooftop offers panoramic views of Palma and Bellver Castle. The perfect spot to enjoy a sunset drink or a morning stretch.',
+        'wellness.cta.title': 'Book Your Wellness Experience',
+        'wellness.cta.desc': 'Contact us to schedule your massage, yoga session, or to learn more about our wellness offerings.',
         'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
     },
     es: {
         'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
         'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas',
         'btn.book': 'Reservar', 'btn.booknow': 'Reservar Ahora',
-        'wellness.subtitle': 'Refugio en la Azotea',
-        'wellness.intro.title': 'Tu Santuario Privado',
-        'wellness.intro.desc': 'Escapa a nuestra terraza en la azotea, un refugio tranquilo con vistas panorámicas sobre Palma de Mallorca y el Castillo de Bellver. Disfruta de una bebida refrescante, únete a una clase de yoga o pilates, o date un relajante masaje con productos orgánicos mallorquines.',
-        'wellness.services.title': 'Experiencias en la Azotea',
-        'wellness.service.drinks.title': 'Copas en la Azotea', 'wellness.service.drinks.desc': 'Relájate con una copa de cava o un cóctel refrescante mientras contemplas la puesta de sol sobre el Mediterráneo. La forma perfecta de terminar un día en Mallorca.',
-        'wellness.service.yoga.title': 'Yoga y Pilates', 'wellness.service.yoga.desc': 'Únete a nuestras sesiones privadas de yoga y pilates en la terraza de la azotea. Conecta con tu cuerpo y mente en un entorno sereno con vistas impresionantes.',
-        'wellness.service.massage.title': 'Masajes', 'wellness.service.massage.desc': 'Date un capricho con un masaje profesional usando productos 100% orgánicos de Mallorca por THINKCOSMETIC. Disponible en la azotea, en la sala de masajes o en tu habitación.',
-        'wellness.massages.title': 'Carta de Masajes', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - Productos 100% orgánicos elaborados en Mallorca con ingredientes naturales del Mediterráneo.',
-        'wellness.massage.relaxing.title': 'Masaje Relajante', 'wellness.massage.relaxing.desc': 'Masaje corporal completo con aceite de almendras dulces 100% orgánico de Mallorca. Un tratamiento suave para aliviar el estrés y promover una relajación profunda.',
-        'wellness.massage.decontracting.title': 'Masaje Descontracturante', 'wellness.massage.decontracting.desc': 'Masaje terapéutico con aceite intenso de menta y romero 100% orgánico. Ideal para liberar tensiones musculares y revitalizar el cuerpo.',
-        'wellness.massage.cupping.title': 'Tratamiento con Ventosas', 'wellness.massage.cupping.desc': 'Terapia ancestral que combina succión y masaje para liberar tensiones profundas, mejorar la circulación y promover la curación natural.',
-        'wellness.massage.ayurvedic.title': 'Masaje Ayurvédico', 'wellness.massage.ayurvedic.desc': 'Masaje inspirado en la tradición india con aceite de almendras dulces caliente 100% orgánico. Diseñado para equilibrar cuerpo, mente y energía vital.',
-        'wellness.notes.vat': '* Todos los precios incluyen IVA.', 'wellness.notes.location': '* Los masajes están disponibles en la azotea (+10€), en la sala de masajes o en tu habitación.', 'wellness.notes.cancellation': '* Cancelación gratuita hasta 24h antes de la cita. Las cancelaciones posteriores se cobrarán al 100%.',
-        'wellness.cta.title': 'Reserva tu Experiencia Wellness', 'wellness.cta.desc': 'Contáctanos para programar tu masaje, clase de yoga o pilates.',
+        'wellness.subtitle': 'Relájate y Renuévate',
+        'wellness.intro.title': 'Un Santuario para los Sentidos',
+        'wellness.intro.desc': 'En Hotel Can Quetglas, el bienestar está presente en cada rincón. Desde el suave abrazo de nuestra piscina de agua salada hasta la sombra de los árboles centenarios de nuestro jardín mediterráneo, cada espacio te invita a desacelerar, respirar profundamente y reconectar contigo mismo.',
+        'wellness.pool.subtitle': 'Oasis Natural',
+        'wellness.pool.title': 'Piscina de Agua Salada',
+        'wellness.pool.text1': 'Sumérgete en nuestra piscina de agua salada, más suave para tu piel y más natural que el cloro. El agua rica en minerales deja tu piel suave y fresca, mientras que la atmósfera serena te invita a relajarte.',
+        'wellness.pool.text2': 'Relájate en nuestras tumbonas, disfruta de una bebida refrescante del pool bar y deja que el sol mallorquín haga su magia.',
+        'wellness.garden.subtitle': 'Belleza Centenaria',
+        'wellness.garden.title': 'Jardín Mediterráneo',
+        'wellness.garden.text1': 'Nuestro jardín es un legado vivo, hogar de árboles centenarios que han sido testigos de generaciones de huéspedes en busca de paz y tranquilidad. Naranjos, limoneros, buganvillas y plantas mediterráneas autóctonas crean un santuario fragante.',
+        'wellness.garden.text2': 'Encuentra tu rincón perfecto bajo la sombra, lee un libro o simplemente disfruta del canto de los pájaros y el suave susurro de las hojas.',
+        'wellness.treatments.title': 'Masajes y Tratamientos',
+        'wellness.treatments.desc': 'Déjate mimar con nuestra selección de masajes y tratamientos usando productos Alimenta Spa Mediterráneo, 100% orgánicos y elaborados en Mallorca con ingredientes naturales del Mediterráneo.',
+        'wellness.treatment.relaxing': 'Masaje Relajante',
+        'wellness.treatment.relaxing.desc': 'Masaje corporal completo con aceite de almendras dulces orgánico para aliviar el estrés y promover una relajación profunda.',
+        'wellness.treatment.decontracting': 'Masaje Descontracturante',
+        'wellness.treatment.decontracting.desc': 'Masaje terapéutico con aceite de menta y romero para liberar tensiones musculares y revitalizar el cuerpo.',
+        'wellness.treatment.cupping': 'Tratamiento con Ventosas',
+        'wellness.treatment.cupping.desc': 'Terapia ancestral que combina succión y masaje para mejorar la circulación y promover la curación natural.',
+        'wellness.treatment.ayurvedic': 'Masaje Ayurvédico',
+        'wellness.treatment.ayurvedic.desc': 'Masaje de inspiración india con aceite de almendras caliente para equilibrar cuerpo, mente y energía vital.',
+        'wellness.treatments.note': 'Tratamientos disponibles en nuestra sala de masajes, en la terraza del rooftop o en la privacidad de tu habitación.',
+        'wellness.treatments.menu': 'Ver Carta de Tratamientos',
+        'wellness.activities.title': 'Actividades de Bienestar',
+        'wellness.activities.desc': 'Enriquece tu estancia con nuestra selección de actividades de bienestar diseñadas para nutrir cuerpo y mente.',
+        'wellness.activity.yoga': 'Yoga y Pilates',
+        'wellness.activity.yoga.desc': 'Sesiones privadas en nuestro jardín o terraza del rooftop. Conecta con tu cuerpo en un entorno sereno con vistas impresionantes sobre Palma.',
+        'wellness.activity.rooftop': 'Terraza Rooftop',
+        'wellness.activity.rooftop.desc': 'Nuestro rooftop ofrece vistas panorámicas de Palma y el Castillo de Bellver. El lugar perfecto para disfrutar de una copa al atardecer o estiramientos matutinos.',
+        'wellness.cta.title': 'Reserva tu Experiencia de Bienestar',
+        'wellness.cta.desc': 'Contáctanos para programar tu masaje, sesión de yoga o para saber más sobre nuestras ofertas de bienestar.',
         'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
     },
     de: {
         'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
         'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite',
         'btn.book': 'Buchen', 'btn.booknow': 'Jetzt Buchen',
-        'wellness.subtitle': 'Dachterrassen-Rückzugsort',
-        'wellness.intro.title': 'Ihr Privates Refugium',
-        'wellness.intro.desc': 'Entfliehen Sie auf unsere Dachterrasse, ein ruhiger Rückzugsort mit Panoramablick über Palma de Mallorca und das Schloss Bellver. Genießen Sie ein erfrischendes Getränk, nehmen Sie an einer Yoga- oder Pilates-Stunde teil oder gönnen Sie sich eine entspannende Massage mit biologischen mallorquinischen Produkten.',
-        'wellness.services.title': 'Dachterrassen-Erlebnisse',
-        'wellness.service.drinks.title': 'Getränke auf der Dachterrasse', 'wellness.service.drinks.desc': 'Entspannen Sie bei einem Glas Cava oder einem erfrischenden Cocktail und beobachten Sie den Sonnenuntergang über dem Mittelmeer. Der perfekte Abschluss eines Tages auf Mallorca.',
-        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Nehmen Sie an unseren privaten Yoga- und Pilates-Sessions auf der Dachterrasse teil. Verbinden Sie sich mit Körper und Geist in einer ruhigen Umgebung mit atemberaubender Aussicht.',
-        'wellness.service.massage.title': 'Massagen', 'wellness.service.massage.desc': 'Gönnen Sie sich eine professionelle Massage mit 100% biologischen Produkten aus Mallorca von THINKCOSMETIC. Verfügbar auf der Dachterrasse, im Massageraum oder in Ihrem Zimmer.',
-        'wellness.massages.title': 'Massage-Menü', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% biologische Produkte, hergestellt auf Mallorca mit natürlichen Zutaten aus dem Mittelmeerraum.',
-        'wellness.massage.relaxing.title': 'Entspannungsmassage', 'wellness.massage.relaxing.desc': 'Ganzkörpermassage mit 100% biologischem Süßmandelöl aus Mallorca. Eine sanfte Behandlung zur Stresslinderung und tiefen Entspannung.',
-        'wellness.massage.decontracting.title': 'Dekontrakmassage', 'wellness.massage.decontracting.desc': 'Therapeutische Massage mit 100% biologischem intensivem Minz- und Rosmarinöl. Ideal zum Lösen von Muskelverspannungen und zur Revitalisierung des Körpers.',
-        'wellness.massage.cupping.title': 'Schröpfbehandlung', 'wellness.massage.cupping.desc': 'Alte Therapie, die Saugtechniken und Massage kombiniert, um tiefe Verspannungen zu lösen, die Durchblutung zu verbessern und natürliche Heilung zu fördern.',
-        'wellness.massage.ayurvedic.title': 'Ayurvedische Massage', 'wellness.massage.ayurvedic.desc': 'Traditionell indisch inspirierte Massage mit warmem 100% biologischem Süßmandelöl. Entwickelt, um Körper, Geist und Lebensenergie auszugleichen.',
-        'wellness.notes.vat': '* Alle Preise verstehen sich inkl. MwSt.', 'wellness.notes.location': '* Massagen sind auf der Dachterrasse (+10€), im Massageraum oder in Ihrem Zimmer verfügbar.', 'wellness.notes.cancellation': '* Kostenlose Stornierung bis 24h vor dem Termin. Spätere Stornierungen werden zu 100% berechnet.',
-        'wellness.cta.title': 'Buchen Sie Ihr Wellness-Erlebnis', 'wellness.cta.desc': 'Kontaktieren Sie uns, um Ihre Massage, Yoga- oder Pilates-Session zu buchen.',
+        'wellness.subtitle': 'Entspannen & Erholen',
+        'wellness.intro.title': 'Ein Refugium für die Sinne',
+        'wellness.intro.desc': 'Im Hotel Can Quetglas ist Wellness in jede Ecke eingewoben. Von der sanften Umarmung unseres Salzwasserpools bis zum Schatten der jahrhundertealten Bäume in unserem mediterranen Garten lädt jeder Raum Sie ein, langsamer zu werden, tief durchzuatmen und sich wieder mit sich selbst zu verbinden.',
+        'wellness.pool.subtitle': 'Natürliche Oase',
+        'wellness.pool.title': 'Salzwasserpool',
+        'wellness.pool.text1': 'Tauchen Sie ein in unseren Salzwasserpool, sanfter zur Haut und natürlicher als Chlor. Das mineralreiche Wasser hinterlässt Ihre Haut weich und erfrischt, während die ruhige Atmosphäre zum Entspannen einlädt.',
+        'wellness.pool.text2': 'Entspannen Sie auf unseren Sonnenliegen, genießen Sie ein erfrischendes Getränk von der Poolbar und lassen Sie die mallorquinische Sonne ihre Magie wirken.',
+        'wellness.garden.subtitle': 'Jahrhundertealte Schönheit',
+        'wellness.garden.title': 'Mediterraner Garten',
+        'wellness.garden.text1': 'Unser Garten ist ein lebendiges Erbe, Heimat jahrhundertealter Bäume, die Generationen von Gästen auf der Suche nach Frieden und Ruhe erlebt haben. Orangen- und Zitronenbäume, Bougainvillea und einheimische mediterrane Pflanzen schaffen ein duftendes Refugium.',
+        'wellness.garden.text2': 'Finden Sie Ihren perfekten Platz im Schatten, lesen Sie ein Buch oder genießen Sie einfach den Vogelgesang und das sanfte Rascheln der Blätter.',
+        'wellness.treatments.title': 'Massage & Behandlungen',
+        'wellness.treatments.desc': 'Gönnen Sie sich unsere Auswahl an Massagen und Behandlungen mit Alimenta Spa Mediterráneo Produkten, 100% biologisch und auf Mallorca mit natürlichen Zutaten aus dem Mittelmeerraum hergestellt.',
+        'wellness.treatment.relaxing': 'Entspannungsmassage',
+        'wellness.treatment.relaxing.desc': 'Ganzkörpermassage mit biologischem Süßmandelöl zur Stresslinderung und tiefen Entspannung.',
+        'wellness.treatment.decontracting': 'Dekontrakmassage',
+        'wellness.treatment.decontracting.desc': 'Therapeutische Massage mit Minz- und Rosmarinöl zum Lösen von Muskelverspannungen und zur Revitalisierung.',
+        'wellness.treatment.cupping': 'Schröpfbehandlung',
+        'wellness.treatment.cupping.desc': 'Alte Therapie, die Saugtechniken und Massage kombiniert, um die Durchblutung zu verbessern und natürliche Heilung zu fördern.',
+        'wellness.treatment.ayurvedic': 'Ayurvedische Massage',
+        'wellness.treatment.ayurvedic.desc': 'Traditionell indisch inspirierte Massage mit warmem Mandelöl zum Ausgleich von Körper, Geist und Lebensenergie.',
+        'wellness.treatments.note': 'Behandlungen verfügbar im Massageraum, auf der Dachterrasse oder in der Privatsphäre Ihres Zimmers.',
+        'wellness.treatments.menu': 'Behandlungsmenü Ansehen',
+        'wellness.activities.title': 'Wellness-Aktivitäten',
+        'wellness.activities.desc': 'Bereichern Sie Ihren Aufenthalt mit unserer Auswahl an Wellness-Aktivitäten für Körper und Geist.',
+        'wellness.activity.yoga': 'Yoga & Pilates',
+        'wellness.activity.yoga.desc': 'Private Sessions in unserem Garten oder auf der Dachterrasse. Verbinden Sie sich mit Ihrem Körper in einer ruhigen Umgebung mit atemberaubendem Blick über Palma.',
+        'wellness.activity.rooftop': 'Dachterrasse',
+        'wellness.activity.rooftop.desc': 'Unsere Dachterrasse bietet Panoramablick auf Palma und das Schloss Bellver. Der perfekte Ort für einen Drink bei Sonnenuntergang oder morgendliche Dehnübungen.',
+        'wellness.cta.title': 'Buchen Sie Ihr Wellness-Erlebnis',
+        'wellness.cta.desc': 'Kontaktieren Sie uns, um Ihre Massage, Yoga-Session oder mehr über unser Wellness-Angebot zu erfahren.',
         'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
     },
     sv: {
         'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
         'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit',
         'btn.book': 'Boka', 'btn.booknow': 'Boka Nu',
-        'wellness.subtitle': 'Takterrass-retreat',
-        'wellness.intro.title': 'Din Privata Fristad',
-        'wellness.intro.desc': 'Fly till vår takterrass, en fridfull reträtt med panoramautsikt över Palma de Mallorca och slottet Bellver. Njut av en uppfriskande drink, delta i en yoga- eller pilatesklass, eller unna dig en avkopplande massage med ekologiska mallorquinska produkter.',
-        'wellness.services.title': 'Takterrass-upplevelser',
-        'wellness.service.drinks.title': 'Drinkar på Takterrassen', 'wellness.service.drinks.desc': 'Koppla av med ett glas cava eller en uppfriskande cocktail medan du tittar på solnedgången över Medelhavet. Det perfekta sättet att avsluta en dag på Mallorca.',
-        'wellness.service.yoga.title': 'Yoga & Pilates', 'wellness.service.yoga.desc': 'Delta i våra privata yoga- och pilatessessioner på takterrassen. Förbind dig med din kropp och själ i en fridfull miljö med hänförande utsikt.',
-        'wellness.service.massage.title': 'Massager', 'wellness.service.massage.desc': 'Unna dig en professionell massage med 100% ekologiska produkter från Mallorca av THINKCOSMETIC. Tillgänglig på takterrassen, i massagerummet eller på ditt rum.',
-        'wellness.massages.title': 'Massagemeny', 'wellness.massages.brand': 'Alimenta Spa Mediterráneo - 100% ekologiska produkter tillverkade på Mallorca med naturliga ingredienser från Medelhavet.',
-        'wellness.massage.relaxing.title': 'Avkopplande Massage', 'wellness.massage.relaxing.desc': 'Helkroppsmassage med 100% ekologisk söt mandelolja från Mallorca. En skonsam behandling för att lindra stress och främja djup avslappning.',
-        'wellness.massage.decontracting.title': 'Avspännande Massage', 'wellness.massage.decontracting.desc': 'Terapeutisk massage med 100% ekologisk intensiv mynta- och rosmarinolja. Idealisk för att släppa muskelspänningar och revitalisera kroppen.',
-        'wellness.massage.cupping.title': 'Koppningsbehandling', 'wellness.massage.cupping.desc': 'Uråldrig terapi som kombinerar sugning och massagetekniker för att frigöra djupa spänningar, förbättra cirkulationen och främja naturlig läkning.',
-        'wellness.massage.ayurvedic.title': 'Ayurvedisk Massage', 'wellness.massage.ayurvedic.desc': 'Traditionellt indiskt inspirerad massage med varm 100% ekologisk söt mandelolja. Designad för att balansera kropp, sinne och livsenergi.',
-        'wellness.notes.vat': '* Alla priser inkluderar moms.', 'wellness.notes.location': '* Massager finns tillgängliga på takterrassen (+10€), i massagerummet eller på ditt rum.', 'wellness.notes.cancellation': '* Gratis avbokning upp till 24h före mötet. Senare avbokningar debiteras 100%.',
-        'wellness.cta.title': 'Boka Din Wellness-upplevelse', 'wellness.cta.desc': 'Kontakta oss för att boka din massage, yoga- eller pilatessession.',
+        'wellness.subtitle': 'Koppla Av & Återhämta',
+        'wellness.intro.title': 'En Fristad för Sinnena',
+        'wellness.intro.desc': 'På Hotel Can Quetglas är wellness invävt i varje hörn. Från den milda omfamningen av vår saltvattenpool till skuggan av hundraåriga träd i vår medelhavsträdgård, varje utrymme inbjuder dig att sakta ner, andas djupt och återknyta kontakten med dig själv.',
+        'wellness.pool.subtitle': 'Naturlig Oas',
+        'wellness.pool.title': 'Saltvattenpool',
+        'wellness.pool.text1': 'Dyk ner i vår saltvattenpool, mildare för huden och mer naturlig än klor. Det mineralrika vattnet lämnar din hud mjuk och uppfriskad, medan den fridfulla atmosfären inbjuder dig att koppla av.',
+        'wellness.pool.text2': 'Koppla av på våra solstolar, njut av en uppfriskande drink från poolbaren och låt den mallorquinska solen göra sin magi.',
+        'wellness.garden.subtitle': 'Hundraårig Skönhet',
+        'wellness.garden.title': 'Medelhavsträdgård',
+        'wellness.garden.text1': 'Vår trädgård är ett levande arv, hem för hundraåriga träd som har bevittnat generationer av gäster som sökt frid och lugn. Apelsin- och citronträd, bougainvillea och inhemska medelhavsväxter skapar en doftande fristad.',
+        'wellness.garden.text2': 'Hitta din perfekta plats i skuggan, läs en bok eller njut helt enkelt av fågelsången och det mjuka prasslet från löven.',
+        'wellness.treatments.title': 'Massage & Behandlingar',
+        'wellness.treatments.desc': 'Unna dig vårt urval av massager och behandlingar med Alimenta Spa Mediterráneo-produkter, 100% ekologiska och tillverkade på Mallorca med naturliga ingredienser från Medelhavet.',
+        'wellness.treatment.relaxing': 'Avkopplande Massage',
+        'wellness.treatment.relaxing.desc': 'Helkroppsmassage med ekologisk söt mandelolja för att lindra stress och främja djup avslappning.',
+        'wellness.treatment.decontracting': 'Avspännande Massage',
+        'wellness.treatment.decontracting.desc': 'Terapeutisk massage med mynta- och rosmarinolja för att frigöra muskelspänningar och revitalisera kroppen.',
+        'wellness.treatment.cupping': 'Koppningsbehandling',
+        'wellness.treatment.cupping.desc': 'Uråldrig terapi som kombinerar sugning och massage för att förbättra cirkulationen och främja naturlig läkning.',
+        'wellness.treatment.ayurvedic': 'Ayurvedisk Massage',
+        'wellness.treatment.ayurvedic.desc': 'Traditionellt indiskt inspirerad massage med varm mandelolja för att balansera kropp, sinne och livsenergi.',
+        'wellness.treatments.note': 'Behandlingar tillgängliga i vårt massagerum, på takterrassen eller i ditt rums avskildhet.',
+        'wellness.treatments.menu': 'Se Behandlingsmeny',
+        'wellness.activities.title': 'Wellness-aktiviteter',
+        'wellness.activities.desc': 'Berika din vistelse med vårt urval av wellness-aktiviteter designade för att vårda kropp och själ.',
+        'wellness.activity.yoga': 'Yoga & Pilates',
+        'wellness.activity.yoga.desc': 'Privata sessioner i vår trädgård eller på takterrassen. Förbind dig med din kropp i en fridfull miljö med hänförande utsikt över Palma.',
+        'wellness.activity.rooftop': 'Takterrass',
+        'wellness.activity.rooftop.desc': 'Vår takterrass erbjuder panoramautsikt över Palma och slottet Bellver. Den perfekta platsen för en drink i solnedgången eller morgonstretch.',
+        'wellness.cta.title': 'Boka Din Wellness-upplevelse',
+        'wellness.cta.desc': 'Kontakta oss för att boka din massage, yogasession eller för att lära dig mer om vårt wellness-utbud.',
         'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
     }
 };
