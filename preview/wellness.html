@@ -52,7 +52,7 @@
         /* Page Hero */
         .page-hero { position: relative; height: 60vh; min-height: 450px; margin-top: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .page-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .page-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .page-hero-bg img, .page-hero-bg video { width: 100%; height: 100%; object-fit: cover; }
         .page-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
         .page-hero-content { position: relative; z-index: 2; text-align: center; color: var(--color-white); }
         .page-hero-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: var(--spacing-sm); }
@@ -226,7 +226,9 @@
 <!-- Page Hero -->
 <section class="page-hero">
     <div class="page-hero-bg">
-        <img src="images/wellness-hero.jpg" alt="Wellness at Can Quetglas">
+        <video autoplay muted loop playsinline>
+            <source src="videos/wellness.mp4" type="video/mp4">
+        </video>
     </div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
