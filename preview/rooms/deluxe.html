@@ -237,7 +237,7 @@
         <a href="#" class="lang-active">EN</a>
         <a href="#">ES</a>
         <a href="#">DE</a>
-        <a href="#">SE</a>
+        <a href="#">SV</a>
     </div>
 </nav>
 
@@ -260,7 +260,7 @@
                         <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
                         <a href="#" class="header-lang" data-lang="es">ES</a>
                         <a href="#" class="header-lang" data-lang="de">DE</a>
-                        <a href="#" class="header-lang" data-lang="sv">SE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SV</a>
                     </div>
                 </div>
             </div>
@@ -511,12 +511,12 @@ function setLanguage(lang) {
         if (translations[lang][key]) el.innerHTML = translations[lang][key];
     });
     document.querySelectorAll('.side-menu-lang a').forEach(a => {
-        const displayLang = lang === 'sv' ? 'SE' : lang.toUpperCase();
+        const displayLang = lang.toUpperCase();
         a.classList.toggle('lang-active', a.textContent === displayLang);
     });
     document.querySelectorAll('.header-lang').forEach(a => a.classList.toggle('lang-active', a.dataset.lang === lang));
     const currentLangText = document.getElementById('current-lang-text');
-    if (currentLangText) currentLangText.textContent = lang === 'sv' ? 'SE' : lang.toUpperCase();
+    if (currentLangText) currentLangText.textContent = lang.toUpperCase();
     localStorage.setItem('canquetglas-lang', lang);
 }
 
@@ -534,7 +534,7 @@ menuOverlay.addEventListener('click', closeMenu);
 document.querySelectorAll('.submenu-toggle').forEach(toggle => { toggle.addEventListener('click', function(e) { e.preventDefault(); this.parentElement.classList.toggle('submenu-open'); }); });
 document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link => { link.addEventListener('click', closeMenu); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-document.querySelectorAll('.side-menu-lang a').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); let lang = this.textContent.toLowerCase(); if (lang === 'se') lang = 'sv'; setLanguage(lang); }); });
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); const lang = this.textContent.toLowerCase(); setLanguage(lang); }); });
 document.querySelectorAll('.header-lang').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); }); });
 const savedLang = localStorage.getItem('canquetglas-lang');
 if (savedLang && translations[savedLang]) setLanguage(savedLang);
