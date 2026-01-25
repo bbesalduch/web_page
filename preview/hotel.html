@@ -594,5 +594,21 @@ dots.forEach((dot, i) => { dot.addEventListener('click', () => { stopSlideshow()
 startSlideshow();
 </script>
 
+<script type="text/javascript">
+(function(){
+    var d=document;
+    var s=d.createElement("script");
+    s.src="https://gpthelp.ai/plugin/v1/index.js";
+    s.async=true;
+    s.onload=function(){
+        var gptHelp=document.createElement("gpt-help");
+        gptHelp.id="1f814932-82c5-40e7-b626-3ab8ee52f2b5";
+        gptHelp.setAttribute("mode", "bubble");
+        gptHelp.setAttribute("position", "bottom-left");
+        document.body.appendChild(gptHelp);
+    };
+    d.getElementsByTagName("head")[0].appendChild(s);
+})();
+</script>
 </body>
 </html>
