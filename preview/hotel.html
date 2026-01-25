@@ -95,6 +95,10 @@
             .feature-image { min-height: 350px; }
         }
 
+        /* Feature Video */
+        .feature-video { position: relative; overflow: hidden; }
+        .feature-video video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+
         /* Quote Section */
         .quote-section { padding: var(--spacing-xl) 0; background: var(--color-black); text-align: center; }
         .quote-text { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--color-white); font-style: italic; max-width: 900px; margin: 0 auto var(--spacing-md); line-height: 1.6; letter-spacing: 0.03em; }
@@ -334,8 +338,10 @@
 <!-- El Terreno Section -->
 <section class="feature-section">
     <div class="feature-grid">
-        <div class="feature-image">
-            <img src="images/elTerreno.jpg" alt="El Terreno Neighbourhood">
+        <div class="feature-image feature-video">
+            <video autoplay muted loop playsinline id="terreno-video">
+                <source src="videos/castillo_pingpong.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="feature-content">
             <p class="feature-subtitle" data-i18n="hotel.terreno.subtitle">Our Neighbourhood</p>
