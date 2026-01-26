@@ -6,6 +6,11 @@
     <title>Hotel Can Quetglas - Boutique Hotel Palma de Mallorca</title>
     <meta name="description" content="Your home away from home in Palma de Mallorca - Hotel boutique en un edificio modernista de 1908">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,7 +256,7 @@
             font-size: clamp(3rem, 10vw, 7rem);
             color: var(--color-white);
             letter-spacing: 0.05em;
-            font-weight: normal;
+            font-weight: 100;
             margin-bottom: var(--spacing-sm);
             animation: fadeInUp 1s ease 0.5s forwards;
             opacity: 0;
@@ -793,9 +798,511 @@
         body.menu-open {
             overflow: hidden;
         }
+
+        /* ============================================
+           BOOKING POPUP
+           ============================================ */
+        .booking-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+        }
+        .booking-popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .booking-popup {
+            background: var(--color-white);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .booking-popup-overlay.active .booking-popup {
+            transform: translateY(0);
+        }
+        .booking-popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-black);
+            padding: 8px;
+            z-index: 10;
+            transition: color 0.3s;
+        }
+        .booking-popup-close:hover {
+            color: var(--color-accent);
+        }
+        .booking-popup-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .booking-popup-left {
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--color-cream-dark);
+        }
+        .booking-popup-logo {
+            max-width: 240px;
+            width: 100%;
+            margin-bottom: var(--spacing-xs);
+        }
+        .booking-popup-tagline {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            font-style: italic;
+            max-width: 240px;
+        }
+        .booking-popup-form {
+            width: 100%;
+            max-width: 320px;
+        }
+        .booking-popup-row {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--color-cream-dark);
+            cursor: pointer;
+        }
+        .booking-popup-row svg {
+            width: 20px;
+            height: 20px;
+            color: var(--color-gray);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .booking-popup-row-content {
+            flex: 1;
+        }
+        .booking-popup-label {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2px;
+        }
+        .booking-popup-value {
+            font-size: 0.95rem;
+            color: var(--color-black);
+            font-weight: 400;
+        }
+        /* Calendar styles */
+        .booking-calendar {
+            display: none;
+            position: absolute;
+            background: var(--color-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 100;
+            padding: var(--spacing-sm);
+            min-width: 280px;
+        }
+        .booking-calendar.active {
+            display: block;
+        }
+        .booking-calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+        .booking-calendar-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .booking-calendar-nav {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+            color: var(--color-black);
+        }
+        .booking-calendar-nav:hover {
+            color: var(--color-accent);
+        }
+        .booking-calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            text-align: center;
+        }
+        .booking-calendar-day-name {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+            padding: 8px 0;
+            text-transform: uppercase;
+        }
+        .booking-calendar-day {
+            padding: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            background: none;
+            transition: all 0.2s;
+        }
+        .booking-calendar-day:hover:not(.disabled):not(.selected) {
+            background: var(--color-cream);
+        }
+        .booking-calendar-day.disabled {
+            color: var(--color-gray-light);
+            cursor: default;
+        }
+        .booking-calendar-day.selected {
+            background: var(--color-black);
+            color: var(--color-white);
+        }
+        .booking-calendar-day.in-range {
+            background: var(--color-cream-dark);
+        }
+        .booking-calendar-day.today {
+            font-weight: 600;
+        }
+        /* Room sections */
+        .booking-rooms-container {
+            width: 100%;
+        }
+        .booking-room-section {
+            border: 1px solid var(--color-cream-dark);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+        }
+        .booking-room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xs);
+        }
+        .booking-room-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-black);
+        }
+        .booking-room-remove {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-gray);
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            transition: color 0.2s;
+        }
+        .booking-room-remove:hover {
+            color: var(--color-black);
+        }
+        .booking-guest-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .booking-guest-row:not(:last-child) {
+            border-bottom: 1px solid var(--color-cream);
+        }
+        .booking-guest-label {
+            font-size: 0.85rem;
+            color: var(--color-black);
+        }
+        .booking-guest-note {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+        }
+        /* Rooms dropdown */
+        .booking-rooms-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 100;
+            padding: var(--spacing-sm);
+        }
+        .booking-rooms-dropdown.active {
+            display: block;
+        }
+        /* Adults selector */
+        .booking-adults-selector {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        .booking-adults-btn {
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--color-gray-light);
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .booking-adults-btn:hover {
+            border-color: var(--color-black);
+        }
+        .booking-adults-btn:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        .booking-adults-count {
+            font-size: 0.9rem;
+            min-width: 24px;
+            text-align: center;
+        }
+        .booking-adults-note {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+            margin-top: 4px;
+        }
+        .booking-add-room {
+            width: 100%;
+            padding: 10px;
+            background: none;
+            border: 1px dashed var(--color-gray-light);
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            color: var(--color-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.2s;
+            margin-bottom: var(--spacing-sm);
+        }
+        .booking-add-room:hover {
+            border-color: var(--color-black);
+            color: var(--color-black);
+        }
+        .booking-add-room:disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+        /* Promo code */
+        .booking-promo-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid var(--color-cream-dark);
+            padding: 8px 0;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            background: transparent;
+            outline: none;
+        }
+        .booking-promo-input:focus {
+            border-bottom-color: var(--color-black);
+        }
+        .booking-promo-input::placeholder {
+            color: var(--color-gray-light);
+        }
+        .booking-popup-search {
+            width: 100%;
+            max-width: 300px;
+            margin-top: var(--spacing-md);
+            padding: 1rem;
+            background: var(--color-black);
+            color: var(--color-white);
+            border: none;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .booking-popup-search:hover {
+            background: var(--color-dark);
+        }
+        .booking-popup-right {
+            padding: var(--spacing-lg);
+            background: var(--color-cream);
+        }
+        .booking-popup-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.3;
+        }
+        .booking-benefit {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        .booking-benefit-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .booking-benefit-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--color-black);
+        }
+        .booking-benefit-content h4 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-black);
+            margin-bottom: 4px;
+        }
+        .booking-benefit-content p {
+            font-size: 0.85rem;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .booking-popup-content {
+                grid-template-columns: 1fr;
+            }
+            .booking-popup-left {
+                border-right: none;
+                border-bottom: 1px solid var(--color-cream-dark);
+                padding: var(--spacing-md);
+            }
+            .booking-popup-right {
+                padding: var(--spacing-md);
+            }
+            .booking-popup-logo {
+                max-width: 200px;
+            }
+            .booking-popup-title {
+                font-size: 1.3rem;
+            }
+        }
     </style>
 </head>
 <body>
+
+<!-- Booking Popup -->
+<div class="booking-popup-overlay" id="booking-popup-overlay">
+    <div class="booking-popup">
+        <button class="booking-popup-close" id="booking-popup-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="booking-popup-content">
+            <div class="booking-popup-left">
+                <img src="images/logo.png" alt="Can Quetglas" class="booking-popup-logo">
+                <p class="booking-popup-tagline" data-i18n="popup.tagline">Your home away from home in Palma de Mallorca</p>
+
+                <div class="booking-popup-form">
+                    <!-- When / Calendar -->
+                    <div class="booking-popup-row" id="booking-date-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.when">When</div>
+                            <div class="booking-popup-value" id="popup-dates">Select dates</div>
+                        </div>
+                        <div class="booking-calendar" id="booking-calendar"></div>
+                    </div>
+
+                    <!-- Who / Rooms -->
+                    <div class="booking-popup-row" id="booking-who-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.who">Who</div>
+                            <div class="booking-popup-value" id="popup-who-summary">2 adults, 1 room</div>
+                        </div>
+                        <div class="booking-rooms-dropdown" id="booking-rooms-dropdown">
+                            <div class="booking-rooms-container" id="booking-rooms-container">
+                                <!-- Room sections will be dynamically generated -->
+                            </div>
+                            <button class="booking-add-room" id="booking-add-room" data-i18n="popup.addroom">+ Add Room</button>
+                        </div>
+                    </div>
+
+                    <!-- Promotion Code -->
+                    <div class="booking-popup-row" style="cursor: default;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><line x1="7" y1="17" x2="17" y2="7"/><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.promotion">Promotion</div>
+                            <input type="text" class="booking-promo-input" id="promo-code" data-i18n-placeholder="popup.code" placeholder="Code">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="booking-popup-search" id="booking-popup-search" data-i18n="popup.search">Search</button>
+            </div>
+            <div class="booking-popup-right">
+                <h3 class="booking-popup-title" data-i18n="popup.title">Benefits of Booking on Our Website</h3>
+
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.breakfast">Breakfast Included</h4>
+                        <p data-i18n="popup.breakfast.desc">Enjoy an exquisite experience with local products</p>
+                    </div>
+                </div>
+
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.bestrate">Best Rate Guaranteed</h4>
+                        <p data-i18n="popup.bestrate.desc">We offer you the lowest price available for your stay, we guarantee it</p>
+                    </div>
+                </div>
+
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.welcome">Welcome Drink</h4>
+                        <p data-i18n="popup.welcome.desc">Complimentary welcome drink upon arrival</p>
+                    </div>
+                </div>
+
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.preferred">Be a Preferred Guest</h4>
+                        <p data-i18n="popup.preferred.desc">Early check-in (subject to availability). Room assignment preference</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Side Menu Overlay -->
 <div class="menu-overlay" id="menu-overlay"></div>
@@ -807,7 +1314,7 @@
     </button>
 
     <ul class="side-menu-nav">
-        <li><a href="#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+        <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
         <li class="has-submenu">
             <a href="#" class="submenu-toggle"><span data-i18n="nav.rooms">Rooms</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
             <ul class="submenu">
@@ -821,8 +1328,8 @@
         <li class="has-submenu">
             <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
             <ul class="submenu">
-                <li><a href="#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
-                <li><a href="#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                <li><a href="breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li>
             </ul>
         </li>
         <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
@@ -852,7 +1359,7 @@
 
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <div class="header-cta">
-                    <a href="#" class="btn" data-i18n="btn.book">Book</a>
+                    <a href="#" class="btn" data-booking-link data-i18n="btn.book">Book</a>
                 </div>
                 <div class="header-lang-dropdown">
                     <div class="header-lang-current">
@@ -887,12 +1394,12 @@
         <h1 class="hero-logo">Can Quetglas</h1>
         <p class="hero-tagline" data-i18n="hero.tagline">Urban Boutique Haven</p>
         <div class="hero-cta">
-            <a href="#" class="btn btn-light" data-i18n="hero.discover">Discover</a>
+            <a href="hotel.html" class="btn btn-light" data-i18n="hero.discover">Discover</a>
         </div>
     </div>
-    <div class="hero-booking" data-i18n="hero.booking">
+    <a href="#" class="hero-booking" data-booking-link data-i18n="hero.booking" style="text-decoration: none; display: block;">
         Book now for exclusive benefits
-    </div>
+    </a>
 </section>
 
 <!-- Intro -->
@@ -960,13 +1467,13 @@
     <div class="container">
         <div class="legacy-content">
             <div class="legacy-image fade-in">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80" alt="Hotel Can Quetglas">
+                <img src="images/legacy.jpg" alt="Hotel Can Quetglas">
             </div>
             <div class="legacy-text fade-in">
-                <h2 data-i18n="legacy.title">Enduring Legacy</h2>
-                <p data-i18n="legacy.text1">A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, local art galleries, and the bohemian spirit of 1960s Palma.</p>
+                <h2 data-i18n="legacy.title">Lasting Heritage</h2>
+                <p data-i18n="legacy.text1">A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, the pine forest of Bellver Castle, and the bohemian spirit of 1960s Palma.</p>
                 <p data-i18n="legacy.text2">Our spaces feature iconic design pieces and 9 rooms embodying a minimalist aesthetic enhanced with artisanal Mallorcan touches.</p>
-                <a href="#" class="btn-text" data-i18n="legacy.more">Learn More</a>
+                <a href="hotel.html" class="btn-text" data-i18n="legacy.more">Learn More</a>
             </div>
         </div>
     </div>
@@ -979,12 +1486,12 @@
             <h2 data-i18n="breakfast.title">Breakfast</h2>
             <p data-i18n="breakfast.desc">Start your day with our generous breakfast selection, featuring local Mallorcan products and Mediterranean flavors. Served in our garden terrace or by the pool.</p>
             <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="breakfast.continental"><strong>Continental:</strong> Fresh pastries · Artisan breads · Local jams & honey</p>
-            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="breakfast.hot"><strong>Hot dishes:</strong> Eggs to order · Pancakes · Fresh fruit</p>
+            <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="breakfast.hot"><strong>Hot dishes:</strong> Scrambled eggs · Pancakes</p>
             <p style="font-size: 0.9rem;" data-i18n="breakfast.beverages"><strong>Beverages:</strong> Fresh juices · Coffee · Tea selection</p>
-            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.viewmenu">View Menu</a>
+            <a href="breakfast.html" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.learnmore">Learn More</a>
         </div>
         <div class="experience-image fade-in">
-            <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=900&q=80" alt="Breakfast">
+            <img src="images/breakfast.jpg" alt="Breakfast">
         </div>
     </div>
 </section>
@@ -993,14 +1500,14 @@
 <section class="section section-white" id="poolbar" style="padding: 0;">
     <div class="experience-grid">
         <div class="experience-image fade-in">
-            <img src="https://images.unsplash.com/photo-1572331165267-854da2b10ccc?w=900&q=80" alt="Snack Bar">
+            <img src="images/snackbar.jpg" alt="Snack Bar" style="object-fit: cover;">
         </div>
         <div class="experience-content fade-in" style="background: var(--color-white);">
             <h2 data-i18n="snackbar.title">Snack Bar</h2>
             <p data-i18n="snackbar.desc">Enjoy our selection of Mediterranean tapas by the saltwater pool, surrounded by our lush garden. The perfect place to unwind under the Mallorcan sun.</p>
             <p style="font-size: 0.9rem; margin-bottom: var(--spacing-xs);" data-i18n="snackbar.tapas"><strong>Tapas:</strong> Artisan cheese board · Ibérico ham · Nachos with guacamole</p>
-            <p style="font-size: 0.9rem;" data-i18n="snackbar.snacks"><strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Fresh salads</p>
-            <a href="#" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.viewmenu">View Menu</a>
+            <p style="font-size: 0.9rem;" data-i18n="snackbar.snacks"><strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Smoothies</p>
+            <a href="snackbar.html" class="btn-text" style="margin-top: var(--spacing-md);" data-i18n="btn.learnmore">Learn More</a>
         </div>
     </div>
 </section>
@@ -1048,7 +1555,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     <div><strong>Email</strong>info@hotelcanquetglas.com</div>
                 </div>
-                <a href="#" class="btn btn-outline" style="margin-top: var(--spacing-md);" data-i18n="location.directions">Get Directions</a>
+                <a href="https://www.google.com/maps?q=Hotel+Can+Quetglas+Palma+de+Mallorca" target="_blank" class="btn btn-outline" style="margin-top: var(--spacing-md);" data-i18n="location.directions">Get Directions</a>
             </div>
             <div class="location-map fade-in">
                 <iframe src="https://www.google.com/maps?q=Hotel+Can+Quetglas,+Palma+de+Mallorca&output=embed" allowfullscreen="" loading="lazy"></iframe>
@@ -1065,7 +1572,7 @@
             <p class="section-description" style="margin-bottom: var(--spacing-lg);" data-i18n="cta.desc">
                 Experience the perfect blend of history, design and Mediterranean hospitality in the heart of Palma de Mallorca.
             </p>
-            <a href="#" class="btn btn-primary" data-i18n="btn.booknow">Book Now</a>
+            <a href="#" class="btn btn-primary" data-booking-link data-i18n="btn.booknow">Book Now</a>
         </div>
     </div>
 </section>
@@ -1084,7 +1591,7 @@
             <div class="footer-nav">
                 <h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4>
                 <ul>
-                    <li><a href="#hotel" data-i18n="nav.hotel">The Hotel</a></li>
+                    <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
                     <li><a href="#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
                     <li><a href="#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
                     <li><a href="#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
@@ -1148,6 +1655,7 @@ const translations = {
         'btn.book': 'Book',
         'btn.booknow': 'Book Now',
         'btn.viewmenu': 'View Menu',
+        'btn.learnmore': 'Learn More',
         'btn.discover': 'Discover More',
         'btn.seeroom': 'See Room',
 
@@ -1169,8 +1677,8 @@ const translations = {
 
 
         // Legacy
-        'legacy.title': 'Enduring Legacy',
-        'legacy.text1': 'A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, local art galleries, and the bohemian spirit of 1960s Palma.',
+        'legacy.title': 'Lasting Heritage',
+        'legacy.text1': 'A 1908 modernist palace designed by a disciple of Gaudí, standing as the cultural pulse of El Terreno, surrounded by century-old trees, the pine forest of Bellver Castle, and the bohemian spirit of 1960s Palma.',
         'legacy.text2': 'Our spaces feature iconic design pieces and 9 rooms embodying a minimalist aesthetic enhanced with artisanal Mallorcan touches.',
         'legacy.more': 'Learn More',
 
@@ -1178,14 +1686,14 @@ const translations = {
         'breakfast.title': 'Breakfast',
         'breakfast.desc': 'Start your day with our generous breakfast selection, featuring local Mallorcan products and Mediterranean flavors. Served in our garden terrace or by the pool.',
         'breakfast.continental': '<strong>Continental:</strong> Fresh pastries · Artisan breads · Local jams & honey',
-        'breakfast.hot': '<strong>Hot dishes:</strong> Eggs to order · Pancakes · Fresh fruit',
+        'breakfast.hot': '<strong>Hot dishes:</strong> Scrambled eggs · Pancakes',
         'breakfast.beverages': '<strong>Beverages:</strong> Fresh juices · Coffee · Tea selection',
 
         // Snack Bar
         'snackbar.title': 'Snack Bar',
         'snackbar.desc': 'Enjoy our selection of Mediterranean tapas by the saltwater pool, surrounded by our lush garden. The perfect place to unwind under the Mallorcan sun.',
         'snackbar.tapas': '<strong>Tapas:</strong> Artisan cheese board · Ibérico ham · Nachos with guacamole',
-        'snackbar.snacks': '<strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Fresh salads',
+        'snackbar.snacks': '<strong>Snacks:</strong> Homemade pizzas · Gourmet sandwiches · Smoothies',
 
         // Wellness
         'wellness.subtitle': 'Wellness',
@@ -1212,7 +1720,27 @@ const translations = {
         'footer.info': 'Info',
         'footer.privacy': 'Privacy Policy',
         'footer.terms': 'Terms',
-        'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
+        'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.',
+
+        // Booking Popup
+        'popup.tagline': 'Your home away from home in Palma de Mallorca',
+        'popup.when': 'When',
+        'popup.who': 'Who',
+        'popup.adults': 'adults',
+        'popup.adultsonly': 'Adults only +14',
+        'popup.addroom': '+ Add Room',
+        'popup.promotion': 'Promotion',
+        'popup.code': 'Code',
+        'popup.search': 'Search',
+        'popup.title': 'Benefits of Booking on Our Website',
+        'popup.breakfast': 'Breakfast Included',
+        'popup.breakfast.desc': 'Enjoy an exquisite experience with local products',
+        'popup.bestrate': 'Best Rate Guaranteed',
+        'popup.bestrate.desc': 'We offer you the lowest price available for your stay, we guarantee it',
+        'popup.welcome': 'Welcome Drink',
+        'popup.welcome.desc': 'Complimentary welcome drink upon arrival',
+        'popup.preferred': 'Be a Preferred Guest',
+        'popup.preferred.desc': 'Early check-in (subject to availability). Room assignment preference'
     },
     es: {
         // Navigation
@@ -1236,6 +1764,7 @@ const translations = {
         'btn.book': 'Reservar',
         'btn.booknow': 'Reservar Ahora',
         'btn.viewmenu': 'Ver Menú',
+        'btn.learnmore': 'Saber Más',
         'btn.discover': 'Descubrir Más',
         'btn.seeroom': 'Ver Habitación',
 
@@ -1257,8 +1786,8 @@ const translations = {
 
 
         // Legacy
-        'legacy.title': 'Legado Perdurable',
-        'legacy.text1': 'Un palacete modernista de 1908 diseñado por un discípulo de Gaudí, que late como el corazón cultural de El Terreno, rodeado de árboles centenarios, galerías de arte local y el espíritu bohemio de la Palma de los años 60.',
+        'legacy.title': 'Herencia Perdurable',
+        'legacy.text1': 'Un palacete modernista de 1908 diseñado por un discípulo de Gaudí, que late como el corazón cultural de El Terreno, rodeado de árboles centenarios, el bosque de pinos del Castillo de Bellver y el espíritu bohemio de la Palma de los años 60.',
         'legacy.text2': 'Nuestros espacios presentan piezas de diseño icónicas y 9 habitaciones que encarnan una estética minimalista realzada con toques artesanales mallorquines.',
         'legacy.more': 'Saber Más',
 
@@ -1266,14 +1795,14 @@ const translations = {
         'breakfast.title': 'Desayuno',
         'breakfast.desc': 'Comienza el día con nuestra generosa selección de desayuno, con productos mallorquines locales y sabores mediterráneos. Servido en nuestra terraza jardín o junto a la piscina.',
         'breakfast.continental': '<strong>Continental:</strong> Bollería fresca · Panes artesanos · Mermeladas locales y miel',
-        'breakfast.hot': '<strong>Platos calientes:</strong> Huevos al gusto · Tortitas · Fruta fresca',
+        'breakfast.hot': '<strong>Platos calientes:</strong> Huevos revueltos · Tortitas',
         'breakfast.beverages': '<strong>Bebidas:</strong> Zumos naturales · Café · Selección de tés',
 
         // Snack Bar
         'snackbar.title': 'Snack Bar',
         'snackbar.desc': 'Disfruta de nuestra selección de tapas mediterráneas junto a la piscina de agua salada, rodeado de nuestro frondoso jardín. El lugar perfecto para relajarse bajo el sol mallorquín.',
         'snackbar.tapas': '<strong>Tapas:</strong> Tabla de quesos artesanos · Jamón ibérico · Nachos con guacamole',
-        'snackbar.snacks': '<strong>Snacks:</strong> Pizzas caseras · Sándwiches gourmet · Ensaladas frescas',
+        'snackbar.snacks': '<strong>Snacks:</strong> Pizzas caseras · Sándwiches gourmet · Smoothies',
 
         // Wellness
         'wellness.subtitle': 'Bienestar',
@@ -1300,7 +1829,27 @@ const translations = {
         'footer.info': 'Información',
         'footer.privacy': 'Política de Privacidad',
         'footer.terms': 'Términos',
-        'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
+        'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.',
+
+        // Booking Popup
+        'popup.tagline': 'Tu hogar lejos del hogar en Palma de Mallorca',
+        'popup.when': 'Cuándo',
+        'popup.who': 'Quién',
+        'popup.adults': 'adultos',
+        'popup.adultsonly': 'Solo adultos +14',
+        'popup.addroom': '+ Añadir habitación',
+        'popup.promotion': 'Promoción',
+        'popup.code': 'Código',
+        'popup.search': 'Buscar',
+        'popup.title': 'Ventajas de Reservar en Nuestra Web',
+        'popup.breakfast': 'Desayuno Incluido',
+        'popup.breakfast.desc': 'Disfruta de una experiencia exquisita con productos locales',
+        'popup.bestrate': 'Mejor Precio Garantizado',
+        'popup.bestrate.desc': 'Te ofrecemos el precio más bajo disponible para tu estancia, lo garantizamos',
+        'popup.welcome': 'Bebida de Bienvenida',
+        'popup.welcome.desc': 'Bebida de bienvenida de cortesía a tu llegada',
+        'popup.preferred': 'Sé un Huésped Preferente',
+        'popup.preferred.desc': 'Early check-in (sujeto a disponibilidad). Preferencia en asignación de habitación'
     },
     de: {
         // Navigation
@@ -1324,6 +1873,7 @@ const translations = {
         'btn.book': 'Buchen',
         'btn.booknow': 'Jetzt Buchen',
         'btn.viewmenu': 'Menü Ansehen',
+        'btn.learnmore': 'Mehr Erfahren',
         'btn.discover': 'Mehr Entdecken',
         'btn.seeroom': 'Zimmer Ansehen',
 
@@ -1346,7 +1896,7 @@ const translations = {
 
         // Legacy
         'legacy.title': 'Bleibendes Erbe',
-        'legacy.text1': 'Ein modernistischer Palast von 1908, entworfen von einem Schüler Gaudís, der als kultureller Puls von El Terreno schlägt, umgeben von jahrhundertealten Bäumen, lokalen Kunstgalerien und dem böhmischen Geist des Palma der 1960er Jahre.',
+        'legacy.text1': 'Ein modernistischer Palast von 1908, entworfen von einem Schüler Gaudís, der als kultureller Puls von El Terreno schlägt, umgeben von jahrhundertealten Bäumen, dem Pinienwald des Schlosses Bellver und dem böhmischen Geist des Palma der 1960er Jahre.',
         'legacy.text2': 'Unsere Räume präsentieren ikonische Designstücke und 9 Zimmer, die eine minimalistische Ästhetik verkörpern, verfeinert mit handwerklichen mallorquinischen Akzenten.',
         'legacy.more': 'Mehr Erfahren',
 
@@ -1354,14 +1904,14 @@ const translations = {
         'breakfast.title': 'Frühstück',
         'breakfast.desc': 'Beginnen Sie den Tag mit unserer großzügigen Frühstücksauswahl mit lokalen mallorquinischen Produkten und mediterranen Aromen. Serviert auf unserer Gartenterrasse oder am Pool.',
         'breakfast.continental': '<strong>Kontinental:</strong> Frisches Gebäck · Handwerksbrot · Lokale Marmeladen & Honig',
-        'breakfast.hot': '<strong>Warme Gerichte:</strong> Eier nach Wunsch · Pfannkuchen · Frisches Obst',
+        'breakfast.hot': '<strong>Warme Gerichte:</strong> Rührei · Pfannkuchen',
         'breakfast.beverages': '<strong>Getränke:</strong> Frische Säfte · Kaffee · Teeauswahl',
 
         // Snack Bar
         'snackbar.title': 'Snack Bar',
         'snackbar.desc': 'Genießen Sie unsere Auswahl an mediterranen Tapas am Salzwasserpool, umgeben von unserem üppigen Garten. Der perfekte Ort, um unter der mallorquinischen Sonne zu entspannen.',
         'snackbar.tapas': '<strong>Tapas:</strong> Handwerkliche Käseplatte · Ibérico-Schinken · Nachos mit Guacamole',
-        'snackbar.snacks': '<strong>Snacks:</strong> Hausgemachte Pizzen · Gourmet-Sandwiches · Frische Salate',
+        'snackbar.snacks': '<strong>Snacks:</strong> Hausgemachte Pizzen · Gourmet-Sandwiches · Smoothies',
 
         // Wellness
         'wellness.subtitle': 'Wellness',
@@ -1388,7 +1938,27 @@ const translations = {
         'footer.info': 'Info',
         'footer.privacy': 'Datenschutz',
         'footer.terms': 'AGB',
-        'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
+        'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.',
+
+        // Booking Popup
+        'popup.tagline': 'Ihr Zuhause fernab der Heimat in Palma de Mallorca',
+        'popup.when': 'Wann',
+        'popup.who': 'Wer',
+        'popup.adults': 'Erwachsene',
+        'popup.adultsonly': 'Nur für Erwachsene +14',
+        'popup.addroom': '+ Zimmer hinzufügen',
+        'popup.promotion': 'Aktion',
+        'popup.code': 'Code',
+        'popup.search': 'Suchen',
+        'popup.title': 'Vorteile der Buchung auf Unserer Website',
+        'popup.breakfast': 'Frühstück Inklusive',
+        'popup.breakfast.desc': 'Genießen Sie ein exquisites Erlebnis mit lokalen Produkten',
+        'popup.bestrate': 'Bestpreisgarantie',
+        'popup.bestrate.desc': 'Wir bieten Ihnen den niedrigsten verfügbaren Preis für Ihren Aufenthalt, garantiert',
+        'popup.welcome': 'Willkommensgetränk',
+        'popup.welcome.desc': 'Kostenloses Willkommensgetränk bei Ihrer Ankunft',
+        'popup.preferred': 'Werden Sie Bevorzugter Gast',
+        'popup.preferred.desc': 'Früher Check-in (nach Verfügbarkeit). Bevorzugte Zimmerzuweisung'
     },
     sv: {
         // Navigation
@@ -1412,6 +1982,7 @@ const translations = {
         'btn.book': 'Boka',
         'btn.booknow': 'Boka Nu',
         'btn.viewmenu': 'Se Meny',
+        'btn.learnmore': 'Läs Mer',
         'btn.discover': 'Upptäck Mer',
         'btn.seeroom': 'Se Rum',
 
@@ -1434,7 +2005,7 @@ const translations = {
 
         // Legacy
         'legacy.title': 'Bestående Arv',
-        'legacy.text1': 'Ett modernistiskt palats från 1908, designat av en lärjunge till Gaudí, som slår som El Terrenos kulturella puls, omgivet av hundraåriga träd, lokala konstgallerier och den bohemiska andan från 1960-talets Palma.',
+        'legacy.text1': 'Ett modernistiskt palats från 1908, designat av en lärjunge till Gaudí, som slår som El Terrenos kulturella puls, omgivet av hundraåriga träd, tallskogen vid Bellver-slottet och den bohemiska andan från 1960-talets Palma.',
         'legacy.text2': 'Våra utrymmen presenterar ikoniska designföremål och 9 rum som förkroppsligar en minimalistisk estetik förfinad med hantverksmässiga mallorquinska accenter.',
         'legacy.more': 'Läs Mer',
 
@@ -1442,14 +2013,14 @@ const translations = {
         'breakfast.title': 'Frukost',
         'breakfast.desc': 'Börja dagen med vårt generösa frukostutbud med lokala mallorquinska produkter och medelhavssmaker. Serveras på vår trädgårdsterrass eller vid poolen.',
         'breakfast.continental': '<strong>Kontinental:</strong> Färska bakverk · Hantverksbröd · Lokala sylter & honung',
-        'breakfast.hot': '<strong>Varma rätter:</strong> Ägg efter önskemål · Pannkakor · Färsk frukt',
+        'breakfast.hot': '<strong>Varma rätter:</strong> Äggröra · Pannkakor',
         'breakfast.beverages': '<strong>Drycker:</strong> Färskpressade juicer · Kaffe · Teurval',
 
         // Snack Bar
         'snackbar.title': 'Snack Bar',
         'snackbar.desc': 'Njut av vårt urval av medelhavstapas vid saltvattenpoolen, omgiven av vår frodiga trädgård. Den perfekta platsen att koppla av under den mallorquinska solen.',
         'snackbar.tapas': '<strong>Tapas:</strong> Hantverksostbricka · Ibéricoskinka · Nachos med guacamole',
-        'snackbar.snacks': '<strong>Snacks:</strong> Hemlagade pizzor · Gourmetsmörgåsar · Färska sallader',
+        'snackbar.snacks': '<strong>Snacks:</strong> Hemlagade pizzor · Gourmetsmörgåsar · Smoothies',
 
         // Wellness
         'wellness.subtitle': 'Wellness',
@@ -1476,11 +2047,55 @@ const translations = {
         'footer.info': 'Info',
         'footer.privacy': 'Integritetspolicy',
         'footer.terms': 'Villkor',
-        'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
+        'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.',
+
+        // Booking Popup
+        'popup.tagline': 'Ditt hem borta från hemmet i Palma de Mallorca',
+        'popup.when': 'När',
+        'popup.who': 'Vem',
+        'popup.adults': 'vuxna',
+        'popup.adultsonly': 'Endast vuxna +14',
+        'popup.addroom': '+ Lägg till rum',
+        'popup.promotion': 'Kampanj',
+        'popup.code': 'Kod',
+        'popup.search': 'Sök',
+        'popup.title': 'Fördelar med att Boka på Vår Webbplats',
+        'popup.breakfast': 'Frukost Ingår',
+        'popup.breakfast.desc': 'Njut av en utsökt upplevelse med lokala produkter',
+        'popup.bestrate': 'Bästa Pris Garanterat',
+        'popup.bestrate.desc': 'Vi erbjuder dig det lägsta tillgängliga priset för din vistelse, vi garanterar det',
+        'popup.welcome': 'Välkomstdrink',
+        'popup.welcome.desc': 'Gratis välkomstdrink vid ankomst',
+        'popup.preferred': 'Bli en Föredragen Gäst',
+        'popup.preferred.desc': 'Tidig incheckning (efter tillgänglighet). Föredraget rumsval'
     }
 };
 
 let currentLang = 'en';
+
+// Booking engine URL generator with language mapping
+function getBookingUrl() {
+    const langMap = {
+        'en': 'en',
+        'es': 'es',
+        'de': 'de',
+        'sv': 'sv'
+    };
+    const locale = langMap[currentLang] || 'en';
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const checkIn = today.toISOString().split('T')[0];
+    const checkOut = tomorrow.toISOString().split('T')[0];
+    return `https://direct-book.com/properties/hotelcanquetglas?locale=${locale}&items[0][adults]=2&items[0][children]=0&items[0][infants]=0&currency=EUR&checkInDate=${checkIn}&checkOutDate=${checkOut}&trackPage=yes`;
+}
+
+function updateBookingLinks() {
+    const bookingUrl = getBookingUrl();
+    document.querySelectorAll('[data-booking-link]').forEach(el => {
+        el.href = bookingUrl;
+    });
+}
 
 function setLanguage(lang) {
     if (!translations[lang]) return;
@@ -1516,6 +2131,9 @@ function setLanguage(lang) {
 
     // Save preference
     localStorage.setItem('canquetglas-lang', lang);
+
+    // Update booking links with new language
+    updateBookingLinks();
 }
 
 // ============================================
@@ -1588,6 +2206,8 @@ const savedLang = localStorage.getItem('canquetglas-lang');
 if (savedLang && translations[savedLang]) {
     setLanguage(savedLang);
 }
+// Always initialize booking links
+updateBookingLinks();
 
 // ============================================
 // VIDEO SOUND TOGGLE
@@ -1737,6 +2357,353 @@ window.addEventListener('resize', updateSlidesPerView);
 
 // Auto-slide every 5 seconds
 roomsAutoSlide = setInterval(nextRoomsSlide, 5000);
+
+// ============================================
+// BOOKING POPUP
+// ============================================
+const bookingPopupOverlay = document.getElementById('booking-popup-overlay');
+const bookingPopupClose = document.getElementById('booking-popup-close');
+const bookingPopupSearch = document.getElementById('booking-popup-search');
+const popupDates = document.getElementById('popup-dates');
+const bookingDateRow = document.getElementById('booking-date-row');
+const bookingCalendar = document.getElementById('booking-calendar');
+const bookingWhoRow = document.getElementById('booking-who-row');
+const bookingRoomsDropdown = document.getElementById('booking-rooms-dropdown');
+const bookingRoomsContainer = document.getElementById('booking-rooms-container');
+const bookingAddRoomBtn = document.getElementById('booking-add-room');
+const popupWhoSummary = document.getElementById('popup-who-summary');
+const promoCodeInput = document.getElementById('promo-code');
+
+// Booking state
+let checkInDate = new Date();
+let checkOutDate = new Date();
+checkOutDate.setDate(checkOutDate.getDate() + 1);
+let calendarMonth = new Date();
+let selectingCheckIn = true;
+
+// Multi-room state
+const MAX_ROOMS = 4;
+let rooms = [{ adults: 2, children: 0, infants: 0 }];
+
+// Room translations
+const roomTranslations = {
+    en: { room: 'Room', adults: 'Adults', children: 'Children', infants: 'Infants', remove: 'Remove', addRoom: '+ Add Room', adultsAge: '(+14 years)', childrenAge: '(3-13 years)', infantsAge: '(0-2 years)' },
+    es: { room: 'Habitación', adults: 'Adultos', children: 'Niños', infants: 'Bebés', remove: 'Eliminar', addRoom: '+ Añadir habitación', adultsAge: '(+14 años)', childrenAge: '(3-13 años)', infantsAge: '(0-2 años)' },
+    de: { room: 'Zimmer', adults: 'Erwachsene', children: 'Kinder', infants: 'Kleinkinder', remove: 'Entfernen', addRoom: '+ Zimmer hinzufügen', adultsAge: '(+14 Jahre)', childrenAge: '(3-13 Jahre)', infantsAge: '(0-2 Jahre)' },
+    sv: { room: 'Rum', adults: 'Vuxna', children: 'Barn', infants: 'Spädbarn', remove: 'Ta bort', addRoom: '+ Lägg till rum', adultsAge: '(+14 år)', childrenAge: '(3-13 år)', infantsAge: '(0-2 år)' }
+};
+
+function renderRooms() {
+    const lang = currentLang || 'en';
+    const t = roomTranslations[lang] || roomTranslations.en;
+
+    let html = '';
+    rooms.forEach((room, index) => {
+        html += `
+            <div class="booking-room-section" data-room-index="${index}">
+                <div class="booking-room-header">
+                    <span class="booking-room-title">${t.room} ${index + 1}</span>
+                    ${rooms.length > 1 ? `<button class="booking-room-remove" data-remove-room="${index}">${t.remove}</button>` : ''}
+                </div>
+                <div class="booking-guest-row">
+                    <div>
+                        <span class="booking-guest-label">${t.adults}</span>
+                    </div>
+                    <div class="booking-adults-selector">
+                        <button class="booking-adults-btn" data-room="${index}" data-type="adults" data-action="minus" ${room.adults <= 1 ? 'disabled' : ''}>−</button>
+                        <span class="booking-adults-count">${room.adults}</span>
+                        <button class="booking-adults-btn" data-room="${index}" data-type="adults" data-action="plus" ${room.adults >= 4 ? 'disabled' : ''}>+</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    bookingRoomsContainer.innerHTML = html;
+    bookingAddRoomBtn.disabled = rooms.length >= MAX_ROOMS;
+    bookingAddRoomBtn.textContent = t.addRoom;
+
+    // Add event listeners for +/- buttons
+    bookingRoomsContainer.querySelectorAll('.booking-adults-btn').forEach(btn => {
+        btn.addEventListener('click', handleGuestCountChange);
+    });
+
+    // Add event listeners for remove buttons
+    bookingRoomsContainer.querySelectorAll('.booking-room-remove').forEach(btn => {
+        btn.addEventListener('click', handleRemoveRoom);
+    });
+
+    // Update summary
+    updateWhoSummary();
+}
+
+function handleGuestCountChange(e) {
+    e.stopPropagation();
+    const roomIndex = parseInt(e.target.dataset.room);
+    const type = e.target.dataset.type;
+    const action = e.target.dataset.action;
+
+    const limits = {
+        adults: { min: 1, max: 2 },
+        children: { min: 0, max: 3 },
+        infants: { min: 0, max: 2 }
+    };
+
+    if (action === 'plus' && rooms[roomIndex][type] < limits[type].max) {
+        rooms[roomIndex][type]++;
+    } else if (action === 'minus' && rooms[roomIndex][type] > limits[type].min) {
+        rooms[roomIndex][type]--;
+    }
+
+    renderRooms();
+}
+
+function handleRemoveRoom(e) {
+    e.stopPropagation();
+    const roomIndex = parseInt(e.target.dataset.removeRoom);
+    if (rooms.length > 1) {
+        rooms.splice(roomIndex, 1);
+        renderRooms();
+    }
+}
+
+function addRoom() {
+    if (rooms.length < MAX_ROOMS) {
+        rooms.push({ adults: 2, children: 0, infants: 0 });
+        renderRooms();
+    }
+}
+
+bookingAddRoomBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    addRoom();
+});
+
+// Update "Who" summary text
+function updateWhoSummary() {
+    const lang = currentLang || 'en';
+    const totalAdults = rooms.reduce((sum, room) => sum + room.adults, 0);
+    const numRooms = rooms.length;
+
+    const summaryTranslations = {
+        en: { adults: 'adults', adult: 'adult', rooms: 'rooms', room: 'room' },
+        es: { adults: 'adultos', adult: 'adulto', rooms: 'habitaciones', room: 'habitación' },
+        de: { adults: 'Erwachsene', adult: 'Erwachsener', rooms: 'Zimmer', room: 'Zimmer' },
+        sv: { adults: 'vuxna', adult: 'vuxen', rooms: 'rum', room: 'rum' }
+    };
+    const t = summaryTranslations[lang] || summaryTranslations.en;
+
+    const adultsText = totalAdults === 1 ? t.adult : t.adults;
+    const roomsText = numRooms === 1 ? t.room : t.rooms;
+
+    popupWhoSummary.textContent = `${totalAdults} ${adultsText}, ${numRooms} ${roomsText}`;
+}
+
+// Toggle rooms dropdown
+bookingWhoRow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    bookingCalendar.classList.remove('active');
+    bookingRoomsDropdown.classList.toggle('active');
+});
+
+// Close rooms dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (!bookingWhoRow.contains(e.target)) {
+        bookingRoomsDropdown.classList.remove('active');
+    }
+});
+
+function formatDate(date, lang) {
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    const localeMap = { en: 'en-GB', es: 'es-ES', de: 'de-DE', sv: 'sv-SE' };
+    return date.toLocaleDateString(localeMap[lang] || 'en-GB', options);
+}
+
+function formatDateISO(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function updatePopupDates() {
+    const lang = currentLang || 'en';
+    popupDates.textContent = `${formatDate(checkInDate, lang)} — ${formatDate(checkOutDate, lang)}`;
+}
+
+// Calendar functions
+function renderCalendar() {
+    const lang = currentLang || 'en';
+    const localeMap = { en: 'en-GB', es: 'es-ES', de: 'de-DE', sv: 'sv-SE' };
+    const dayNames = { en: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], es: ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'], de: ['Mo','Di','Mi','Do','Fr','Sa','So'], sv: ['Mån','Tis','Ons','Tor','Fre','Lör','Sön'] };
+
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+    const monthName = calendarMonth.toLocaleDateString(localeMap[lang], { month: 'long', year: 'numeric' });
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDay = (firstDay.getDay() + 6) % 7; // Monday = 0
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    let html = `
+        <div class="booking-calendar-header">
+            <button class="booking-calendar-nav" id="cal-prev">←</button>
+            <span class="booking-calendar-title">${monthName}</span>
+            <button class="booking-calendar-nav" id="cal-next">→</button>
+        </div>
+        <div class="booking-calendar-grid">
+    `;
+
+    // Day names
+    (dayNames[lang] || dayNames.en).forEach(d => {
+        html += `<div class="booking-calendar-day-name">${d}</div>`;
+    });
+
+    // Empty cells before first day
+    for (let i = 0; i < startDay; i++) {
+        html += `<div class="booking-calendar-day disabled"></div>`;
+    }
+
+    // Days
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+        const date = new Date(year, month, day);
+        date.setHours(0,0,0,0);
+        const isPast = date < today;
+        const isToday = date.getTime() === today.getTime();
+        const isCheckIn = checkInDate && date.getTime() === new Date(checkInDate).setHours(0,0,0,0);
+        const isCheckOut = checkOutDate && date.getTime() === new Date(checkOutDate).setHours(0,0,0,0);
+        const isInRange = checkInDate && checkOutDate && date > checkInDate && date < checkOutDate;
+
+        let classes = 'booking-calendar-day';
+        if (isPast) classes += ' disabled';
+        if (isToday) classes += ' today';
+        if (isCheckIn || isCheckOut) classes += ' selected';
+        if (isInRange) classes += ' in-range';
+
+        html += `<button class="${classes}" data-date="${formatDateISO(date)}" ${isPast ? 'disabled' : ''}>${day}</button>`;
+    }
+
+    html += '</div>';
+    bookingCalendar.innerHTML = html;
+
+    // Add event listeners
+    document.getElementById('cal-prev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        calendarMonth.setMonth(calendarMonth.getMonth() - 1);
+        renderCalendar();
+    });
+    document.getElementById('cal-next').addEventListener('click', (e) => {
+        e.stopPropagation();
+        calendarMonth.setMonth(calendarMonth.getMonth() + 1);
+        renderCalendar();
+    });
+
+    bookingCalendar.querySelectorAll('.booking-calendar-day:not(.disabled)').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Parse date correctly to avoid timezone issues
+            const [y, m, d] = btn.dataset.date.split('-').map(Number);
+            const selectedDate = new Date(y, m - 1, d);
+            if (selectingCheckIn) {
+                checkInDate = selectedDate;
+                checkOutDate = new Date(y, m - 1, d + 1);
+                selectingCheckIn = false;
+            } else {
+                if (selectedDate > checkInDate) {
+                    checkOutDate = selectedDate;
+                } else {
+                    checkInDate = selectedDate;
+                    checkOutDate = new Date(y, m - 1, d + 1);
+                }
+                selectingCheckIn = true;
+                bookingCalendar.classList.remove('active');
+            }
+            updatePopupDates();
+            renderCalendar();
+        });
+    });
+}
+
+// Toggle calendar
+bookingDateRow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    bookingRoomsDropdown.classList.remove('active');
+    calendarMonth = new Date(checkInDate);
+    selectingCheckIn = true;
+    renderCalendar();
+    bookingCalendar.classList.toggle('active');
+});
+
+// Close calendar when clicking outside
+document.addEventListener('click', (e) => {
+    if (!bookingDateRow.contains(e.target)) {
+        bookingCalendar.classList.remove('active');
+    }
+});
+
+function openBookingPopup(e) {
+    if (e) e.preventDefault();
+    // Reset all values to defaults
+    checkInDate = new Date();
+    checkOutDate = new Date();
+    checkOutDate.setDate(checkOutDate.getDate() + 1);
+    rooms = [{ adults: 2, children: 0, infants: 0 }];
+    promoCodeInput.value = '';
+    updatePopupDates();
+    renderRooms();
+    bookingPopupOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBookingPopup() {
+    bookingPopupOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    bookingCalendar.classList.remove('active');
+}
+
+// Open popup instead of direct booking link
+document.querySelectorAll('[data-booking-link]').forEach(el => {
+    el.addEventListener('click', openBookingPopup);
+});
+
+bookingPopupClose.addEventListener('click', closeBookingPopup);
+bookingPopupOverlay.addEventListener('click', (e) => {
+    if (e.target === bookingPopupOverlay) closeBookingPopup();
+});
+
+// Search button goes to booking engine with selected options
+bookingPopupSearch.addEventListener('click', () => {
+    const langMap = { en: 'en', es: 'es', de: 'de', sv: 'sv' };
+    const locale = langMap[currentLang] || 'en';
+    const promoCode = promoCodeInput.value.trim();
+
+    // Build items parameters for all rooms
+    let itemsParams = '';
+    rooms.forEach((room, index) => {
+        itemsParams += `&items[${index}][adults]=${room.adults}&items[${index}][children]=${room.children}&items[${index}][infants]=${room.infants}`;
+    });
+
+    let url = `https://direct-book.com/properties/hotelcanquetglas?locale=${locale}${itemsParams}&currency=EUR&checkInDate=${formatDateISO(checkInDate)}&checkOutDate=${formatDateISO(checkOutDate)}&trackPage=yes`;
+
+    if (promoCode) {
+        url += `&promocode=${encodeURIComponent(promoCode)}`;
+    }
+
+    window.location.href = url;
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bookingPopupOverlay.classList.contains('active')) {
+        closeBookingPopup();
+    }
+});
+
+// Initialize rooms display - v2
+renderRooms();
+console.log('Multi-room booking initialized', rooms);
 </script>
 
 <script type="text/javascript">
@@ -1753,5 +2720,6 @@ roomsAutoSlide = setInterval(nextRoomsSlide, 5000);
 })();
 </script>
 <script src="js/chatbot.js"></script>
+<script src="js/cookies.js"></script>
 </body>
 </html>

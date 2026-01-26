@@ -142,9 +142,140 @@
         .footer-copyright { font-size: 0.75rem; color: var(--color-gray); }
         @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr 1fr; gap: var(--spacing-md); } }
         @media (max-width: 500px) { .footer-content { grid-template-columns: 1fr; text-align: center; } .footer-social { justify-content: center; } }
+
+        /* ============================================
+           BOOKING POPUP
+           ============================================ */
+        .booking-popup-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; padding: var(--spacing-md); }
+        .booking-popup-overlay.active { opacity: 1; visibility: visible; }
+        .booking-popup { background: var(--color-white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; }
+        .booking-popup-overlay.active .booking-popup { transform: translateY(0); }
+        .booking-popup-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--color-black); padding: 8px; z-index: 10; transition: color 0.3s; }
+        .booking-popup-close:hover { color: var(--color-accent); }
+        .booking-popup-content { display: grid; grid-template-columns: 1fr 1fr; }
+        .booking-popup-left { padding: var(--spacing-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid var(--color-cream-dark); }
+        .booking-popup-logo { max-width: 240px; width: 100%; margin-bottom: var(--spacing-xs); }
+        .booking-popup-tagline { font-size: 0.85rem; color: var(--color-gray); text-align: center; margin-bottom: var(--spacing-md); font-style: italic; max-width: 240px; }
+        .booking-popup-form { width: 100%; max-width: 320px; }
+        .booking-popup-row { display: flex; align-items: flex-start; gap: var(--spacing-sm); padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--color-cream-dark); cursor: pointer; }
+        .booking-popup-row svg { width: 20px; height: 20px; color: var(--color-gray); flex-shrink: 0; margin-top: 2px; }
+        .booking-popup-row-content { flex: 1; }
+        .booking-popup-label { font-size: 0.7rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
+        .booking-popup-value { font-size: 0.95rem; color: var(--color-black); font-weight: 400; }
+        .booking-calendar { display: none; position: absolute; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 100; padding: var(--spacing-sm); min-width: 280px; }
+        .booking-calendar.active { display: block; }
+        .booking-calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm); }
+        .booking-calendar-title { font-size: 0.9rem; font-weight: 500; }
+        .booking-calendar-nav { background: none; border: none; cursor: pointer; padding: 4px 8px; color: var(--color-black); }
+        .booking-calendar-nav:hover { color: var(--color-accent); }
+        .booking-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+        .booking-calendar-day-name { font-size: 0.7rem; color: var(--color-gray); padding: 8px 0; text-transform: uppercase; }
+        .booking-calendar-day { padding: 8px; font-size: 0.85rem; cursor: pointer; border: none; background: none; transition: all 0.2s; }
+        .booking-calendar-day:hover:not(.disabled):not(.selected) { background: var(--color-cream); }
+        .booking-calendar-day.disabled { color: var(--color-gray-light); cursor: default; }
+        .booking-calendar-day.selected { background: var(--color-black); color: var(--color-white); }
+        .booking-calendar-day.in-range { background: var(--color-cream-dark); }
+        .booking-calendar-day.today { font-weight: 600; }
+        .booking-rooms-container { width: 100%; }
+        .booking-room-section { border: 1px solid var(--color-cream-dark); padding: var(--spacing-sm); margin-bottom: var(--spacing-sm); position: relative; }
+        .booking-room-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs); }
+        .booking-room-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); }
+        .booking-room-remove { background: none; border: none; cursor: pointer; color: var(--color-gray); font-size: 0.75rem; padding: 4px 8px; transition: color 0.2s; }
+        .booking-room-remove:hover { color: var(--color-black); }
+        .booking-guest-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .booking-guest-row:not(:last-child) { border-bottom: 1px solid var(--color-cream); }
+        .booking-guest-label { font-size: 0.85rem; color: var(--color-black); }
+        .booking-guest-note { font-size: 0.7rem; color: var(--color-gray); }
+        .booking-rooms-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 100; padding: var(--spacing-sm); }
+        .booking-rooms-dropdown.active { display: block; }
+        .booking-adults-selector { display: flex; align-items: center; gap: var(--spacing-xs); }
+        .booking-adults-btn { width: 28px; height: 28px; border: 1px solid var(--color-gray-light); background: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .booking-adults-btn:hover { border-color: var(--color-black); }
+        .booking-adults-btn:disabled { opacity: 0.3; cursor: default; }
+        .booking-adults-count { font-size: 0.9rem; min-width: 24px; text-align: center; }
+        .booking-adults-note { font-size: 0.7rem; color: var(--color-gray); margin-top: 4px; }
+        .booking-add-room { width: 100%; padding: 10px; background: none; border: 1px dashed var(--color-gray-light); cursor: pointer; font-family: var(--font-body); font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.2s; margin-bottom: var(--spacing-sm); }
+        .booking-add-room:hover { border-color: var(--color-black); color: var(--color-black); }
+        .booking-add-room:disabled { opacity: 0.3; cursor: default; }
+        .booking-promo-input { width: 100%; border: none; border-bottom: 1px solid var(--color-cream-dark); padding: 8px 0; font-family: var(--font-body); font-size: 0.9rem; background: transparent; outline: none; }
+        .booking-promo-input:focus { border-bottom-color: var(--color-black); }
+        .booking-promo-input::placeholder { color: var(--color-gray-light); }
+        .booking-popup-search { width: 100%; max-width: 300px; margin-top: var(--spacing-md); padding: 1rem; background: var(--color-black); color: var(--color-white); border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; transition: background 0.3s; }
+        .booking-popup-search:hover { background: var(--color-dark); }
+        .booking-popup-right { padding: var(--spacing-lg); background: var(--color-cream); }
+        .booking-popup-title { font-family: var(--font-heading); font-size: 1.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); margin-bottom: var(--spacing-lg); line-height: 1.3; }
+        .booking-benefit { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+        .booking-benefit-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .booking-benefit-icon svg { width: 28px; height: 28px; stroke: var(--color-black); }
+        .booking-benefit-content h4 { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); margin-bottom: 4px; }
+        .booking-benefit-content p { font-size: 0.85rem; color: var(--color-gray); line-height: 1.5; }
+        @media (max-width: 768px) { .booking-popup-content { grid-template-columns: 1fr; } .booking-popup-left { border-right: none; border-bottom: 1px solid var(--color-cream-dark); padding: var(--spacing-md); } .booking-popup-right { padding: var(--spacing-md); } .booking-popup-logo { max-width: 200px; } .booking-popup-title { font-size: 1.3rem; } }
     </style>
 </head>
 <body>
+
+<!-- Booking Popup -->
+<div class="booking-popup-overlay" id="booking-popup-overlay">
+    <div class="booking-popup">
+        <button class="booking-popup-close" id="booking-popup-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="booking-popup-content">
+            <div class="booking-popup-left">
+                <img src="images/logo.png" alt="Can Quetglas" class="booking-popup-logo">
+                <p class="booking-popup-tagline" data-i18n="popup.tagline">Your home away from home in Palma de Mallorca</p>
+                <div class="booking-popup-form">
+                    <div class="booking-popup-row" id="booking-date-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.when">When</div>
+                            <div class="booking-popup-value" id="popup-dates">Select dates</div>
+                        </div>
+                        <div class="booking-calendar" id="booking-calendar"></div>
+                    </div>
+                    <div class="booking-popup-row" id="booking-who-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.who">Who</div>
+                            <div class="booking-popup-value" id="popup-who-summary">2 adults, 1 room</div>
+                        </div>
+                        <div class="booking-rooms-dropdown" id="booking-rooms-dropdown">
+                            <div class="booking-rooms-container" id="booking-rooms-container"></div>
+                            <button class="booking-add-room" id="booking-add-room" data-i18n="popup.addroom">+ Add Room</button>
+                        </div>
+                    </div>
+                    <div class="booking-popup-row" style="cursor: default;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><line x1="7" y1="17" x2="17" y2="7"/><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.promotion">Promotion</div>
+                            <input type="text" class="booking-promo-input" id="promo-code" data-i18n-placeholder="popup.code" placeholder="Code">
+                        </div>
+                    </div>
+                </div>
+                <button class="booking-popup-search" id="booking-popup-search" data-i18n="popup.search">Search</button>
+            </div>
+            <div class="booking-popup-right">
+                <h3 class="booking-popup-title" data-i18n="popup.title">Benefits of Booking on Our Website</h3>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+                    <div class="booking-benefit-content"><h4 data-i18n="popup.breakfast">Breakfast Included</h4><p data-i18n="popup.breakfast.desc">Enjoy an exquisite experience with local products</p></div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+                    <div class="booking-benefit-content"><h4 data-i18n="popup.bestrate">Best Rate Guaranteed</h4><p data-i18n="popup.bestrate.desc">We offer you the lowest price available for your stay, we guarantee it</p></div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                    <div class="booking-benefit-content"><h4 data-i18n="popup.welcome">Welcome Drink</h4><p data-i18n="popup.welcome.desc">Complimentary welcome drink upon arrival</p></div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div class="booking-benefit-content"><h4 data-i18n="popup.preferred">Be a Preferred Guest</h4><p data-i18n="popup.preferred.desc">Early check-in (subject to availability). Room assignment preference</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="menu-overlay" id="menu-overlay"></div>
 <nav class="side-menu" id="side-menu">
@@ -164,8 +295,8 @@
         <li class="has-submenu">
             <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
             <ul class="submenu">
-                <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
-                <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                <li><a href="breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li>
             </ul>
         </li>
         <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
@@ -181,7 +312,7 @@
             <button class="menu-toggle" id="menu-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
             <a href="index.html" class="site-logo"><img src="images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img"></a>
             <div style="display: flex; align-items: center; gap: 1rem;">
-                <div class="header-cta"><a href="#" class="btn" data-i18n="btn.book">Book</a></div>
+                <div class="header-cta"><a href="#" class="btn" data-booking-link data-i18n="btn.book">Book</a></div>
                 <div class="header-lang-dropdown">
                     <div class="header-lang-current">
                         <span id="current-lang-text">EN</span>
@@ -319,8 +450,8 @@
                 <ul>
                     <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
                     <li><a href="index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
-                    <li><a href="index.html#breakfast" data-i18n="nav.breakfast">Breakfast</a></li>
-                    <li><a href="index.html#poolbar" data-i18n="nav.snackbar">Snack Bar</a></li>
+                    <li><a href="breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li>
                     <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
                 </ul>
             </div>
@@ -361,7 +492,8 @@ const translations = {
         'contact.followus': 'Follow Us',
         'contact.form.title': 'Send Us a Message', 'contact.form.name': 'Name', 'contact.form.phone': 'Phone', 'contact.form.subject': 'Subject', 'contact.form.message': 'Message', 'contact.form.send': 'Send Message',
         'contact.form.subject.reservation': 'Reservation Inquiry', 'contact.form.subject.general': 'General Question', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Other',
-        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.'
+        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.',
+        'popup.tagline': 'Your home away from home in Palma de Mallorca', 'popup.when': 'When', 'popup.who': 'Who', 'popup.promotion': 'Promotion', 'popup.code': 'Code', 'popup.search': 'Search', 'popup.addroom': '+ Add Room', 'popup.title': 'Benefits of Booking on Our Website', 'popup.breakfast': 'Breakfast Included', 'popup.breakfast.desc': 'Enjoy an exquisite experience with local products', 'popup.bestrate': 'Best Rate Guaranteed', 'popup.bestrate.desc': 'We offer you the lowest price available for your stay, we guarantee it', 'popup.welcome': 'Welcome Drink', 'popup.welcome.desc': 'Complimentary welcome drink upon arrival', 'popup.preferred': 'Be a Preferred Guest', 'popup.preferred.desc': 'Early check-in (subject to availability). Room assignment preference'
     },
     es: {
         'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Bienestar', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
@@ -373,7 +505,8 @@ const translations = {
         'contact.followus': 'Síguenos',
         'contact.form.title': 'Envíanos un Mensaje', 'contact.form.name': 'Nombre', 'contact.form.phone': 'Teléfono', 'contact.form.subject': 'Asunto', 'contact.form.message': 'Mensaje', 'contact.form.send': 'Enviar Mensaje',
         'contact.form.subject.reservation': 'Consulta de Reserva', 'contact.form.subject.general': 'Pregunta General', 'contact.form.subject.feedback': 'Comentarios', 'contact.form.subject.other': 'Otro',
-        'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.'
+        'footer.tagline': 'Tu hogar lejos del hogar<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Información', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.',
+        'popup.tagline': 'Su hogar lejos de casa en Palma de Mallorca', 'popup.when': 'Cuándo', 'popup.who': 'Quién', 'popup.promotion': 'Promoción', 'popup.code': 'Código', 'popup.search': 'Buscar', 'popup.addroom': '+ Añadir habitación', 'popup.title': 'Ventajas de Reservar en Nuestra Web', 'popup.breakfast': 'Desayuno Incluido', 'popup.breakfast.desc': 'Disfrute de una experiencia exquisita con productos locales', 'popup.bestrate': 'Mejor Precio Garantizado', 'popup.bestrate.desc': 'Le ofrecemos el precio más bajo disponible para su estancia, lo garantizamos', 'popup.welcome': 'Copa de Bienvenida', 'popup.welcome.desc': 'Copa de bienvenida de cortesía a su llegada', 'popup.preferred': 'Sea un Huésped Preferente', 'popup.preferred.desc': 'Early check-in (sujeto a disponibilidad). Preferencia en asignación de habitación'
     },
     de: {
         'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
@@ -385,7 +518,8 @@ const translations = {
         'contact.followus': 'Folgen Sie Uns',
         'contact.form.title': 'Senden Sie Uns eine Nachricht', 'contact.form.name': 'Name', 'contact.form.phone': 'Telefon', 'contact.form.subject': 'Betreff', 'contact.form.message': 'Nachricht', 'contact.form.send': 'Nachricht Senden',
         'contact.form.subject.reservation': 'Reservierungsanfrage', 'contact.form.subject.general': 'Allgemeine Frage', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Sonstiges',
-        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.'
+        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.',
+        'popup.tagline': 'Ihr Zuhause fernab der Heimat in Palma de Mallorca', 'popup.when': 'Wann', 'popup.who': 'Wer', 'popup.promotion': 'Aktion', 'popup.code': 'Code', 'popup.search': 'Suchen', 'popup.addroom': '+ Zimmer hinzufügen', 'popup.title': 'Vorteile der Buchung auf unserer Website', 'popup.breakfast': 'Frühstück Inklusive', 'popup.breakfast.desc': 'Genießen Sie ein exquisites Erlebnis mit lokalen Produkten', 'popup.bestrate': 'Bestpreisgarantie', 'popup.bestrate.desc': 'Wir bieten Ihnen den niedrigsten verfügbaren Preis für Ihren Aufenthalt, garantiert', 'popup.welcome': 'Willkommensgetränk', 'popup.welcome.desc': 'Kostenloses Willkommensgetränk bei Ankunft', 'popup.preferred': 'Werden Sie Bevorzugter Gast', 'popup.preferred.desc': 'Früher Check-in (nach Verfügbarkeit). Zimmerauswahl-Präferenz'
     },
     sv: {
         'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
@@ -397,7 +531,8 @@ const translations = {
         'contact.followus': 'Följ Oss',
         'contact.form.title': 'Skicka Oss ett Meddelande', 'contact.form.name': 'Namn', 'contact.form.phone': 'Telefon', 'contact.form.subject': 'Ämne', 'contact.form.message': 'Meddelande', 'contact.form.send': 'Skicka Meddelande',
         'contact.form.subject.reservation': 'Bokningsförfrågan', 'contact.form.subject.general': 'Allmän Fråga', 'contact.form.subject.feedback': 'Feedback', 'contact.form.subject.other': 'Annat',
-        'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.'
+        'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.',
+        'popup.tagline': 'Ditt hem borta från hemmet i Palma de Mallorca', 'popup.when': 'När', 'popup.who': 'Vem', 'popup.promotion': 'Kampanj', 'popup.code': 'Kod', 'popup.search': 'Sök', 'popup.addroom': '+ Lägg till rum', 'popup.title': 'Fördelar med att Boka på Vår Webbplats', 'popup.breakfast': 'Frukost Ingår', 'popup.breakfast.desc': 'Njut av en utsökt upplevelse med lokala produkter', 'popup.bestrate': 'Bästa Pris Garanterat', 'popup.bestrate.desc': 'Vi erbjuder dig det lägsta tillgängliga priset för din vistelse, garanterat', 'popup.welcome': 'Välkomstdrink', 'popup.welcome.desc': 'Gratis välkomstdrink vid ankomst', 'popup.preferred': 'Bli en Föredragen Gäst', 'popup.preferred.desc': 'Tidig incheckning (efter tillgänglighet). Preferens vid rumstilldelning'
     }
 };
 
@@ -517,5 +652,6 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 })();
 </script>
 <script src="js/chatbot.js"></script>
+<script src="js/booking-popup.js"></script>
 </body>
 </html>

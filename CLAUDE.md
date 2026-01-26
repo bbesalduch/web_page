@@ -22,8 +22,29 @@ Dual-structure project:
 │
 └── preview/                        # Static HTML Preview
     ├── index.html                 # Homepage
+    ├── contact.html               # Contact page
+    ├── hotel.html                 # About the hotel (with image slider)
+    ├── location.html              # Location & surroundings
+    ├── wellness.html              # Wellness & spa
+    ├── breakfast.html             # Breakfast page (buffet & à la carte)
+    ├── snackbar.html              # Snack bar / pool bar page
+    ├── cookie-policy.html         # Cookie policy page
     ├── rooms/                     # Room detail pages
-    └── images/rooms/              # Room photography
+    │   ├── deluxe.html
+    │   ├── deluxe-premium.html
+    │   ├── deluxe-terrace.html
+    │   ├── standard-terrace.html
+    │   └── suite.html
+    ├── js/
+    │   ├── chatbot.js             # AI chatbot (Google Gemini)
+    │   ├── booking-popup.js       # Booking modal functionality
+    │   └── cookies.js             # Cookie consent management
+    ├── images/                    # Site images
+    │   ├── rooms/                 # Room photography
+    │   ├── hotel/                 # Hotel page images (facade, salon, pool)
+    │   ├── breakfast/             # Breakfast page images
+    │   └── snackbar/              # Snack bar page images
+    └── videos/                    # Video content (hero, amenities)
 ```
 
 ## Tech Stack
@@ -31,7 +52,7 @@ Dual-structure project:
 - **PHP 7.0+** (WordPress theme)
 - **HTML5/CSS3/Vanilla JavaScript** (no jQuery)
 - **Fonts:** Cormorant Garamond (headings) + Montserrat (body)
-- **Design:** Dark theme with gold accents (#0a0a0a, #c9a962)
+- **Design:** Light cream theme with brown accents (modernist boutique style)
 
 ## Custom Post Types
 
@@ -76,13 +97,40 @@ open preview/index.html
 | `front-page.php` | Homepage template |
 | `single-room.php` | Individual room display |
 
+### Preview JavaScript Files
+
+| File | Purpose |
+|------|---------|
+| `js/chatbot.js` | AI-powered chatbot using Google Gemini API |
+| `js/booking-popup.js` | Modal for room booking integration |
+| `js/cookies.js` | GDPR cookie consent banner and management |
+
 ## Color Palette
 
-- Primary Black: `#0a0a0a`
-- Dark Background: `#1a1a1a`
-- Accent Gold: `#c9a962`
-- Light Gold: `#d4bc7c`
-- Text Gray: `#888888`
+- Cream Background: `#f7f3ed`
+- Cream Dark: `#ebe5db`
+- White: `#ffffff`
+- Black (text): `#1a1a1a`
+- Dark: `#2d2d2d`
+- Gray: `#6b6b6b`
+- Gray Light: `#9a9a9a`
+- Accent Brown: `#8b7355`
+- Accent Light: `#a08b6f`
+
+## API Integrations
+
+### Google Gemini Chatbot
+- **API:** Google Generative AI (Gemini 2.0 Flash)
+- **File:** `preview/js/chatbot.js`
+- **Features:**
+  - Floating chat widget on all pages
+  - Hotel-specific knowledge base
+  - Multilingual support (Spanish primary)
+  - Conversation history within session
+
+### Booking Integration
+- **File:** `preview/js/booking-popup.js`
+- **Purpose:** Modal popup for room reservations
 
 ## Important Notes
 
@@ -90,8 +138,52 @@ open preview/index.html
 2. **Security:** Theme sanitizes/escapes all data - maintain this
 3. **Accessibility:** Preserve ARIA labels and keyboard navigation
 4. **Performance:** Google Fonts preconnected, images lazy-loaded, JS in footer
+5. **GDPR Compliance:** Cookie consent required before tracking (see `cookies.js`)
+6. **API Keys:** Chatbot API key is embedded in `chatbot.js` - consider environment variables for production
 
 ## Git Info
 
-- **Main Branch:** `claude/find-fix-bug-mkn2v2ji2v6szn1f-I2Z9c`
 - **Repository:** https://github.com/bbesalduch/web_page.git
+- **Primary Branch:** `main` (or `master`)
+
+## UI Components
+
+### Side Menu (Mobile Navigation)
+- Consistent across all pages (index.html is the reference)
+- Uses `transform: translateX()` animation
+- Structure: `<ul class="side-menu-nav">` directly (not wrapped in div)
+- Close button uses SVG icon, not `&times;`
+- Submenus use `max-height` transition for smooth animation
+
+### Header
+- Fixed position with blur backdrop on scroll
+- Centered logo
+- Language dropdown on desktop
+- Hamburger menu toggle for mobile
+
+## Recent Features
+
+- **AI Chatbot:** Google Gemini-powered assistant for guest inquiries
+- **Booking Popup:** Modal for room reservations
+- **Cookie Consent:** GDPR-compliant cookie banner
+- **Video Content:** Hero videos for homepage and amenities sections
+- **Consistent Side Menu:** Unified navigation across all pages
+- **Breakfast Page:** Dedicated page for breakfast services (buffet & à la carte)
+- **Snack Bar Page:** Pool bar menu and tapas offerings
+- **Hotel Page Slider:** Professional photography slider with optimized images
+- **Multi-language Support:** EN, ES, DE, SV translations on all pages
+
+## Image Optimization
+
+Images are optimized using ImageMagick for web performance:
+- **Hero/Slider images:** 1920x1080px, 85% quality
+- **Feature images:** 900x700px, 85% quality
+- **Full-height images:** Maintain aspect ratio, max 800px width
+
+Optimized hotel images stored in `images/hotel/`:
+- `slider-1-tiles.jpg` - Modernist Art Nouveau tiles
+- `slider-2-salon.jpg` - Historic salon with fireplace
+- `slider-3-terrace.jpg` - Mediterranean terrace
+- `slider-4-poolside.jpg` - Pool area with loungers
+- `fachada-full.jpg` - Full facade view (vertical)
+- `salon-optimized.jpg` - Salon for heritage section

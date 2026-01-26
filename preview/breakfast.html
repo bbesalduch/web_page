@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakfast - Hotel Can Quetglas</title>
+    <meta name="description" content="Start your day with our Mediterranean breakfast buffet featuring local Mallorcan products and fresh à la carte options at Hotel Can Quetglas.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face { font-family: 'CocoGothic'; src: url('fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
+        :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-size: 1rem; font-weight: 300; line-height: 1.7; color: var(--color-black); background-color: var(--color-cream); -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.2; letter-spacing: 0.05em; }
+        a { color: var(--color-black); text-decoration: none; transition: color var(--transition-normal); }
+        a:hover { color: var(--color-accent); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--spacing-md); }
+
+        /* Header */
+        .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: var(--spacing-sm) 0; background-color: rgba(247, 243, 237, 0.98); backdrop-filter: blur(10px); box-shadow: 0 1px 0 rgba(0,0,0,0.05); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; }
+        .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
+        .site-logo-img { height: 40px; width: auto; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
+        .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
+        .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
+        .header-cta .btn:hover { background: var(--color-dark); }
+        .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all var(--transition-normal); }
+        .btn-primary { background-color: var(--color-black); color: var(--color-white); }
+        .btn-primary:hover { background-color: var(--color-dark); color: var(--color-white); }
+        .btn-outline { background: transparent; color: var(--color-black); border: 1px solid var(--color-black); }
+        .btn-outline:hover { background: var(--color-black); color: var(--color-white); }
+
+        /* Language Dropdown */
+        .header-lang-dropdown { position: relative; }
+        .header-lang-current { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--color-gray); cursor: pointer; padding: 8px 0; letter-spacing: 0.05em; }
+        .header-lang-current:hover { color: var(--color-black); }
+        .header-lang-current svg { width: 12px; height: 12px; transition: transform 0.3s ease; }
+        .header-lang-dropdown:hover .header-lang-current svg { transform: rotate(180deg); }
+        .header-lang-menu { position: absolute; top: 100%; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 60px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+        .header-lang-dropdown:hover .header-lang-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .header-lang-menu a { display: block; padding: 10px 16px; font-size: 0.75rem; color: var(--color-gray); letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .header-lang-menu a:last-child { border-bottom: none; }
+        .header-lang-menu a:hover { background: var(--color-cream); color: var(--color-black); }
+        .header-lang-menu a.lang-active { color: var(--color-black); font-weight: 600; }
+
+        /* Hero */
+        .hero { position: relative; height: 70vh; min-height: 500px; margin-top: 60px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: var(--color-white); }
+        .hero-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: var(--spacing-sm); }
+        .hero-title { font-family: var(--font-heading); font-size: clamp(2.5rem, 7vw, 5rem); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: var(--spacing-sm); }
+        .hero-tagline { font-family: var(--font-heading); font-size: clamp(1rem, 2vw, 1.3rem); font-style: italic; letter-spacing: 0.05em; opacity: 0.9; }
+
+        /* Intro Section */
+        .intro-section { padding: var(--spacing-xl) 0; text-align: center; }
+        .intro-section h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-md); }
+        .intro-text { color: var(--color-gray); max-width: 800px; margin: 0 auto; line-height: 2; font-size: 1.05rem; }
+        .intro-hours { margin-top: var(--spacing-md); font-size: 0.9rem; color: var(--color-accent); font-weight: 500; letter-spacing: 0.1em; }
+
+        /* Feature Grid */
+        .feature-section { padding: 0; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .feature-grid.reverse { direction: rtl; }
+        .feature-grid.reverse > * { direction: ltr; }
+        .feature-image { position: relative; min-height: 450px; }
+        .feature-image img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+        .feature-content { background: var(--color-white); padding: var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
+        .feature-content.alt { background: var(--color-cream-dark); }
+        .feature-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--color-gray); margin-bottom: var(--spacing-sm); }
+        .feature-content h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.2rem); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--spacing-md); }
+        .feature-content p { color: var(--color-gray); margin-bottom: var(--spacing-sm); line-height: 1.9; }
+        .feature-list { list-style: none; margin-top: var(--spacing-md); }
+        .feature-list li { color: var(--color-gray); padding: var(--spacing-xs) 0; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: var(--spacing-sm); }
+        .feature-list li:last-child { border-bottom: none; }
+        .feature-list svg { width: 16px; height: 16px; color: var(--color-accent); flex-shrink: 0; }
+
+        @media (max-width: 900px) {
+            .feature-grid, .feature-grid.reverse { grid-template-columns: 1fr; direction: ltr; }
+            .feature-image { min-height: 350px; }
+        }
+
+        /* Menu CTA */
+        .menu-cta { padding: var(--spacing-xl) 0; background: var(--color-black); text-align: center; }
+        .menu-cta h2 { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2rem); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--spacing-sm); }
+        .menu-cta p { color: rgba(255,255,255,0.7); margin-bottom: var(--spacing-md); }
+        .menu-cta .btn { background: transparent; color: var(--color-white); border: 1px solid var(--color-white); }
+        .menu-cta .btn:hover { background: var(--color-white); color: var(--color-black); }
+
+        /* Side Menu */
+        .menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1998; opacity: 0; visibility: hidden; transition: all 0.4s ease; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .side-menu { position: fixed; top: 0; left: 0; width: 100%; max-width: 500px; height: 100vh; background-color: var(--color-cream); z-index: 1999; transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .side-menu.active { transform: translateX(0); }
+        .side-menu-close { position: relative; background: none; border: none; cursor: pointer; color: var(--color-black); padding: 10px; margin-left: -10px; align-self: flex-start; }
+        .side-menu-close:hover { color: var(--color-accent); }
+        .side-menu-nav { list-style: none; margin-top: var(--spacing-sm); }
+        .side-menu-nav > li { margin-bottom: var(--spacing-sm); }
+        .side-menu-nav > li > a { font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-black); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0; }
+        .side-menu-nav > li > a:hover { color: var(--color-accent); }
+        .side-menu-nav > li > a svg { transition: transform 0.3s ease; }
+        .side-menu-nav > li.submenu-open > a svg { transform: rotate(180deg); }
+        .submenu { list-style: none; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: var(--spacing-md); }
+        .submenu-open .submenu { max-height: 300px; }
+        .submenu li { margin: var(--spacing-xs) 0; }
+        .submenu a { font-family: var(--font-body); font-size: 0.9rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; }
+        .submenu a:hover { color: var(--color-black); }
+        .side-menu-lang { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-sm); border-top: 1px solid rgba(0,0,0,0.1); margin-top: var(--spacing-sm); }
+        .side-menu-lang a { font-size: 0.9rem; color: var(--color-gray); text-decoration: none; letter-spacing: 0.05em; font-weight: 400; }
+        .side-menu-lang a.lang-active { color: var(--color-black); font-weight: 600; }
+        .side-menu-lang a:hover { color: var(--color-black); }
+
+        /* Footer */
+        .site-footer { background-color: var(--color-cream-dark); padding: var(--spacing-xl) 0 var(--spacing-md); }
+        .footer-content { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-lg); }
+        .footer-logo { display: flex; align-items: center; gap: var(--spacing-sm); font-family: 'CocoGothic', var(--font-heading); font-size: 1.5rem; color: var(--color-black); letter-spacing: 0.05em; margin-bottom: var(--spacing-sm); }
+        .footer-logo-img { height: 40px; width: auto; }
+        .footer-tagline { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-black); margin-bottom: var(--spacing-sm); font-weight: 500; }
+        .footer-nav ul { list-style: none; }
+        .footer-nav li { margin-bottom: 0.5rem; }
+        .footer-nav a { color: var(--color-gray); font-size: 0.9rem; }
+        .footer-nav a:hover { color: var(--color-black); }
+        .footer-contact p { color: var(--color-gray); font-size: 0.85rem; margin-bottom: var(--spacing-xs); }
+        .footer-social { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
+        .footer-social a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--color-gray-light); border-radius: 50%; color: var(--color-gray); transition: all 0.3s; }
+        .footer-social a:hover { border-color: var(--color-black); color: var(--color-black); }
+        .footer-bottom { text-align: center; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.1); }
+        .footer-bottom p { font-size: 0.8rem; color: var(--color-gray); }
+
+        @media (max-width: 900px) { .footer-content { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .footer-content { grid-template-columns: 1fr; text-align: center; } .footer-logo { justify-content: center; } }
+
+        /* ============================================
+           BOOKING POPUP
+           ============================================ */
+        .booking-popup-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.6); z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; padding: var(--spacing-md); }
+        .booking-popup-overlay.active { opacity: 1; visibility: visible; }
+        .booking-popup { background: var(--color-white); max-width: 900px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.3s ease; }
+        .booking-popup-overlay.active .booking-popup { transform: translateY(0); }
+        .booking-popup-close { position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer; color: var(--color-black); padding: 8px; z-index: 10; transition: color 0.3s; }
+        .booking-popup-close:hover { color: var(--color-accent); }
+        .booking-popup-content { display: grid; grid-template-columns: 1fr 1fr; }
+        .booking-popup-left { padding: var(--spacing-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid var(--color-cream-dark); }
+        .booking-popup-logo { max-width: 240px; width: 100%; margin-bottom: var(--spacing-xs); }
+        .booking-popup-tagline { font-size: 0.85rem; color: var(--color-gray); text-align: center; margin-bottom: var(--spacing-md); font-style: italic; max-width: 240px; }
+        .booking-popup-form { width: 100%; max-width: 320px; }
+        .booking-popup-row { display: flex; align-items: flex-start; gap: var(--spacing-sm); padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--color-cream-dark); cursor: pointer; }
+        .booking-popup-row svg { width: 20px; height: 20px; color: var(--color-gray); flex-shrink: 0; margin-top: 2px; }
+        .booking-popup-row-content { flex: 1; }
+        .booking-popup-label { font-size: 0.7rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
+        .booking-popup-value { font-size: 0.95rem; color: var(--color-black); font-weight: 400; }
+        .booking-calendar { display: none; position: absolute; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 100; padding: var(--spacing-sm); min-width: 280px; }
+        .booking-calendar.active { display: block; }
+        .booking-calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm); }
+        .booking-calendar-title { font-size: 0.9rem; font-weight: 500; }
+        .booking-calendar-nav { background: none; border: none; cursor: pointer; padding: 4px 8px; color: var(--color-black); }
+        .booking-calendar-nav:hover { color: var(--color-accent); }
+        .booking-calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+        .booking-calendar-day-name { font-size: 0.7rem; color: var(--color-gray); padding: 8px 0; text-transform: uppercase; }
+        .booking-calendar-day { padding: 8px; font-size: 0.85rem; cursor: pointer; border: none; background: none; transition: all 0.2s; }
+        .booking-calendar-day:hover:not(.disabled):not(.selected) { background: var(--color-cream); }
+        .booking-calendar-day.disabled { color: var(--color-gray-light); cursor: default; }
+        .booking-calendar-day.selected { background: var(--color-black); color: var(--color-white); }
+        .booking-calendar-day.in-range { background: var(--color-cream-dark); }
+        .booking-calendar-day.today { font-weight: 600; }
+        .booking-rooms-container { width: 100%; }
+        .booking-room-section { border: 1px solid var(--color-cream-dark); padding: var(--spacing-sm); margin-bottom: var(--spacing-sm); position: relative; }
+        .booking-room-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xs); }
+        .booking-room-title { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); }
+        .booking-room-remove { background: none; border: none; cursor: pointer; color: var(--color-gray); font-size: 0.75rem; padding: 4px 8px; transition: color 0.2s; }
+        .booking-room-remove:hover { color: var(--color-black); }
+        .booking-guest-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .booking-guest-row:not(:last-child) { border-bottom: 1px solid var(--color-cream); }
+        .booking-guest-label { font-size: 0.85rem; color: var(--color-black); }
+        .booking-guest-note { font-size: 0.7rem; color: var(--color-gray); }
+        .booking-rooms-dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-white); box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 100; padding: var(--spacing-sm); }
+        .booking-rooms-dropdown.active { display: block; }
+        .booking-adults-selector { display: flex; align-items: center; gap: var(--spacing-xs); }
+        .booking-adults-btn { width: 28px; height: 28px; border: 1px solid var(--color-gray-light); background: none; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .booking-adults-btn:hover { border-color: var(--color-black); }
+        .booking-adults-btn:disabled { opacity: 0.3; cursor: default; }
+        .booking-adults-count { font-size: 0.9rem; min-width: 24px; text-align: center; }
+        .booking-adults-note { font-size: 0.7rem; color: var(--color-gray); margin-top: 4px; }
+        .booking-add-room { width: 100%; padding: 10px; background: none; border: 1px dashed var(--color-gray-light); cursor: pointer; font-family: var(--font-body); font-size: 0.8rem; color: var(--color-gray); text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.2s; margin-bottom: var(--spacing-sm); }
+        .booking-add-room:hover { border-color: var(--color-black); color: var(--color-black); }
+        .booking-add-room:disabled { opacity: 0.3; cursor: default; }
+        .booking-promo-input { width: 100%; border: none; border-bottom: 1px solid var(--color-cream-dark); padding: 8px 0; font-family: var(--font-body); font-size: 0.9rem; background: transparent; outline: none; }
+        .booking-promo-input:focus { border-bottom-color: var(--color-black); }
+        .booking-promo-input::placeholder { color: var(--color-gray-light); }
+        .booking-popup-search { width: 100%; max-width: 300px; margin-top: var(--spacing-md); padding: 1rem; background: var(--color-black); color: var(--color-white); border: none; font-family: var(--font-body); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; transition: background 0.3s; }
+        .booking-popup-search:hover { background: var(--color-dark); }
+        .booking-popup-right { padding: var(--spacing-lg); background: var(--color-cream); }
+        .booking-popup-title { font-family: var(--font-heading); font-size: 1.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); margin-bottom: var(--spacing-lg); line-height: 1.3; }
+        .booking-benefit { display: flex; gap: var(--spacing-sm); margin-bottom: var(--spacing-md); }
+        .booking-benefit-icon { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .booking-benefit-icon svg { width: 28px; height: 28px; stroke: var(--color-black); }
+        .booking-benefit-content h4 { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-black); margin-bottom: 4px; }
+        .booking-benefit-content p { font-size: 0.85rem; color: var(--color-gray); line-height: 1.5; }
+        @media (max-width: 768px) {
+            .booking-popup-content { grid-template-columns: 1fr; }
+            .booking-popup-left { border-right: none; border-bottom: 1px solid var(--color-cream-dark); padding: var(--spacing-md); }
+            .booking-popup-right { padding: var(--spacing-md); }
+            .booking-popup-logo { max-width: 200px; }
+            .booking-popup-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Booking Popup -->
+<div class="booking-popup-overlay" id="booking-popup-overlay">
+    <div class="booking-popup">
+        <button class="booking-popup-close" id="booking-popup-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="booking-popup-content">
+            <div class="booking-popup-left">
+                <img src="images/logo.png" alt="Can Quetglas" class="booking-popup-logo">
+                <p class="booking-popup-tagline" data-i18n="popup.tagline">Your home away from home in Palma de Mallorca</p>
+                <div class="booking-popup-form">
+                    <div class="booking-popup-row" id="booking-date-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.when">When</div>
+                            <div class="booking-popup-value" id="popup-dates">Select dates</div>
+                        </div>
+                        <div class="booking-calendar" id="booking-calendar"></div>
+                    </div>
+                    <div class="booking-popup-row" id="booking-who-row" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.who">Who</div>
+                            <div class="booking-popup-value" id="popup-who-summary">2 adults, 1 room</div>
+                        </div>
+                        <div class="booking-rooms-dropdown" id="booking-rooms-dropdown">
+                            <div class="booking-rooms-container" id="booking-rooms-container"></div>
+                            <button class="booking-add-room" id="booking-add-room" data-i18n="popup.addroom">+ Add Room</button>
+                        </div>
+                    </div>
+                    <div class="booking-popup-row" style="cursor: default;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="2"/><circle cx="15" cy="15" r="2"/><line x1="7" y1="17" x2="17" y2="7"/><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/></svg>
+                        <div class="booking-popup-row-content">
+                            <div class="booking-popup-label" data-i18n="popup.promotion">Promotion</div>
+                            <input type="text" class="booking-promo-input" id="promo-code" data-i18n-placeholder="popup.code" placeholder="Code">
+                        </div>
+                    </div>
+                </div>
+                <button class="booking-popup-search" id="booking-popup-search" data-i18n="popup.search">Search</button>
+            </div>
+            <div class="booking-popup-right">
+                <h3 class="booking-popup-title" data-i18n="popup.title">Benefits of Booking on Our Website</h3>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.breakfast">Breakfast Included</h4>
+                        <p data-i18n="popup.breakfast.desc">Enjoy an exquisite experience with local products</p>
+                    </div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.bestrate">Best Rate Guaranteed</h4>
+                        <p data-i18n="popup.bestrate.desc">We offer you the lowest price available for your stay, we guarantee it</p>
+                    </div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.welcome">Welcome Drink</h4>
+                        <p data-i18n="popup.welcome.desc">Complimentary welcome drink upon arrival</p>
+                    </div>
+                </div>
+                <div class="booking-benefit">
+                    <div class="booking-benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="booking-benefit-content">
+                        <h4 data-i18n="popup.preferred">Be a Preferred Guest</h4>
+                        <p data-i18n="popup.preferred.desc">Early check-in (subject to availability). Room assignment preference</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Side Menu -->
+<div class="menu-overlay" id="menu-overlay"></div>
+<nav class="side-menu" id="side-menu">
+    <button class="side-menu-close" id="side-menu-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <ul class="side-menu-nav">
+        <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.rooms">Rooms</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="rooms/standard-terrace.html" data-i18n="rooms.standard">Standard with Terrace</a></li>
+                <li><a href="rooms/deluxe.html" data-i18n="rooms.deluxe">Deluxe</a></li>
+                <li><a href="rooms/deluxe-premium.html" data-i18n="rooms.deluxepremium">Deluxe Premium</a></li>
+                <li><a href="rooms/deluxe-terrace.html" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</a></li>
+                <li><a href="rooms/suite.html" data-i18n="rooms.suite">Can Quetglas Suite</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle"><span data-i18n="nav.food">Food & Beverages</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+            <ul class="submenu">
+                <li><a href="breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li>
+                <li><a href="snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li>
+            </ul>
+        </li>
+        <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
+        <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="side-menu-lang">
+        <a href="#" class="lang-active">EN</a>
+        <a href="#">ES</a>
+        <a href="#">DE</a>
+        <a href="#">SV</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="index.html" class="site-logo">
+                <img src="images/logo_emblem.png" alt="Hotel Can Quetglas" class="site-logo-img">
+            </a>
+            <div class="header-actions" style="display: flex; align-items: center; gap: var(--spacing-md);">
+                <div class="header-cta">
+                    <a href="#" class="btn" data-booking-link data-i18n="btn.book">Book</a>
+                </div>
+                <div class="header-lang-dropdown">
+                    <div class="header-lang-current">
+                        <span id="current-lang-text">EN</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <div class="header-lang-menu">
+                        <a href="#" class="header-lang lang-active" data-lang="en">EN</a>
+                        <a href="#" class="header-lang" data-lang="es">ES</a>
+                        <a href="#" class="header-lang" data-lang="de">DE</a>
+                        <a href="#" class="header-lang" data-lang="sv">SV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <img src="images/breakfast/breakfast-hero.jpg" alt="Breakfast buffet at Can Quetglas">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-subtitle" data-i18n="breakfast.hero.subtitle">Start Your Day</p>
+        <h1 class="hero-title" data-i18n="breakfast.hero.title">Breakfast</h1>
+        <p class="hero-tagline" data-i18n="breakfast.hero.tagline">A Mediterranean morning ritual</p>
+    </div>
+</section>
+
+<!-- Intro -->
+<section class="intro-section">
+    <div class="container">
+        <h2 data-i18n="breakfast.intro.title">Good Morning, Mallorca</h2>
+        <p class="intro-text" data-i18n="breakfast.intro.text">Begin each day with our carefully curated breakfast, featuring the finest local products from Mallorca. From artisan breads and pastries to fresh seasonal fruits and traditional Mallorcan specialties, every morning is a celebration of Mediterranean flavours.</p>
+        <p class="intro-hours" data-i18n="breakfast.hours">8:00 - 10:00</p>
+    </div>
+</section>
+
+<!-- Buffet Section -->
+<section class="feature-section">
+    <div class="feature-grid">
+        <div class="feature-image">
+            <img src="images/breakfast/breakfast-buffet-new.jpg" alt="Guest selecting artisan pastries from the breakfast buffet">
+        </div>
+        <div class="feature-content">
+            <p class="feature-subtitle" data-i18n="breakfast.buffet.subtitle">Self Service</p>
+            <h2 data-i18n="breakfast.buffet.title">Buffet</h2>
+            <p data-i18n="breakfast.buffet.text">A generous spread of Mediterranean delicacies awaits you each morning. Discover local Mallorcan products alongside international favourites in our elegant breakfast room.</p>
+            <ul class="feature-list">
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.buffet.item1">Fresh seasonal fruits</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.buffet.item2">Artisan breads & pastries</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.buffet.item3">Local cheeses & Iberian ham</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.buffet.item4">Organic juices & smoothies</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- À la Carte Section -->
+<section class="feature-section">
+    <div class="feature-grid reverse">
+        <div class="feature-image">
+            <img src="images/breakfast/breakfast-alacarte-new.jpg" alt="Mediterranean breakfast served on the garden terrace">
+        </div>
+        <div class="feature-content alt">
+            <p class="feature-subtitle" data-i18n="breakfast.alacarte.subtitle">Table Service</p>
+            <h2 data-i18n="breakfast.alacarte.title">À la Carte</h2>
+            <p data-i18n="breakfast.alacarte.text">Savour your morning at your own pace on our sun-drenched terrace. Our attentive staff will bring your selection directly to your table.</p>
+            <ul class="feature-list">
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.alacarte.item1">Freshly prepared dishes</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.alacarte.item2">Garden terrace seating</span></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span data-i18n="breakfast.alacarte.item3">Personalised service</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Menu CTA -->
+<section class="menu-cta">
+    <div class="container">
+        <h2 data-i18n="breakfast.menu.title">Full Menu</h2>
+        <p data-i18n="breakfast.menu.text">Discover all our breakfast options</p>
+        <a href="https://hotelcanquetglas.com/wp-content/uploads/2023/10/GastroBar.pdf" target="_blank" class="btn" data-i18n="breakfast.menu.btn">View Menu (PDF)</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/logo_emblem.png" alt="Can Quetglas" class="footer-logo-img">
+                    Can Quetglas
+                </div>
+                <p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4>
+                <ul>
+                    <li><a href="hotel.html" data-i18n="nav.hotel">The Hotel</a></li>
+                    <li><a href="index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li>
+                    <li><a href="breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li>
+                    <li><a href="snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li>
+                    <li><a href="wellness.html" data-i18n="nav.wellness">Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav">
+                <h4 class="footer-nav-title" data-i18n="footer.info">Info</h4>
+                <ul>
+                    <li><a href="location.html" data-i18n="nav.location">Location</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="footer.terms">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4>
+                <p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p>
+                <p>+34 871 626 000</p>
+                <p>info@hotelcanquetglas.com</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+const translations = {
+    en: {
+        'nav.hotel': 'The Hotel', 'nav.rooms': 'Rooms', 'nav.food': 'Food & Beverages', 'nav.breakfast': 'Breakfast', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Location', 'nav.contact': 'Contact',
+        'rooms.standard': 'Standard with Terrace', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe with Terrace', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Book',
+        'breakfast.hero.subtitle': 'Start Your Day', 'breakfast.hero.title': 'Breakfast', 'breakfast.hero.tagline': 'A Mediterranean morning ritual',
+        'breakfast.intro.title': 'Good Morning, Mallorca', 'breakfast.intro.text': 'Begin each day with our carefully curated breakfast, featuring the finest local products from Mallorca. From artisan breads and pastries to fresh seasonal fruits and traditional Mallorcan specialties, every morning is a celebration of Mediterranean flavours.', 'breakfast.hours': '8:00 - 10:00',
+        'breakfast.buffet.subtitle': 'Self Service', 'breakfast.buffet.title': 'Buffet', 'breakfast.buffet.text': 'A generous spread of Mediterranean delicacies awaits you each morning. Discover local Mallorcan products alongside international favourites in our elegant breakfast room.',
+        'breakfast.buffet.item1': 'Fresh seasonal fruits', 'breakfast.buffet.item2': 'Artisan breads & pastries', 'breakfast.buffet.item3': 'Local cheeses & Iberian ham', 'breakfast.buffet.item4': 'Organic juices & smoothies',
+        'breakfast.alacarte.subtitle': 'Table Service', 'breakfast.alacarte.title': 'À la Carte', 'breakfast.alacarte.text': 'Savour your morning at your own pace on our sun-drenched terrace. Our attentive staff will bring your selection directly to your table.',
+        'breakfast.alacarte.item1': 'Freshly prepared dishes', 'breakfast.alacarte.item2': 'Garden terrace seating', 'breakfast.alacarte.item3': 'Personalised service',
+        'breakfast.menu.title': 'Full Menu', 'breakfast.menu.text': 'Discover all our breakfast options', 'breakfast.menu.btn': 'View Menu (PDF)',
+        'footer.tagline': 'Your home away from home<br>in Palma de Mallorca', 'footer.explore': 'Explore', 'footer.info': 'Info', 'footer.privacy': 'Privacy Policy', 'footer.terms': 'Terms', 'footer.copyright': '© 2026 Hotel Can Quetglas. All rights reserved.',
+        'popup.tagline': 'Your home away from home in Palma de Mallorca', 'popup.when': 'When', 'popup.who': 'Who', 'popup.promotion': 'Promotion', 'popup.code': 'Code', 'popup.search': 'Search', 'popup.addroom': '+ Add Room', 'popup.title': 'Benefits of Booking on Our Website', 'popup.breakfast': 'Breakfast Included', 'popup.breakfast.desc': 'Enjoy an exquisite experience with local products', 'popup.bestrate': 'Best Rate Guaranteed', 'popup.bestrate.desc': 'We offer you the lowest price available for your stay, we guarantee it', 'popup.welcome': 'Welcome Drink', 'popup.welcome.desc': 'Complimentary welcome drink upon arrival', 'popup.preferred': 'Be a Preferred Guest', 'popup.preferred.desc': 'Early check-in (subject to availability). Room assignment preference'
+    },
+    es: {
+        'nav.hotel': 'El Hotel', 'nav.rooms': 'Habitaciones', 'nav.food': 'Gastronomía', 'nav.breakfast': 'Desayuno', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Ubicación', 'nav.contact': 'Contacto',
+        'rooms.standard': 'Standard con Terraza', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe con Terraza', 'rooms.suite': 'Suite Can Quetglas',
+        'btn.book': 'Reservar',
+        'breakfast.hero.subtitle': 'Comienza Tu Día', 'breakfast.hero.title': 'Desayuno', 'breakfast.hero.tagline': 'Un ritual matutino mediterráneo',
+        'breakfast.intro.title': 'Buenos Días, Mallorca', 'breakfast.intro.text': 'Comienza cada día con nuestro desayuno cuidadosamente seleccionado, con los mejores productos locales de Mallorca. Desde panes artesanales y bollería hasta frutas frescas de temporada y especialidades mallorquinas tradicionales, cada mañana es una celebración de los sabores mediterráneos.', 'breakfast.hours': '8:00 - 10:00',
+        'breakfast.buffet.subtitle': 'Autoservicio', 'breakfast.buffet.title': 'Buffet', 'breakfast.buffet.text': 'Una generosa selección de delicias mediterráneas le espera cada mañana. Descubra productos locales mallorquines junto a favoritos internacionales en nuestro elegante salón de desayunos.',
+        'breakfast.buffet.item1': 'Frutas frescas de temporada', 'breakfast.buffet.item2': 'Panes artesanales y bollería', 'breakfast.buffet.item3': 'Quesos locales y jamón ibérico', 'breakfast.buffet.item4': 'Zumos ecológicos y smoothies',
+        'breakfast.alacarte.subtitle': 'Servicio en Mesa', 'breakfast.alacarte.title': 'À la Carte', 'breakfast.alacarte.text': 'Saboree su mañana a su propio ritmo en nuestra terraza bañada por el sol. Nuestro atento personal llevará su selección directamente a su mesa.',
+        'breakfast.alacarte.item1': 'Platos recién preparados', 'breakfast.alacarte.item2': 'Terraza con jardín', 'breakfast.alacarte.item3': 'Servicio personalizado',
+        'breakfast.menu.title': 'Menú Completo', 'breakfast.menu.text': 'Descubre todas nuestras opciones de desayuno', 'breakfast.menu.btn': 'Ver Menú (PDF)',
+        'footer.tagline': 'Su hogar lejos de casa<br>en Palma de Mallorca', 'footer.explore': 'Explorar', 'footer.info': 'Info', 'footer.privacy': 'Política de Privacidad', 'footer.terms': 'Términos', 'footer.copyright': '© 2026 Hotel Can Quetglas. Todos los derechos reservados.',
+        'popup.tagline': 'Su hogar lejos de casa en Palma de Mallorca', 'popup.when': 'Cuándo', 'popup.who': 'Quién', 'popup.promotion': 'Promoción', 'popup.code': 'Código', 'popup.search': 'Buscar', 'popup.addroom': '+ Añadir habitación', 'popup.title': 'Ventajas de Reservar en Nuestra Web', 'popup.breakfast': 'Desayuno Incluido', 'popup.breakfast.desc': 'Disfrute de una experiencia exquisita con productos locales', 'popup.bestrate': 'Mejor Precio Garantizado', 'popup.bestrate.desc': 'Le ofrecemos el precio más bajo disponible para su estancia, lo garantizamos', 'popup.welcome': 'Copa de Bienvenida', 'popup.welcome.desc': 'Copa de bienvenida de cortesía a su llegada', 'popup.preferred': 'Sea un Huésped Preferente', 'popup.preferred.desc': 'Early check-in (sujeto a disponibilidad). Preferencia en asignación de habitación'
+    },
+    de: {
+        'nav.hotel': 'Das Hotel', 'nav.rooms': 'Zimmer', 'nav.food': 'Essen & Trinken', 'nav.breakfast': 'Frühstück', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Lage', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard mit Terrasse', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe mit Terrasse', 'rooms.suite': 'Can Quetglas Suite',
+        'btn.book': 'Buchen',
+        'breakfast.hero.subtitle': 'Starten Sie Ihren Tag', 'breakfast.hero.title': 'Frühstück', 'breakfast.hero.tagline': 'Ein mediterranes Morgenritual',
+        'breakfast.intro.title': 'Guten Morgen, Mallorca', 'breakfast.intro.text': 'Beginnen Sie jeden Tag mit unserem sorgfältig zusammengestellten Frühstück mit den besten lokalen Produkten Mallorcas. Von handwerklich hergestelltem Brot und Gebäck bis hin zu frischen saisonalen Früchten und traditionellen mallorquinischen Spezialitäten ist jeder Morgen eine Feier mediterraner Aromen.', 'breakfast.hours': '8:00 - 10:00',
+        'breakfast.buffet.subtitle': 'Selbstbedienung', 'breakfast.buffet.title': 'Buffet', 'breakfast.buffet.text': 'Eine großzügige Auswahl mediterraner Köstlichkeiten erwartet Sie jeden Morgen. Entdecken Sie lokale mallorquinische Produkte neben internationalen Favoriten in unserem eleganten Frühstücksraum.',
+        'breakfast.buffet.item1': 'Frische saisonale Früchte', 'breakfast.buffet.item2': 'Handwerkliches Brot & Gebäck', 'breakfast.buffet.item3': 'Lokale Käse & Iberischer Schinken', 'breakfast.buffet.item4': 'Bio-Säfte & Smoothies',
+        'breakfast.alacarte.subtitle': 'Tischservice', 'breakfast.alacarte.title': 'À la Carte', 'breakfast.alacarte.text': 'Genießen Sie Ihren Morgen in Ihrem eigenen Tempo auf unserer sonnenverwöhnten Terrasse. Unser aufmerksames Personal bringt Ihre Auswahl direkt an Ihren Tisch.',
+        'breakfast.alacarte.item1': 'Frisch zubereitete Gerichte', 'breakfast.alacarte.item2': 'Gartenterrasse', 'breakfast.alacarte.item3': 'Persönlicher Service',
+        'breakfast.menu.title': 'Vollständige Speisekarte', 'breakfast.menu.text': 'Entdecken Sie alle unsere Frühstücksoptionen', 'breakfast.menu.btn': 'Speisekarte Ansehen (PDF)',
+        'footer.tagline': 'Ihr Zuhause fernab der Heimat<br>in Palma de Mallorca', 'footer.explore': 'Entdecken', 'footer.info': 'Info', 'footer.privacy': 'Datenschutz', 'footer.terms': 'AGB', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alle Rechte vorbehalten.',
+        'popup.tagline': 'Ihr Zuhause fernab der Heimat in Palma de Mallorca', 'popup.when': 'Wann', 'popup.who': 'Wer', 'popup.promotion': 'Aktion', 'popup.code': 'Code', 'popup.search': 'Suchen', 'popup.addroom': '+ Zimmer hinzufügen', 'popup.title': 'Vorteile der Buchung auf unserer Website', 'popup.breakfast': 'Frühstück Inklusive', 'popup.breakfast.desc': 'Genießen Sie ein exquisites Erlebnis mit lokalen Produkten', 'popup.bestrate': 'Bestpreisgarantie', 'popup.bestrate.desc': 'Wir bieten Ihnen den niedrigsten verfügbaren Preis für Ihren Aufenthalt, garantiert', 'popup.welcome': 'Willkommensgetränk', 'popup.welcome.desc': 'Kostenloses Willkommensgetränk bei Ankunft', 'popup.preferred': 'Werden Sie Bevorzugter Gast', 'popup.preferred.desc': 'Früher Check-in (nach Verfügbarkeit). Zimmerauswahl-Präferenz'
+    },
+    sv: {
+        'nav.hotel': 'Hotellet', 'nav.rooms': 'Rum', 'nav.food': 'Mat & Dryck', 'nav.breakfast': 'Frukost', 'nav.snackbar': 'Snack Bar', 'nav.wellness': 'Wellness', 'nav.location': 'Läge', 'nav.contact': 'Kontakt',
+        'rooms.standard': 'Standard med Terrass', 'rooms.deluxe': 'Deluxe', 'rooms.deluxepremium': 'Deluxe Premium', 'rooms.deluxeterrace': 'Deluxe med Terrass', 'rooms.suite': 'Can Quetglas Svit',
+        'btn.book': 'Boka',
+        'breakfast.hero.subtitle': 'Börja Din Dag', 'breakfast.hero.title': 'Frukost', 'breakfast.hero.tagline': 'En medelhavsmorgonritual',
+        'breakfast.intro.title': 'God Morgon, Mallorca', 'breakfast.intro.text': 'Börja varje dag med vår noggrant utvalda frukost med de finaste lokala produkterna från Mallorca. Från hantverksbröd och bakverk till färska säsongsfrukter och traditionella mallorquinska specialiteter, varje morgon är en hyllning till medelhavets smaker.', 'breakfast.hours': '8:00 - 10:00',
+        'breakfast.buffet.subtitle': 'Självbetjäning', 'breakfast.buffet.title': 'Buffé', 'breakfast.buffet.text': 'Ett generöst utbud av medelhavs delikatesser väntar dig varje morgon. Upptäck lokala mallorquinska produkter tillsammans med internationella favoriter i vår eleganta frukostsal.',
+        'breakfast.buffet.item1': 'Färska säsongsfrukter', 'breakfast.buffet.item2': 'Hantverksbröd & bakverk', 'breakfast.buffet.item3': 'Lokala ostar & iberisk skinka', 'breakfast.buffet.item4': 'Ekologiska juicer & smoothies',
+        'breakfast.alacarte.subtitle': 'Bordsservering', 'breakfast.alacarte.title': 'À la Carte', 'breakfast.alacarte.text': 'Njut av din morgon i din egen takt på vår soldränkta terrass. Vår uppmärksamma personal serverar ditt val direkt vid ditt bord.',
+        'breakfast.alacarte.item1': 'Nytillagade rätter', 'breakfast.alacarte.item2': 'Trädgårdsterrass', 'breakfast.alacarte.item3': 'Personlig service',
+        'breakfast.menu.title': 'Fullständig Meny', 'breakfast.menu.text': 'Upptäck alla våra frukostalternativ', 'breakfast.menu.btn': 'Visa Meny (PDF)',
+        'footer.tagline': 'Ditt hem borta från hemmet<br>i Palma de Mallorca', 'footer.explore': 'Utforska', 'footer.info': 'Info', 'footer.privacy': 'Integritetspolicy', 'footer.terms': 'Villkor', 'footer.copyright': '© 2026 Hotel Can Quetglas. Alla rättigheter förbehållna.',
+        'popup.tagline': 'Ditt hem borta från hemmet i Palma de Mallorca', 'popup.when': 'När', 'popup.who': 'Vem', 'popup.promotion': 'Kampanj', 'popup.code': 'Kod', 'popup.search': 'Sök', 'popup.addroom': '+ Lägg till rum', 'popup.title': 'Fördelar med att Boka på Vår Webbplats', 'popup.breakfast': 'Frukost Ingår', 'popup.breakfast.desc': 'Njut av en utsökt upplevelse med lokala produkter', 'popup.bestrate': 'Bästa Pris Garanterat', 'popup.bestrate.desc': 'Vi erbjuder dig det lägsta tillgängliga priset för din vistelse, garanterat', 'popup.welcome': 'Välkomstdrink', 'popup.welcome.desc': 'Gratis välkomstdrink vid ankomst', 'popup.preferred': 'Bli en Föredragen Gäst', 'popup.preferred.desc': 'Tidig incheckning (efter tillgänglighet). Preferens vid rumstilldelning'
+    }
+};
+
+let currentLang = 'en';
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.innerHTML = translations[lang][key];
+    });
+    document.querySelectorAll('.side-menu-lang a').forEach(a => {
+        a.classList.toggle('lang-active', a.textContent === lang.toUpperCase());
+    });
+    document.querySelectorAll('.header-lang').forEach(a => {
+        a.classList.toggle('lang-active', a.dataset.lang === lang);
+    });
+    const currentLangText = document.getElementById('current-lang-text');
+    if (currentLangText) currentLangText.textContent = lang.toUpperCase();
+    localStorage.setItem('canquetglas-lang', lang);
+}
+
+// Side Menu
+const menuToggle = document.getElementById('menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+const sideMenuClose = document.getElementById('side-menu-close');
+
+function openMenu() { sideMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.classList.add('menu-open'); }
+function closeMenu() { sideMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.classList.remove('menu-open'); }
+
+menuToggle.addEventListener('click', openMenu);
+sideMenuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', function(e) { e.preventDefault(); this.parentElement.classList.toggle('submenu-open'); });
+});
+document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link => { link.addEventListener('click', closeMenu); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+// Language selectors
+document.querySelectorAll('.side-menu-lang a').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); const lang = this.textContent.toLowerCase(); setLanguage(lang); });
+});
+document.querySelectorAll('.header-lang').forEach(langLink => {
+    langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); });
+});
+
+// Load saved language
+const savedLang = localStorage.getItem('canquetglas-lang');
+if (savedLang && translations[savedLang]) setLanguage(savedLang);
+</script>
+
+<script src="js/chatbot.js"></script>
+<script src="js/booking-popup.js"></script>
+</body>
+</html>
