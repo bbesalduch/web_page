@@ -1,0 +1,33 @@
+# robots.txt for Hotel Can Quetglas
+# https://hotelcanquetglas.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hotelcanquetglas.com/sitemap.xml
+
+# Crawl delay (optional, be nice to crawlers)
+Crawl-delay: 1
+
+# Disallow admin or private areas (none in static site)
+# Disallow: /admin/
+
+# Allow all major search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
