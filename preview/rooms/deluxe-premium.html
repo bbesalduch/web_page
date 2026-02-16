@@ -34,6 +34,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JRGW78ZBB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JRGW78ZBB');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vep7ivb63y");
+    </script>
+
+
     <style>
         @font-face { font-family: 'CocoGothic'; src: url('../fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
@@ -48,6 +66,7 @@
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
         .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
         .site-logo-img { height: 40px; width: auto; }
+        @media (max-width: 1000px) { .site-logo { position: static; transform: none; } }
         .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
         .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
         .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
@@ -344,12 +363,12 @@
 
 <section class="room-hero">
     <div class="room-hero-slider">
-        <div class="room-hero-slide active"><img src="../images/rooms/deluxe-premium/photo-1.jpg" alt="Deluxe Premium"></div>
-        <div class="room-hero-slide"><img src="../images/rooms/deluxe-premium/photo-2.jpg" alt="Deluxe Premium"></div>
-        <div class="room-hero-slide"><img src="../images/rooms/deluxe-premium/photo-3.jpg" alt="Deluxe Premium"></div>
-        <div class="room-hero-slide"><img src="../images/rooms/deluxe-premium/photo-8.jpg" alt="Deluxe Premium"></div>
-        <div class="room-hero-slide"><img src="../images/rooms/deluxe-premium/photo-11.jpg" alt="Deluxe Premium"></div>
-        <div class="room-hero-slide"><img src="../images/rooms/deluxe-premium/photo-17.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide active"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-1.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-2.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-3.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-8.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-11.jpg" alt="Deluxe Premium"></div>
+        <div class="room-hero-slide"><img loading="lazy" src="../images/rooms/deluxe-premium/photo-17.jpg" alt="Deluxe Premium"></div>
     </div>
     <button class="slider-arrow prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/><line x1="9" y1="12" x2="21" y2="12"/></svg></button>
     <button class="slider-arrow next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/><line x1="15" y1="12" x2="3" y2="12"/></svg></button>
@@ -408,25 +427,25 @@
         <div class="other-rooms-slider-container">
             <div class="other-rooms-slider" id="other-rooms-slider">
                 <div class="other-room-slide">
-                    <img src="../images/rooms/standard-terrace/photo-3.jpg" alt="Standard with Terrace">
+                    <img loading="lazy" src="../images/rooms/standard-terrace/photo-3.jpg" alt="Standard with Terrace">
                     <h3 class="other-room-slide-title" data-i18n="rooms.standard">Standard with Terrace</h3>
                     <p class="other-room-slide-desc" data-i18n="rooms.standard.desc">A cozy 20m² retreat with private terrace, perfect for couples seeking comfort and outdoor relaxation in the heart of El Terreno.</p>
                     <a href="standard-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
                 </div>
                 <div class="other-room-slide">
-                    <img src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
+                    <img loading="lazy" src="../images/rooms/deluxe/photo-24.jpg" alt="Deluxe">
                     <h3 class="other-room-slide-title" data-i18n="rooms.deluxe">Deluxe</h3>
                     <p class="other-room-slide-desc" data-i18n="rooms.deluxe.desc">Bathed in natural light, our 30m² Deluxe rooms feature elegant design with traditional Mallorcan touches and garden views.</p>
                     <a href="deluxe.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
                 </div>
                 <div class="other-room-slide">
-                    <img src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
+                    <img loading="lazy" src="../images/rooms/deluxe-terrace/photo-7.jpg" alt="Deluxe with Terrace">
                     <h3 class="other-room-slide-title" data-i18n="rooms.deluxeterrace">Deluxe with Terrace</h3>
                     <p class="other-room-slide-desc" data-i18n="rooms.deluxeterrace.desc">Spacious 40m² rooms combining indoor comfort with a generous private terrace overlooking our century-old garden.</p>
                     <a href="deluxe-terrace.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
                 </div>
                 <div class="other-room-slide">
-                    <img src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
+                    <img loading="lazy" src="../images/rooms/suite/photo-7.jpg" alt="Can Quetglas Suite">
                     <h3 class="other-room-slide-title" data-i18n="rooms.suite">Can Quetglas Suite</h3>
                     <p class="other-room-slide-desc" data-i18n="rooms.suite.desc">Our signature 50m² masterpiece featuring original 1908 modernist frescoes, King bed, and private terrace with stunning views.</p>
                     <a href="suite.html" class="btn btn-outline" data-i18n="btn.seeroom">See Room</a>
@@ -446,7 +465,7 @@
             <div class="footer-brand"><div class="footer-logo"><img src="../images/logo_emblem.png" alt="Can Quetglas" class="footer-logo-img">Can Quetglas</div><p class="footer-tagline" data-i18n="footer.tagline">Your home away from home<br>in Palma de Mallorca</p></div>
             <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.explore">Explore</h4><ul><li><a href="../hotel.html" data-i18n="nav.hotel">The Hotel</a></li><li><a href="../index.html#habitaciones" data-i18n="nav.rooms">Rooms</a></li><li><a href="../breakfast.html" data-i18n="nav.breakfast">Breakfast</a></li><li><a href="../snackbar.html" data-i18n="nav.snackbar">Snack Bar</a></li><li><a href="../wellness.html" data-i18n="nav.wellness">Wellness</a></li></ul></div>
             <div class="footer-nav"><h4 class="footer-nav-title" data-i18n="footer.info">Info</h4><ul><li><a href="../location.html" data-i18n="nav.location">Location</a></li><li><a href="../contact.html" data-i18n="nav.contact">Contact</a></li><li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li><li><a href="#" data-i18n="footer.terms">Terms</a></li></ul></div>
-            <div class="footer-contact"><h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4><p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p><p>+34 871 626 000</p><p>info@hotelcanquetglas.com</p><div class="footer-social"><a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
+            <div class="footer-contact"><h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4><p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p><p>+34 871 626 000</p><p><a href="mailto:info@hotelcanquetglas.com">info@hotelcanquetglas.com</a></p><div class="footer-social"><a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a><a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></div></div>
         </div>
         <div class="footer-bottom"><p class="footer-copyright" data-i18n="footer.copyright">&copy; 2026 Hotel Can Quetglas. All rights reserved.</p></div>
     </div>
@@ -472,7 +491,7 @@ document.querySelectorAll('.side-menu-nav a:not(.submenu-toggle)').forEach(link 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 document.querySelectorAll('.side-menu-lang a').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); const lang = this.textContent.toLowerCase(); setLanguage(lang); }); });
 document.querySelectorAll('.header-lang').forEach(langLink => { langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); }); });
-const savedLang = localStorage.getItem('canquetglas-lang'); if (savedLang && translations[savedLang]) setLanguage(savedLang);
+function initLanguage() { const savedLang = localStorage.getItem('canquetglas-lang'); if (savedLang && translations[savedLang]) { setLanguage(savedLang); return; } const browserLang = navigator.language || navigator.userLanguage; const lang = browserLang.split('-')[0]; const supportedLangs = ['en', 'es', 'de', 'sv']; if (supportedLangs.includes(lang)) { setLanguage(lang); } else { setLanguage('en'); } } initLanguage();
 
 const slides = document.querySelectorAll('.room-hero-slide'); const dots = document.querySelectorAll('.slider-dot'); const prevBtn = document.querySelector('.slider-arrow.prev'); const nextBtn = document.querySelector('.slider-arrow.next'); let currentSlide = 0;
 function showSlide(index) { slides.forEach(s => s.classList.remove('active')); dots.forEach(d => d.classList.remove('active')); currentSlide = (index + slides.length) % slides.length; slides[currentSlide].classList.add('active'); dots[currentSlide].classList.add('active'); }
@@ -553,5 +572,9 @@ document.querySelectorAll('[data-room-type-id]').forEach(btn => {
 </script>
 <script src="../js/cookies.js" defer></script>
 <script src="../js/booking-popup.js" defer></script>
+    <!-- Google Analytics Custom Tracking -->
+    <script src="../js/analytics-events.js" defer></script>
+    <script src="../js/analytics-ecommerce.js" defer></script>
+
 </body>
 </html>

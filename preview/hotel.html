@@ -29,6 +29,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JRGW78ZBB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JRGW78ZBB');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vep7ivb63y");
+    </script>
+
+
     <style>
         @font-face { font-family: 'CocoGothic'; src: url('fonts/CocoGothic.ttf') format('truetype'); font-weight: normal; font-style: normal; font-display: swap; }
         :root { --color-cream: #f7f3ed; --color-cream-dark: #ebe5db; --color-white: #ffffff; --color-black: #1a1a1a; --color-dark: #2d2d2d; --color-gray: #6b6b6b; --color-gray-light: #9a9a9a; --color-accent: #8b7355; --font-heading: 'Cormorant Garamond', Georgia, serif; --font-body: 'Montserrat', -apple-system, sans-serif; --spacing-xs: 0.5rem; --spacing-sm: 1rem; --spacing-md: 2rem; --spacing-lg: 4rem; --spacing-xl: 6rem; --transition-normal: 0.3s ease; }
@@ -43,6 +61,7 @@
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
         .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
         .site-logo-img { height: 40px; width: auto; }
+        @media (max-width: 1000px) { .site-logo { position: static; transform: none; } }
         .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
         .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
         .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
@@ -688,6 +707,21 @@
             }
         }
     </style>
+
+    <!-- Schema.org - VideoObject -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "El Terreno & Bellver Castle - Hotel Can Quetglas Location",
+        "description": "Explore the bohemian neighborhood of El Terreno and the nearby Bellver Castle pine forest, the green lung of Palma de Mallorca.",
+        "thumbnailUrl": "https://hotelcanquetglas.com/images/barrio.webp",
+        "uploadDate": "2024-01-01T12:00:00+01:00",
+        "contentUrl": "https://hotelcanquetglas.com/videos/castillo_pingpong.mp4",
+        "embedUrl": "https://hotelcanquetglas.com/hotel.html",
+        "duration": "PT20S"
+    }
+    </script>
 </head>
 <body>
 
@@ -860,16 +894,16 @@
 <!-- Hero Slider -->
 <section class="hero-slider" id="hero-slider">
     <div class="hero-slide active">
-        <img src="images/hotel/slider-1-tiles.jpg" alt="Can Quetglas Modernist Tiles - Art Nouveau Details">
+        <img loading="lazy" src="images/hotel/slider-1-tiles.jpg" alt="Can Quetglas Modernist Tiles - Art Nouveau Details">
     </div>
     <div class="hero-slide">
-        <img src="images/hotel/slider-2-salon.jpg" alt="Can Quetglas Salon - Historic Interior with Fireplace">
+        <img loading="lazy" src="images/hotel/slider-2-salon.jpg" alt="Can Quetglas Salon - Historic Interior with Fireplace">
     </div>
     <div class="hero-slide">
-        <img src="images/hotel/slider-3-terrace.jpg" alt="Can Quetglas Terrace - Mediterranean Garden">
+        <img loading="lazy" src="images/hotel/slider-3-terrace.jpg" alt="Can Quetglas Terrace - Mediterranean Garden">
     </div>
     <div class="hero-slide">
-        <img src="images/hotel/slider-4-poolside.jpg" alt="Can Quetglas Pool - Mediterranean Oasis">
+        <img loading="lazy" src="images/hotel/slider-4-poolside.jpg" alt="Can Quetglas Pool - Mediterranean Oasis">
     </div>
 
     <div class="hero-content">
@@ -904,7 +938,7 @@
 <section class="feature-section">
     <div class="feature-grid">
         <div class="feature-image">
-            <img src="images/hotel/fachada-full.jpg" alt="Can Quetglas Facade - Modernist Architecture">
+            <img loading="lazy" src="images/hotel/fachada-full.jpg" alt="Can Quetglas Facade - Modernist Architecture">
         </div>
         <div class="feature-content">
             <p class="feature-subtitle" data-i18n="hotel.architecture.subtitle">Architectural Heritage</p>
@@ -919,7 +953,7 @@
 <section class="feature-section">
     <div class="feature-grid reverse">
         <div class="feature-image">
-            <img src="images/hotel/salon-optimized.jpg" alt="Can Quetglas Salon - Heritage Interior">
+            <img loading="lazy" src="images/hotel/salon-optimized.jpg" alt="Can Quetglas Salon - Heritage Interior">
         </div>
         <div class="feature-content alt">
             <p class="feature-subtitle" data-i18n="hotel.heritage.subtitle">Protected Heritage</p>
@@ -1174,9 +1208,23 @@ document.querySelectorAll('.header-lang').forEach(langLink => {
     langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); });
 });
 
-// Load saved language
-const savedLang = localStorage.getItem('canquetglas-lang');
-if (savedLang && translations[savedLang]) setLanguage(savedLang);
+// Auto-detect language preference
+function initLanguage() {
+    const savedLang = localStorage.getItem('canquetglas-lang');
+    if (savedLang && translations[savedLang]) {
+        setLanguage(savedLang);
+        return;
+    }
+    const browserLang = navigator.language || navigator.userLanguage;
+    const lang = browserLang.split('-')[0];
+    const supportedLangs = ['en', 'es', 'de', 'sv'];
+    if (supportedLangs.includes(lang)) {
+        setLanguage(lang);
+    } else {
+        setLanguage('en');
+    }
+}
+initLanguage();
 
 // Hero Slider
 const slides = document.querySelectorAll('.hero-slide');
@@ -1222,4 +1270,8 @@ startSlideshow();
 </script>
 <script src="js/chatbot.js" defer></script>
 <script src="js/booking-popup.js" defer></script>
+    <!-- Google Analytics Custom Tracking -->
+    <script src="js/analytics-events.js" defer></script>
+    <script src="js/analytics-ecommerce.js" defer></script>
+
 </body>

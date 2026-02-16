@@ -29,6 +29,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JRGW78ZBB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JRGW78ZBB');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vep7ivb63y");
+    </script>
+
+
     <!-- reCAPTCHA v3 - Replace YOUR_RECAPTCHA_SITE_KEY with your actual site key -->
     <script src="https://www.google.com/recaptcha/api.js?render=6LcqfFQsAAAAAAFYak2ThPSDb29so0BX43yeJnGX"></script>
 
@@ -46,6 +64,7 @@
         .header-inner { display: flex; align-items: center; justify-content: space-between; }
         .site-logo { position: absolute; left: 50%; transform: translateX(-50%); }
         .site-logo-img { height: 40px; width: auto; }
+        @media (max-width: 1000px) { .site-logo { position: static; transform: none; } }
         .menu-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 10px; z-index: 10; }
         .menu-toggle span { display: block; width: 24px; height: 1px; background-color: var(--color-black); transition: all 0.3s; }
         .header-cta .btn { padding: 0.6rem 1.2rem; background: var(--color-black); color: var(--color-white); }
@@ -486,7 +505,7 @@
                 <h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4>
                 <p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p>
                 <p>+34 871 626 000</p>
-                <p>info@hotelcanquetglas.com</p>
+                <p><a href="mailto:info@hotelcanquetglas.com">info@hotelcanquetglas.com</a></p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
                     <a href="https://www.facebook.com/hotelcanquetglas" target="_blank" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -604,8 +623,23 @@ document.querySelectorAll('.header-lang').forEach(langLink => {
     langLink.addEventListener('click', function(e) { e.preventDefault(); setLanguage(this.dataset.lang); });
 });
 
-const savedLang = localStorage.getItem('canquetglas-lang');
-if (savedLang && translations[savedLang]) setLanguage(savedLang);
+// Auto-detect language preference
+function initLanguage() {
+    const savedLang = localStorage.getItem('canquetglas-lang');
+    if (savedLang && translations[savedLang]) {
+        setLanguage(savedLang);
+        return;
+    }
+    const browserLang = navigator.language || navigator.userLanguage;
+    const lang = browserLang.split('-')[0];
+    const supportedLangs = ['en', 'es', 'de', 'sv'];
+    if (supportedLangs.includes(lang)) {
+        setLanguage(lang);
+    } else {
+        setLanguage('en');
+    }
+}
+initLanguage();
 
 // Contact form submission with reCAPTCHA
 const RECAPTCHA_SITE_KEY = '6LcqfFQsAAAAAAFYak2ThPSDb29so0BX43yeJnGX';
@@ -672,5 +706,9 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 </script>
 <script src="js/chatbot.js" defer></script>
 <script src="js/booking-popup.js" defer></script>
+    <!-- Google Analytics Custom Tracking -->
+    <script src="js/analytics-events.js" defer></script>
+    <script src="js/analytics-ecommerce.js" defer></script>
+
 </body>
 </html>
