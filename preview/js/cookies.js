@@ -11,7 +11,9 @@
         en: {
             title: 'Cookie Preferences',
             description: 'We use our own and third-party cookies for analytical purposes and to show you personalised advertising based on a profile created from your browsing habits (e.g. pages visited). You can get more information and configure your preferences in our',
+            shortDescription: 'We use cookies to improve your experience',
             cookiePolicy: 'Cookie Policy',
+            moreInfo: 'More info',
             continueWithout: 'Continue without accepting',
             manageCookies: 'Manage Cookies',
             acceptAndClose: 'Accept and Close',
@@ -30,7 +32,9 @@
         es: {
             title: 'Preferencias de cookies',
             description: 'Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada en base a un perfil elaborado a partir de tus hábitos de navegación (por ejemplo, páginas visitadas). Puedes obtener más información y configurar tus preferencias en la',
+            shortDescription: 'Usamos cookies para mejorar tu experiencia',
             cookiePolicy: 'Política de cookies',
+            moreInfo: 'Más info',
             continueWithout: 'Continuar sin aceptar',
             manageCookies: 'Gestionar Cookies',
             acceptAndClose: 'Aceptar y Cerrar',
@@ -49,7 +53,9 @@
         de: {
             title: 'Cookie-Einstellungen',
             description: 'Wir verwenden eigene Cookies und Cookies von Drittanbietern für analytische Zwecke und um Ihnen personalisierte Werbung anzuzeigen, die auf einem Profil basiert, das aus Ihren Surfgewohnheiten erstellt wurde (z.B. besuchte Seiten). Weitere Informationen und Konfigurationsmöglichkeiten finden Sie in unserer',
+            shortDescription: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern',
             cookiePolicy: 'Cookie-Richtlinie',
+            moreInfo: 'Mehr Infos',
             continueWithout: 'Ohne Akzeptieren fortfahren',
             manageCookies: 'Cookies verwalten',
             acceptAndClose: 'Akzeptieren und Schließen',
@@ -68,7 +74,9 @@
         sv: {
             title: 'Cookie-inställningar',
             description: 'Vi använder egna och tredjepartscookies för analytiska ändamål och för att visa dig personlig reklam baserat på en profil skapad från dina surfvanor (t.ex. besökta sidor). Du kan få mer information och konfigurera dina inställningar i vår',
+            shortDescription: 'Vi använder cookies för att förbättra din upplevelse',
             cookiePolicy: 'Cookiepolicy',
+            moreInfo: 'Mer info',
             continueWithout: 'Fortsätt utan att acceptera',
             manageCookies: 'Hantera cookies',
             acceptAndClose: 'Acceptera och stäng',
@@ -94,100 +102,111 @@
     const isInRooms = window.location.pathname.includes('/rooms/');
     const policyPath = isInRooms ? '../cookie-policy.html' : 'cookie-policy.html';
 
-    // Estilos del banner - Estilo Camper (blanco/negro)
+    // Estilos del banner - Franja inferior discreta estilo Google
     const styles = document.createElement('style');
     styles.textContent = `
         .cookie-overlay {
             position: fixed;
-            top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(128, 128, 128, 0.5);
             z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            transform: translateY(100%);
         }
         .cookie-overlay.visible {
             opacity: 1;
             visibility: visible;
+            transform: translateY(0);
         }
         .cookie-modal {
-            background: #fff;
-            max-width: 700px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px 50px;
-            position: relative;
+            background: #1a1a1a;
+            color: #fff;
+            width: 100%;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
             font-family: 'Montserrat', -apple-system, sans-serif;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        .cookie-main-view {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            max-width: 1200px;
+            width: 100%;
         }
         .cookie-continue {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 0.85rem;
-            color: #1a1a1a;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            padding: 5px;
-        }
-        .cookie-continue:hover {
-            text-decoration: underline;
+            display: none;
         }
         .cookie-title {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 2rem;
-            font-weight: 400;
-            text-align: center;
-            margin-bottom: 25px;
-            color: #1a1a1a;
+            display: none;
+        }
+        .cookie-text-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
         .cookie-description {
-            font-size: 0.9rem;
-            line-height: 1.7;
-            color: #1a1a1a;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #fff;
+            margin: 0;
             text-align: center;
-            margin-bottom: 30px;
         }
         .cookie-description a {
-            color: #1a1a1a;
+            color: #fff;
             text-decoration: underline;
         }
         .cookie-buttons {
             display: flex;
-            gap: 20px;
-            justify-content: center;
+            gap: 12px;
+            align-items: center;
+            flex-shrink: 0;
         }
         .cookie-btn {
-            padding: 15px 35px;
+            padding: 10px 24px;
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Montserrat', sans-serif;
+            border-radius: 4px;
+            white-space: nowrap;
         }
         .cookie-btn-manage {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .cookie-btn-manage:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .cookie-btn-accept {
             background: #fff;
             color: #1a1a1a;
             border: none;
         }
-        .cookie-btn-manage:hover {
-            text-decoration: underline;
-        }
-        .cookie-btn-accept {
-            background: #1a1a1a;
-            color: #fff;
-            border: none;
-        }
         .cookie-btn-accept:hover {
-            background: #333;
+            background: #f0f0f0;
+        }
+        .cookie-btn-close {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: opacity 0.3s ease;
+        }
+        .cookie-btn-close:hover {
+            opacity: 0.7;
         }
 
         /* Modal de gestión de cookies */
@@ -196,9 +215,48 @@
         }
         .cookie-manage-view.visible {
             display: block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 10001;
         }
+        .cookie-manage-view.visible ~ .cookie-main-view,
         .cookie-main-view.hidden {
             display: none;
+        }
+        .cookie-overlay.has-manage-view {
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            bottom: 0;
+        }
+        .cookie-overlay.has-manage-view .cookie-modal {
+            background: transparent;
+            box-shadow: none;
+        }
+        .cookie-manage-view .cookie-title {
+            display: block;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+        }
+        .cookie-manage-view .cookie-description {
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .cookie-manage-view .cookie-description a {
+            color: #1a1a1a;
         }
         .cookie-option {
             padding: 20px 0;
@@ -287,15 +345,31 @@
             gap: 20px;
             justify-content: center;
         }
+        .cookie-manage-view .cookie-btn-manage {
+            background: #fff;
+            color: #1a1a1a;
+            border: 1px solid #1a1a1a;
+        }
+        .cookie-manage-view .cookie-btn-accept {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .cookie-manage-view .cookie-btn-accept:hover {
+            background: #333;
+        }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .cookie-modal {
-                padding: 30px 25px;
+                flex-direction: column;
+                padding: 16px;
+                gap: 12px;
+                align-items: flex-start;
             }
-            .cookie-title {
-                font-size: 1.5rem;
+            .cookie-description {
+                font-size: 0.8rem;
             }
             .cookie-buttons {
+                width: 100%;
                 flex-direction: column;
             }
             .cookie-btn {
@@ -326,15 +400,17 @@
             <div class="cookie-modal">
                 <button class="cookie-continue" id="cookie-continue">${t.continueWithout}</button>
 
-                <!-- Vista principal -->
+                <!-- Vista principal - Barra inferior -->
                 <div class="cookie-main-view" id="cookie-main-view">
-                    <h2 class="cookie-title">${t.title}</h2>
-                    <p class="cookie-description">
-                        ${t.description} <a href="${policyPath}">${t.cookiePolicy}</a>.
-                    </p>
+                    <div class="cookie-text-content">
+                        <p class="cookie-description">
+                            🍪 ${t.shortDescription}. <a href="${policyPath}">${t.moreInfo}</a>.
+                        </p>
+                    </div>
                     <div class="cookie-buttons">
                         <button class="cookie-btn cookie-btn-manage" id="cookie-manage">${t.manageCookies}</button>
                         <button class="cookie-btn cookie-btn-accept" id="cookie-accept">${t.acceptAndClose}</button>
+                        <button class="cookie-btn-close" id="cookie-close" title="${t.continueWithout}">✕</button>
                     </div>
                 </div>
 
@@ -423,6 +499,12 @@
             hideOverlay(overlay);
         });
 
+        // Botón cerrar (X)
+        document.getElementById('cookie-close').addEventListener('click', () => {
+            saveConsent({ necessary: true, preferences: false, analytics: false, marketing: false });
+            hideOverlay(overlay);
+        });
+
         // Aceptar todas (vista principal)
         document.getElementById('cookie-accept').addEventListener('click', () => {
             saveConsent({ necessary: true, preferences: true, analytics: true, marketing: true });
@@ -434,6 +516,7 @@
         document.getElementById('cookie-manage').addEventListener('click', () => {
             mainView.classList.add('hidden');
             manageView.classList.add('visible');
+            overlay.classList.add('has-manage-view');
         });
 
         // Toggle detalles

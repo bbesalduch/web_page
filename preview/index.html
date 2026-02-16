@@ -56,6 +56,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JRGW78ZBB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7JRGW78ZBB');
+    </script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vep7ivb63y");
+    </script>
+
+
     <style>
         /* Custom Font */
         @font-face {
@@ -303,7 +321,8 @@
         }
         .hero-tagline {
             font-family: var(--font-body);
-            font-size: 0.8rem;
+            font-size: 0.95rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.3em;
             color: var(--color-white);
@@ -325,6 +344,8 @@
             color: var(--color-white);
             font-size: 0.85rem;
             letter-spacing: 0.1em;
+            font-weight: bold;
+            text-decoration: underline;
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -341,11 +362,12 @@
             letter-spacing: 0.08em;
         }
         .intro-badge {
-            font-size: 0.7rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--color-gray);
             margin-top: var(--spacing-sm);
+            font-weight: bold;
         }
 
         /* Rooms Slider - Can Alomar style */
@@ -1329,6 +1351,21 @@
         }]
     }
     </script>
+
+    <!-- Schema.org - VideoObject -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Hotel Can Quetglas - Boutique Hotel in Palma de Mallorca",
+        "description": "Discover Hotel Can Quetglas, a 1908 Art Nouveau palace transformed into a boutique hotel in El Terreno, Palma de Mallorca. Featuring saltwater pool, Mediterranean garden, and original modernist frescoes.",
+        "thumbnailUrl": "https://hotelcanquetglas.com/images/hotel/fachada-full.jpg",
+        "uploadDate": "2024-01-01T12:00:00+01:00",
+        "contentUrl": "https://hotelcanquetglas.com/videos/mallorca.mp4",
+        "embedUrl": "https://hotelcanquetglas.com/",
+        "duration": "PT30S"
+    }
+    </script>
 </head>
 <body>
 
@@ -1518,10 +1555,10 @@
         <h1 class="hero-logo">Can Quetglas</h1>
         <p class="hero-tagline" data-i18n="hero.tagline">Urban Boutique Haven</p>
         <div class="hero-cta">
-            <a href="hotel.html" class="btn btn-light" data-i18n="hero.discover">Discover</a>
+            <a href="#" class="btn btn-primary" data-booking-link data-i18n="hero.discover">Book Now</a>
         </div>
     </div>
-    <a href="#" class="hero-booking" data-booking-link data-i18n="hero.booking" style="text-decoration: none; display: block;">
+    <a href="#" class="hero-booking" data-booking-link data-i18n="hero.booking" style="display: block;">
         Book now for exclusive benefits
     </a>
 </section>
@@ -1735,7 +1772,7 @@
                 <h4 class="footer-nav-title" data-i18n="nav.contact">Contact</h4>
                 <p>Calle Santa Rita, 13<br>07014 Palma de Mallorca</p>
                 <p>+34 871 626 000</p>
-                <p>info@hotelcanquetglas.com</p>
+                <p><a href="mailto:info@hotelcanquetglas.com">info@hotelcanquetglas.com</a></p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/hotelcanquetglas/" target="_blank" aria-label="Instagram">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -1792,7 +1829,7 @@ const translations = {
 
         // Hero
         'hero.tagline': 'Urban Boutique Haven',
-        'hero.discover': 'Discover',
+        'hero.discover': 'Book Now',
         'hero.booking': 'Book now for exclusive benefits',
 
         // Intro
@@ -1901,7 +1938,7 @@ const translations = {
 
         // Hero
         'hero.tagline': 'Refugio Boutique Urbano',
-        'hero.discover': 'Descubrir',
+        'hero.discover': 'Reservar Ahora',
         'hero.booking': 'Reserva ahora y disfruta de beneficios exclusivos',
 
         // Intro
@@ -2010,7 +2047,7 @@ const translations = {
 
         // Hero
         'hero.tagline': 'Urbane Boutique Oase',
-        'hero.discover': 'Entdecken',
+        'hero.discover': 'Jetzt Buchen',
         'hero.booking': 'Jetzt buchen für exklusive Vorteile',
 
         // Intro
@@ -2119,7 +2156,7 @@ const translations = {
 
         // Hero
         'hero.tagline': 'Urban Boutique Oas',
-        'hero.discover': 'Upptäck',
+        'hero.discover': 'Boka Nu',
         'hero.booking': 'Boka nu för exklusiva förmåner',
 
         // Intro
@@ -2325,11 +2362,32 @@ document.querySelectorAll('.header-lang').forEach(langLink => {
     });
 });
 
-// Load saved language preference
-const savedLang = localStorage.getItem('canquetglas-lang');
-if (savedLang && translations[savedLang]) {
-    setLanguage(savedLang);
+// Auto-detect language preference
+function initLanguage() {
+    // 1. Check if there's a saved preference
+    const savedLang = localStorage.getItem('canquetglas-lang');
+    if (savedLang && translations[savedLang]) {
+        setLanguage(savedLang);
+        return;
+    }
+
+    // 2. If no saved preference: detect browser language
+    const browserLang = navigator.language || navigator.userLanguage;
+    const lang = browserLang.split('-')[0]; // Extract language code (e.g., "es" from "es-ES")
+
+    // 3. Check if we support this language
+    const supportedLangs = ['en', 'es', 'de', 'sv'];
+
+    if (supportedLangs.includes(lang)) {
+        setLanguage(lang);
+    } else {
+        setLanguage('en'); // Default to English
+    }
 }
+
+// Initialize language on page load
+initLanguage();
+
 // Always initialize booking links
 updateBookingLinks();
 
@@ -2845,5 +2903,9 @@ console.log('Multi-room booking initialized', rooms);
 </script>
 <script src="js/chatbot.js" defer></script>
 <script src="js/cookies.js" defer></script>
+    <!-- Google Analytics Custom Tracking -->
+    <script src="js/analytics-events.js" defer></script>
+    <script src="js/analytics-ecommerce.js" defer></script>
+
 </body>
 </html>
