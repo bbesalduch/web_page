@@ -12,6 +12,7 @@
             title: 'Cookie Preferences',
             description: 'We use our own and third-party cookies for analytical purposes and to show you personalised advertising based on a profile created from your browsing habits (e.g. pages visited). You can get more information and configure your preferences in our',
             shortDescription: 'We use cookies to improve your experience',
+            mobileDescription: 'We use cookies',
             cookiePolicy: 'Cookie Policy',
             moreInfo: 'More info',
             continueWithout: 'Continue without accepting',
@@ -33,6 +34,7 @@
             title: 'Preferencias de cookies',
             description: 'Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada en base a un perfil elaborado a partir de tus hábitos de navegación (por ejemplo, páginas visitadas). Puedes obtener más información y configurar tus preferencias en la',
             shortDescription: 'Usamos cookies para mejorar tu experiencia',
+            mobileDescription: 'Usamos cookies',
             cookiePolicy: 'Política de cookies',
             moreInfo: 'Más info',
             continueWithout: 'Continuar sin aceptar',
@@ -54,6 +56,7 @@
             title: 'Cookie-Einstellungen',
             description: 'Wir verwenden eigene Cookies und Cookies von Drittanbietern für analytische Zwecke und um Ihnen personalisierte Werbung anzuzeigen, die auf einem Profil basiert, das aus Ihren Surfgewohnheiten erstellt wurde (z.B. besuchte Seiten). Weitere Informationen und Konfigurationsmöglichkeiten finden Sie in unserer',
             shortDescription: 'Wir verwenden Cookies, um Ihre Erfahrung zu verbessern',
+            mobileDescription: 'Wir verwenden Cookies',
             cookiePolicy: 'Cookie-Richtlinie',
             moreInfo: 'Mehr Infos',
             continueWithout: 'Ohne Akzeptieren fortfahren',
@@ -75,6 +78,7 @@
             title: 'Cookie-inställningar',
             description: 'Vi använder egna och tredjepartscookies för analytiska ändamål och för att visa dig personlig reklam baserat på en profil skapad från dina surfvanor (t.ex. besökta sidor). Du kan få mer information och konfigurera dina inställningar i vår',
             shortDescription: 'Vi använder cookies för att förbättra din upplevelse',
+            mobileDescription: 'Vi använder cookies',
             cookiePolicy: 'Cookiepolicy',
             moreInfo: 'Mer info',
             continueWithout: 'Fortsätt utan att acceptera',
@@ -158,6 +162,12 @@
             color: #fff;
             margin: 0;
             text-align: center;
+        }
+        .cookie-text-mobile {
+            display: none;
+        }
+        .cookie-text-desktop {
+            display: inline;
         }
         .cookie-description a {
             color: #fff;
@@ -361,19 +371,41 @@
         @media (max-width: 768px) {
             .cookie-modal {
                 flex-direction: column;
-                padding: 16px;
-                gap: 12px;
+                padding: 12px 16px;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            .cookie-main-view {
+                flex-direction: column;
+                gap: 10px;
                 align-items: flex-start;
             }
             .cookie-description {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                line-height: 1.4;
+                text-align: left;
+            }
+            .cookie-text-desktop {
+                display: none;
+            }
+            .cookie-text-mobile {
+                display: inline;
             }
             .cookie-buttons {
                 width: 100%;
-                flex-direction: column;
+                flex-direction: row;
+                gap: 8px;
+                justify-content: space-between;
             }
             .cookie-btn {
-                width: 100%;
+                flex: 1;
+                padding: 8px 12px;
+                font-size: 0.7rem;
+            }
+            .cookie-btn-close {
+                flex: 0 0 auto;
+                padding: 4px;
+                font-size: 1.2rem;
             }
             .cookie-manage-buttons {
                 flex-direction: column;
@@ -404,7 +436,8 @@
                 <div class="cookie-main-view" id="cookie-main-view">
                     <div class="cookie-text-content">
                         <p class="cookie-description">
-                            🍪 ${t.shortDescription}. <a href="${policyPath}">${t.moreInfo}</a>.
+                            <span class="cookie-text-desktop">🍪 ${t.shortDescription}. <a href="${policyPath}">${t.moreInfo}</a>.</span>
+                            <span class="cookie-text-mobile">🍪 ${t.mobileDescription}. <a href="${policyPath}">${t.moreInfo}</a>.</span>
                         </p>
                     </div>
                     <div class="cookie-buttons">
