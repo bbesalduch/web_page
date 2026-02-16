@@ -2439,8 +2439,13 @@ fadeElements.forEach(el => observer.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         if (this.classList.contains('submenu-toggle')) return;
+
+        const href = this.getAttribute('href');
+        // Validar que el href no sea solo '#' o vacío
+        if (!href || href === '#' || href.length <= 1) return;
+
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
